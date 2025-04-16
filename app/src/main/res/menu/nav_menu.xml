@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xmlns="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view">
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/profile_page"
+            android:icon="@drawable/baseline_person_24"
+            android:title="Profile"
+            android:iconTint="@color/brown_background" />
+
+        <item
+            android:id="@+id/home_page"
+            android:icon="@drawable/baseline_home_24"
+            android:title="Home"
+            android:iconTint="@color/brown_background" />
+
+        <item
+            android:id="@+id/achievements_page"
+            android:icon="@drawable/baseline_star_24"
+            android:title="Achievements"
+            android:iconTint="@color/brown_background" />
+
+        <item
+            android:id="@+id/categories_page"
+            android:icon="@drawable/baseline_format_list_bulleted_24"
+            android:title="Categories"
+            android:iconTint="@color/brown_background" />
+
+        <item
+            android:id="@+id/expenses_page"
+            android:icon="@drawable/baseline_attach_money_24"
+            android:title="Expenses"
+            android:iconTint="@color/brown_background" />
+
+        <item
+            android:id="@+id/flow_state_page"
+            android:icon="@drawable/baseline_auto_graph_24"
+            android:title="Flow State"
+            android:iconTint="@color/brown_background" />
+
+        <item
+            android:id="@+id/log_out"
+            android:icon="@drawable/baseline_exit_to_app_24"
+            android:title="Logout"
+            android:iconTint="@color/brown_background" />
+    </group>
+</menu>
