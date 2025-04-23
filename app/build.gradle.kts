@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp) //applies the KSP plugin
 }
 
 android {
@@ -42,7 +43,15 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // ROOM Database dependencies
+    implementation(libs.room.runtime)
+    // KSP (Kotlin Symbol Processing) needed to generate Room code
+    ksp(libs.androidx.room.compiler)
+    // Adds Kotlin extensions and support for Coroutines
+    implementation(libs.room.ktx)
 }
