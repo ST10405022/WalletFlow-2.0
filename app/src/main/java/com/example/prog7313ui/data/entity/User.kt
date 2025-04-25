@@ -11,9 +11,9 @@ import androidx.room.PrimaryKey
 data class User(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0, // Auto-generated primary key for uniquely identifying each user
-
     val name: String,      // User's first name
     val surname: String,   // User's last name
     val username: String,  // Unique username for login
-    val password: String   // Password for login
+    val password: String,  // Password for login
+    val email: String      // User's email address
 )

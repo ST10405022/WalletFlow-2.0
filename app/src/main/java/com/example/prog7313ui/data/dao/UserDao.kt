@@ -1,9 +1,8 @@
 package com.example.prog7313ui.data.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.example.prog7313ui.data.entity.User
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Data Access Object (DAO) interface for interacting with the User table.
@@ -12,21 +11,29 @@ import com.example.prog7313ui.data.entity.User
 @Dao
 interface UserDao {
 
-    /**
-     * Insert a new user into the database.
-     */
-    @Insert
+    // Inserts a new user into the database.
+    // If the user already exists, replaces the old record.
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUser(user: User)
 
-    /**
-     * Fetch a user by username and password for login validation.
-     */
-    @Query("SELECT * FROM users WHERE username = :username AND password = :password LIMIT 1")
-    suspend fun loginUser(username: String, password: String): User?
+    // Retrieves a user based on their email.
+    // Returns null if no user is found.
+    @Query("SELECT * FROM users WHERE email = :email LIMIT 1")
+    suspend fun getUserByEmail(email: String): User?
 
-    /**
-     * Check if a username already exists (to prevent duplicates).
-     */
-    @Query("SELECT COUNT(*) FROM users WHERE username = :username")
-    suspend fun isUsernameTaken(username: String): Int
+    // Retrieves a user by their unique ID.
+    @Query("SELECT * FROM users WHERE id = :id")
+    suspend fun getUserById(id: Int): User?
+
+    // Retrieves all users from the database as a stream of data.
+    @Query("SELECT * FROM users")
+    fun getAllUsers(): Flow<List<User>>
+
+    // Updates an existing user's information.
+    @Update
+    suspend fun updateUser(user: User)
+
+    // Deletes a specific user from the database.
+    @Delete
+    suspend fun deleteUser(user: User)
 }
