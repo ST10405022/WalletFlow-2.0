@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
@@ -21,9 +22,10 @@
                 android:id="@+id/backToHubBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_media_previous"
                 android:background="@android:color/transparent"
-                android:contentDescription="Back to hub" />
+                android:contentDescription="Back to hub"
+                android:src="@android:drawable/ic_media_previous"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <!-- Page Title -->
             <TextView
@@ -62,7 +64,40 @@
             android:id="@+id/inputDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Select the once off/recurring date of expense"
+            android:hint="Select the date of expense"
+            android:inputType="datetime"
+            android:background="@drawable/edittext_border"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- CheckBox for Recurring Expense -->
+        <CheckBox
+            android:id="@+id/recurringExpenseCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Is this a recurring expense?"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Input for Start Date (only visible if recurring) -->
+        <EditText
+            android:id="@+id/inputStartDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Insert Start Date"
+            android:inputType="datetime"
+            android:visibility="gone"
+            android:background="@drawable/edittext_border"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Input for End Date (only visible if recurring) -->
+        <EditText
+            android:id="@+id/inputEndDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Insert End Date"
+            android:inputType="datetime"
+            android:visibility="gone"
             android:background="@drawable/edittext_border"
             android:padding="12dp"
             android:layout_marginBottom="16dp" />
@@ -82,19 +117,31 @@
             android:id="@+id/categorySpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/edittext_border"
-            android:padding="12dp"
-            android:layout_marginBottom="16dp" />
+            android:minHeight="48dp"
+            android:padding="12dp" />
 
         <!-- Upload Image Button -->
         <Button
             android:id="@+id/uploadReceiptBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Upload an image of your category of choice"
+            android:text="Upload an image of your choice"
             android:backgroundTint="#7B5CC4"
             android:textColor="#FFFFFF"
             android:layout_marginBottom="32dp" />
+
+        <!-- Preview Image -->
+        <ImageView
+            android:id="@+id/previewImage"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="12dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="Image Preview"
+            android:visibility="gone" />
 
         <!-- Create Expense Button -->
         <Button
@@ -106,6 +153,5 @@
             android:textColor="#FFFFFF"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="16dp" />
-
     </LinearLayout>
 </ScrollView>
