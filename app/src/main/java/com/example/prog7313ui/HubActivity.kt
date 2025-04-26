@@ -39,6 +39,7 @@ class HubActivity : AppCompatActivity() {
 
         // --- Category Buttons ---
 
+
         val category1Btn = findViewById<Button>(R.id.category1Btn)
         category1Btn.setOnClickListener {
             val intent = Intent(this, CategoryActivity::class.java)
