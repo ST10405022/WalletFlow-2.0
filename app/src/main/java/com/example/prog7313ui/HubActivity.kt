@@ -5,16 +5,36 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HubActivity : AppCompatActivity() {
+    private lateinit var adapter: CategoryAdapter
+    private val categoryViewModel: CategoryViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hub)
 
-        // --- Navigation Buttons ---
+        // RecyclerView initialization
+        val recyclerView = findViewById<RecyclerView>(R.id.categoryRecyclerView)
+        adapter = CategoryAdapter(emptyList()){
+            budgetCategory -> val intent = Intent(this, CategoryActivity::class.java)
+            intent.putExtra("Category_ID", budgetCategory.id)
+            startActivity(intent)
+        }
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = adapter
 
+        // RoomDB data
+        categoryViewModel.allCategories.observe(this){
+            categories -> adapter.updateData(categories)
+        }
+
+        // --- Navigation Buttons ---
         // Add Category
         val addCategoryBtn = findViewById<Button>(R.id.addCategoryBtn)
         addCategoryBtn.setOnClickListener {
@@ -38,18 +58,6 @@ class HubActivity : AppCompatActivity() {
         }
 
         // --- Category Buttons ---
-
-
-        val category1Btn = findViewById<Button>(R.id.category1Btn)
-        category1Btn.setOnClickListener {
-            val intent = Intent(this, CategoryActivity::class.java)
-            startActivity(intent)
-        }
-
-        val category2Btn = findViewById<Button?>(R.id.category2Btn)
-        category2Btn?.setOnClickListener {
-            Toast.makeText(this, "Category 2 clicked", Toast.LENGTH_SHORT).show()
-        }
 
         // --- Bottom Navigation ---
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)

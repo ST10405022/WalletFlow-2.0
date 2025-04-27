@@ -58,7 +58,8 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "walletflow_database"
-                ).build()
+                ).addMigrations(Migration012)
+                    .build()
                 INSTANCE = instance
                 instance
             }
