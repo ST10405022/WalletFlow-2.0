@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_categories"
+        android:icon="@android:drawable/ic_menu_agenda"
+        android:title="Categories" />
+
+    <item
+        android:id="@+id/nav_flow"
+        android:icon="@android:drawable/ic_menu_compass"
+        android:title="Flow State" />
+
+    <item
+        android:id="@+id/nav_achievements"
+        android:icon="@android:drawable/ic_menu_myplaces"
+        android:title="Achievements" />
+
+    <item
+        android:id="@+id/nav_expenses"
+        android:icon="@android:drawable/ic_menu_view"
+        android:title="Expense List" />
+
+</menu>
