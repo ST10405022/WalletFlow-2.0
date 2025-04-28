@@ -4,7 +4,6 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.provider.OpenableColumns
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -29,22 +28,22 @@ import java.util.Date
 import java.util.Locale
 
 /**
- * Activity for adding a new expense.
+ * Activity for adding a new expense to the database.
 */
 class AddExpenseActivity : AppCompatActivity() {
-    private lateinit var nameInput: EditText
-    private lateinit var amountInput: EditText
-    private lateinit var dateInput: EditText
-    private lateinit var descInput: EditText
-    private lateinit var categorySpinner: Spinner
-    private lateinit var uploadButton: Button
-    private lateinit var createExpenseButton: Button
-    private lateinit var backButton: ImageButton
-    private lateinit var recurringExpenseCheckBox: CheckBox
-    private lateinit var startDateInput: EditText
-    private lateinit var endDateInput: EditText
-    private lateinit var previewImage: ImageView
-    private lateinit var uploadReceiptBtn: Button
+    // UI elements
+    private lateinit var nameInput: EditText // EditText for name
+    private lateinit var amountInput: EditText // EditText for amount
+    private lateinit var dateInput: EditText // EditText for date
+    private lateinit var descInput: EditText // EditText for description
+    private lateinit var createExpenseButton: Button // Button to create the expense
+    private lateinit var backButton: ImageButton // Button to go back to HubActivity
+    private lateinit var startDateInput: EditText // EditText for start date
+    private lateinit var endDateInput: EditText // EditText for end date
+    private lateinit var previewImage: ImageView // ImageView to preview the selected image
+    private lateinit var uploadPhotoBtn: Button // Button to upload receipt image
+    private lateinit var recurringExpenseCheckBox: CheckBox // Checkbox for recurring expenses
+    private lateinit var categorySpinner: Spinner // Spinner for selecting a category
 
     // SimpleDateFormat for parsing the date input
     private val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
@@ -80,34 +79,37 @@ class AddExpenseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_expense)
 
-        // Bind views
+        categorySpinner = findViewById(R.id.categorySpinner)
+
+        loadCategoriesIntoSpinner() // Load categories from the database and populate the spinner
+
+        // Bind views to variables
         nameInput = findViewById(R.id.inputExpenseName)
         amountInput = findViewById(R.id.inputAmount)
         dateInput = findViewById(R.id.inputDate)
         descInput = findViewById(R.id.inputDescription)
         categorySpinner = findViewById(R.id.categorySpinner)
-        uploadButton = findViewById(R.id.uploadReceiptBtn)
+        //uploadButton = findViewById(R.id.uploadReceiptBtn)
         createExpenseButton = findViewById(R.id.createExpenseBtn)
         backButton = findViewById(R.id.backToHubBtn)
         recurringExpenseCheckBox = findViewById(R.id.recurringExpenseCheckBox)
         startDateInput = findViewById(R.id.inputStartDate)
         endDateInput = findViewById(R.id.inputEndDate)
-        uploadReceiptBtn = findViewById(R.id.uploadReceiptBtn)
+        uploadPhotoBtn = findViewById(R.id.uploadReceiptBtn)
         previewImage = findViewById(R.id.previewImage)
 
-        // Sample data for the BudgetCategory Spinner
-        val budgetCategories = listOf(
-            BudgetCategory(1, "Food"),
-            BudgetCategory(2, "Transport"),
-            BudgetCategory(3, "Entertainment")
-        )
-
-
-        // Adapter for the Spinner
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, budgetCategories)
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        categorySpinner.adapter = adapter
+//        // Sample data for the BudgetCategory Spinner
+//        val budgetCategories = listOf(
+//            BudgetCategory(1, "Food"),
+//            BudgetCategory(2, "Transport"),
+//            BudgetCategory(3, "Entertainment")
+//        )
+//
+//        // Adapter for the Spinner
+//        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, budgetCategories)
+//
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//        categorySpinner.adapter = adapter
 
         // Set up date picker for Date
         dateInput.setOnClickListener {
@@ -149,19 +151,41 @@ class AddExpenseActivity : AppCompatActivity() {
             }
         }
 
-        // Upload photo using MediaStore picker
-        uploadButton.setOnClickListener {
-            pickImageLauncher.launch(arrayOf("image/*")) // Allow user to pick any image
-        }
-
         // Upload Receipt Image
-        uploadReceiptBtn.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK)
-            // Set the type of files to be picked as images
-            intent.setDataAndType(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*")
-            resultLauncher.launch(intent)
+        uploadPhotoBtn.setOnClickListener {
+            pickImageLauncher.launch(arrayOf("image/*")) // Pick image using SAF
         }
     }
+
+    /**
+     * Load all categories from the database and populate the spinner.
+     * This is done in a background thread using coroutines.
+     * @return A list of BudgetCategory objects.
+     */
+    private fun loadCategoriesIntoSpinner() {
+        lifecycleScope.launch {
+            try {
+                // Get the database instance
+                val db = AppDatabase.getInstance(this@AddExpenseActivity)
+                val categoryDao = db.budgetCategoryDao()
+
+                // Load all categories from the database in a background thread
+                categoryDao.getAllCategories().collect { categories ->
+                    val adapter = ArrayAdapter(
+                        this@AddExpenseActivity,
+                        android.R.layout.simple_spinner_item,
+                        categories.map { "${it.id}. ${it.name}" }
+                    )
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    categorySpinner.adapter = adapter // Set the adapter to the spinner
+                }
+
+            } catch (e: Exception) { // Handle exceptions if needed
+                Toast.makeText(this@AddExpenseActivity, "Failed to load categories: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
 
     /**
      * Validate all required inputs and show inline errors if needed.
@@ -274,7 +298,7 @@ class AddExpenseActivity : AppCompatActivity() {
                     "Expense saved!", Toast.LENGTH_SHORT).show() // Inform user of success
                 finish() // Optional: go back after saving
             }
-            catch (e: Exception) {
+            catch (e: Exception) { // Handle exceptions if needed
                 Toast.makeText(this@AddExpenseActivity,
                     "Error saving expense: ${e.localizedMessage}",
                     Toast.LENGTH_LONG).show() // Inform user of failure
@@ -290,7 +314,7 @@ class AddExpenseActivity : AppCompatActivity() {
     private fun parseDate(dateString: String): Date? {
         return try {
             dateFormat.parse(dateString) // Parse the date string into a Date object
-        } catch (e: Exception) {
+        } catch (e: Exception) { // Handle exceptions if needed
             null // Return null if parsing fails
         }
     }
@@ -312,35 +336,5 @@ class AddExpenseActivity : AppCompatActivity() {
         }, year, month, day)
 
         datePickerDialog.show()
-    }
-
-    /**
-     * Launch an activity for selecting an image from the device's storage.
-     */
-    private val resultLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == RESULT_OK) {
-                val selectedImageUri: Uri = result.data?.data ?: return@registerForActivityResult
-                previewImage.setImageURI(selectedImageUri)
-                previewImage.visibility = View.VISIBLE
-
-                // Optionally, show the file name
-                val fileName = getFileNameFromUri(selectedImageUri)
-                Toast.makeText(this, "Image selected: $fileName", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-    /**
-     * Get the file name from a URI.
-     * @param uri The URI of the file.
-     * @return The file name.
-     */
-    private fun getFileNameFromUri(uri: Uri): String {
-        val cursor = contentResolver.query(uri, null, null, null, null)
-        cursor?.moveToFirst()
-        val columnIndex = cursor?.getColumnIndex(OpenableColumns.DISPLAY_NAME)
-        val fileName = cursor?.getString(columnIndex ?: 0)
-        cursor?.close()
-        return fileName ?: "Unknown file"
     }
 }

@@ -20,14 +20,14 @@
             android:layout_height="wrap_content"
             android:src="@android:drawable/ic_media_previous"
             android:background="@android:color/transparent"
-            android:contentDescription="Back to login" />
+            android:contentDescription="@string/back_to_login" />
 
         <!-- Title -->
         <TextView
             android:id="@+id/titleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your Categories"
+            android:text="@string/your_categories"
             android:textSize="24sp"
             android:textStyle="bold"
             android:layout_centerHorizontal="true"
@@ -48,6 +48,7 @@
     <!-- Add Buttons (Categories and Expenses) -->
     <LinearLayout
         android:id="@+id/addButtonsLayout"
+        style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/bottomNavigation"
@@ -57,16 +58,18 @@
 
         <Button
             android:id="@+id/addCategoryBtn"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add a Category"
+            android:text="@string/add_a_category"
             android:layout_marginEnd="12dp" />
 
         <Button
             android:id="@+id/addExpenseBtn"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Expense" />
+            android:text="@string/add_expense" />
     </LinearLayout>
 
     <!-- Bottom Navigation -->

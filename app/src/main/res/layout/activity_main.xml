@@ -16,7 +16,7 @@
             android:id="@+id/welcomeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome!"
+            android:text="@string/welcome"
             android:textSize="24sp"
             android:textStyle="bold"
             android:layout_marginTop="24dp"
@@ -30,14 +30,14 @@
             android:layout_marginBottom="24dp"
             android:src="@drawable/wallet_flow_logo"
             android:scaleType="fitCenter"
-            android:contentDescription="Wallet logo" />
+            android:contentDescription="@string/wallet_logo" />
 
         <!-- Email Input -->
         <EditText
             android:id="@+id/emailInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:layout_marginBottom="16dp" />
 
@@ -46,7 +46,7 @@
             android:id="@+id/passwordInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:layout_marginBottom="24dp" />
 
@@ -55,7 +55,7 @@
             android:id="@+id/signInButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sign In"
+            android:text="@string/sign_in"
             android:backgroundTint="#222222"
             android:textColor="#FFFFFF"
             android:layout_marginBottom="16dp" />
@@ -65,7 +65,7 @@
             android:id="@+id/continueBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Continue without logging in"
+            android:text="@string/continue_without_logging_in"
             android:backgroundTint="#DDDDDD"
             android:textColor="#000000"
             android:layout_marginBottom="16dp" />
@@ -75,7 +75,7 @@
             android:id="@+id/forgotPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Forgot password?"
+            android:text="@string/forgot_password"
             android:textColor="#000000"
             android:textStyle="bold" />
 

@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:contentDescription="Back to hub"
+                android:contentDescription="@string/back_to_hub"
                 android:src="@android:drawable/ic_media_previous"
                 tools:ignore="TouchTargetSizeCheck" />
 
@@ -31,7 +31,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add an Expense"
+                android:text="@string/add_an_expense"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:layout_centerHorizontal="true"
@@ -43,8 +43,9 @@
             android:id="@+id/inputExpenseName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Name of your expense"
+            android:hint="@string/name_of_your_expense"
             android:background="@drawable/edittext_border"
+            android:inputType="textCapSentences"
             android:padding="12dp"
             android:layout_marginBottom="16dp" />
 
@@ -53,7 +54,7 @@
             android:id="@+id/inputAmount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Select the cost amount of your expense"
+            android:hint="@string/select_the_cost_amount_of_your_expense"
             android:inputType="numberDecimal"
             android:background="@drawable/edittext_border"
             android:padding="12dp"
@@ -64,7 +65,7 @@
             android:id="@+id/inputDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Select the date of expense"
+            android:hint="@string/select_the_date_of_expense"
             android:inputType="datetime"
             android:background="@drawable/edittext_border"
             android:padding="12dp"
@@ -75,7 +76,7 @@
             android:id="@+id/recurringExpenseCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Is this a recurring expense?"
+            android:text="@string/is_this_a_recurring_expense"
             android:layout_marginBottom="16dp"/>
 
         <!-- Input for Start Date (only visible if recurring) -->
@@ -83,7 +84,7 @@
             android:id="@+id/inputStartDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Insert Start Date"
+            android:hint="@string/insert_start_date"
             android:inputType="datetime"
             android:visibility="gone"
             android:background="@drawable/edittext_border"
@@ -95,7 +96,7 @@
             android:id="@+id/inputEndDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Insert End Date"
+            android:hint="@string/insert_end_date"
             android:inputType="datetime"
             android:visibility="gone"
             android:background="@drawable/edittext_border"
@@ -107,8 +108,10 @@
             android:id="@+id/inputDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Create a description for your expense"
+            android:autofillHints=""
+            android:hint="@string/create_a_description_for_your_expense"
             android:background="@drawable/edittext_border"
+            android:inputType="textMultiLine"
             android:padding="12dp"
             android:layout_marginBottom="16dp" />
 
@@ -127,7 +130,7 @@
             android:id="@+id/uploadReceiptBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Upload an image of your choice"
+            android:text="@string/upload_an_image_of_your_choice"
             android:backgroundTint="#7B5CC4"
             android:textColor="#FFFFFF"
             android:layout_marginBottom="32dp" />
@@ -138,9 +141,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginTop="12dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:contentDescription="Image Preview"
+            android:contentDescription="@string/image_preview"
             android:visibility="gone" />
 
         <!-- Create Expense Button -->
@@ -148,7 +149,7 @@
             android:id="@+id/createExpenseBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Create Expense"
+            android:text="@string/create_expense"
             android:backgroundTint="#7B5CC4"
             android:textColor="#FFFFFF"
             android:layout_gravity="center_horizontal"
