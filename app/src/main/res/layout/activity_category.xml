@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Title Bar with Back Button -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <!-- Back Button -->
+            <ImageButton
+                android:id="@+id/backToHubBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_media_previous"
+                android:background="@android:color/transparent"
+                android:contentDescription="Back to Hub" />
+
+            <!-- Page Title -->
+            <TextView
+                android:id="@+id/categoryTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category Alpha"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true" />
+        </RelativeLayout>
+
+        <!-- Placeholder Image -->
+        <ImageView
+            android:id="@+id/categoryImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/ic_launcher_background"
+            android:scaleType="centerInside"
+            android:background="#E0E0E0"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Budget Goal Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set Monthly Total Budget Goal"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Date Range -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="24dp">
+
+            <EditText
+                android:id="@+id/fromDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="From (mm/dd/yyyy)"
+                android:background="@drawable/edittext_border"
+                android:padding="12dp"
+                android:layout_marginEnd="8dp" />
+
+            <EditText
+                android:id="@+id/toDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="To (mm/dd/yyyy)"
+                android:background="@drawable/edittext_border"
+                android:padding="12dp"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <!-- List of Items -->
+        <LinearLayout
+            android:id="@+id/itemList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="List item 1"
+                android:layout_marginBottom="8dp" />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="List item 2"
+                android:layout_marginBottom="8dp" />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="List item 3"
+                android:layout_marginBottom="8dp" />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="List item 4"
+                android:layout_marginBottom="8dp" />
+        </LinearLayout>
+
+        <!-- Update Button -->
+        <Button
+            android:id="@+id/updateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update"
+            android:backgroundTint="#7B5CC4"
+            android:textColor="#FFFFFF"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp" />
+    </LinearLayout>
+</ScrollView>
