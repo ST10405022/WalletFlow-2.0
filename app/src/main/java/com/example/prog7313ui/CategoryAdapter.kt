@@ -31,7 +31,7 @@ class CategoryAdapter(
     override fun getItemCount(): Int = categories.size
 
     fun updateData(newCategories: List<BudgetCategory>) {
-        this.categories = newCategories
+        categories = newCategories
         notifyDataSetChanged()
     }
 }

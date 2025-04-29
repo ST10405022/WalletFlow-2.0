@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp) //applies the KSP plugin
-    id("com.google.dagger.hilt.android") version "2.53.1"
 }
 
 android {
@@ -49,12 +48,10 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.hilt.android) // Hilt
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    ksp (libs.hilt.compiler.vlatestversion)
 
     // ROOM Database dependencies
     implementation(libs.room.runtime)

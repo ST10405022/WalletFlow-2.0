@@ -27,19 +27,28 @@
             android:id="@+id/titleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your Categories"
+            android:text="Categories"
             android:textSize="24sp"
             android:textStyle="bold"
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true" />
     </RelativeLayout>
 
+    <!-- Category Selection Spinner -->
+    <Spinner
+        android:id="@+id/categorySpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleBar"
+        android:layout_margin="16dp"
+        android:spinnerMode="dropdown"/>
+
     <!-- Scrollable content (Categories) -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_below="@id/titleBar"
+        android:layout_below="@id/categorySpinner"
         android:layout_above="@id/addButtonsLayout"
         android:padding="16dp"
         android:clipToPadding="false"

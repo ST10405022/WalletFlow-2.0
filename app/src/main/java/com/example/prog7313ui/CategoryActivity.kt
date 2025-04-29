@@ -19,5 +19,6 @@ class CategoryActivity : AppCompatActivity() {
         }
 
         // TODO: Add category-specific logic later (e.g. fetch title, image, etc.)
+
     }
 }
