@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "7b51a0281eeee8dd15c71d2eff66e6bf",
+    "identityHash": "8277c62e74c22341fc5e0e68951a850f",
     "entities": [
       {
         "tableName": "users",
@@ -111,7 +111,7 @@
       },
       {
         "tableName": "budget_categories",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `minLimit` REAL NOT NULL, `maxLimit` REAL NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `minLimit` REAL NOT NULL, `maxLimit` REAL NOT NULL, `imageUri` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -136,6 +136,12 @@
             "columnName": "maxLimit",
             "affinity": "REAL",
             "notNull": true
+          },
+          {
+            "fieldPath": "imageUri",
+            "columnName": "imageUri",
+            "affinity": "TEXT",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -148,7 +154,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7b51a0281eeee8dd15c71d2eff66e6bf')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8277c62e74c22341fc5e0e68951a850f')"
     ]
   }
 }

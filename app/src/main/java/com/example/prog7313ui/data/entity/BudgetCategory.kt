@@ -18,5 +18,6 @@ data class BudgetCategory(
     val id: Int = 0, // Unique identifier for each category
     val name: String, // Name of the category, e.g., 'Food', 'Transport', etc.
     val minLimit: Double = 0.0, // The minimum amount the user aims to spend monthly in this category. Default is 0.
-    val maxLimit: Double = 0.0 // The maximum amount the user aims to spend monthly in this category. Default is 0.
+    val maxLimit: Double = 0.0, // The maximum amount the user aims to spend monthly in this category. Default is 0.
+    val imageUri: String = ""
 )

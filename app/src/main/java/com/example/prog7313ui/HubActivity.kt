@@ -29,13 +29,16 @@ class HubActivity : AppCompatActivity() {
         loadCategoriesIntoSpinner()
         loadCategoriesIntoRecyclerView()
 
-        // RecyclerView initialization
+        // RecyclerView initialization (List of Categories)
         val recyclerView = findViewById<RecyclerView>(R.id.categoryRecyclerView)
-        adapter = CategoryAdapter(emptyList()) { budgetCategory ->
+        adapter = CategoryAdapter(emptyList()) { category ->
             val intent = Intent(this, CategoryActivity::class.java)
-            intent.putExtra("Category_ID", budgetCategory.id)
+            intent.putExtra("Category_ID", category.id)
+            intent.putExtra("Category_Name", category.name)
+            intent.putExtra("Category_Image", category.imageUri.toString())
             startActivity(intent)
         }
+
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
 
