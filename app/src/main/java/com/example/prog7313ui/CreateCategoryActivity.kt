@@ -34,6 +34,8 @@ class CreateCategoryActivity : AppCompatActivity() {
         val previewImage = findViewById<ImageView>(R.id.previewImage)
         val doneButton = findViewById<Button>(R.id.doneButton)
         val backToHubBtn = findViewById<ImageButton>(R.id.backToHubBtn)
+        val minLimit = findViewById<EditText>(R.id.minLimit)
+        val maxLimit = findViewById<EditText>(R.id.maxLimit)
 
         // Back to Main Hub button
         backToHubBtn.setOnClickListener {
@@ -74,8 +76,12 @@ class CreateCategoryActivity : AppCompatActivity() {
         doneButton.setOnClickListener {
             val categoryName = nameInput.text.toString()
 
-            if (categoryName.isNotBlank()) {
-                val category = BudgetCategory(name = nameInput.text.toString())
+            var categoryMin = minLimit.text.toString().toDouble()
+            var categoryMax = maxLimit.text.toString().toDouble()
+
+            if (categoryName.isNotBlank() && (categoryMin.toString().isNotBlank()) && (categoryMax.toString().isNotBlank()))
+            {
+                val category = BudgetCategory(name = nameInput.text.toString(), minLimit = categoryMin, maxLimit = categoryMax)
 
                 CoroutineScope(Dispatchers.IO).launch {
                     val budgetCategoryDao = AppDatabase.getInstance(applicationContext).budgetCategoryDao()

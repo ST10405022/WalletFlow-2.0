@@ -1,0 +1,8 @@
+<!-- res/layout/item_expense.xml -->
+<CheckBox xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/checkboxExpense"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Expense Item"
+    android:padding="12dp"
+    android:textSize="16sp" />

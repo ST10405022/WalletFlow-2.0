@@ -23,9 +23,10 @@ class HubActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hub)
 
+        // Spinner initialization
         categorySpinner = findViewById(R.id.categorySpinner)
 
-        // Load categories into the spinner
+        // Load categories into the Spinner/RecyclerView
         loadCategoriesIntoSpinner()
         loadCategoriesIntoRecyclerView()
 
