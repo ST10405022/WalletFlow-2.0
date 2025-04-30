@@ -25,6 +25,6 @@ class Converters {
      */
     @TypeConverter
     fun dateToTimestamp(date: Date?): Long? { // Convert from java.util.Date to Long
-        return date?.time // Convert back to Long
+        return date?.time // Convert back to Long for storage
     }
 }

@@ -15,5 +15,5 @@ data class User(
     val surname: String,   // User's last name
     val username: String,  // Unique username for login
     val password: String,  // Password for login
-    val email: String      // User's email address
+    val email: String      // User's email address for contact
 )

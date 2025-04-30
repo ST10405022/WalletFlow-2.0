@@ -4,8 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prog7313ui.data.entity.BudgetCategory
+import org.w3c.dom.Text
 
 class CategoryAdapter(
     private var categories: List<BudgetCategory>,
@@ -14,6 +16,14 @@ class CategoryAdapter(
 
     inner class CategoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val button: Button = view.findViewById(R.id.categoryButton)
+
+        fun bind (category: BudgetCategory)
+        {
+            itemView.findViewById<TextView>(R.id.categoryTitle).text = category.name
+            itemView.setOnClickListener{
+                onClick(category)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
@@ -31,7 +41,7 @@ class CategoryAdapter(
     override fun getItemCount(): Int = categories.size
 
     fun updateData(newCategories: List<BudgetCategory>) {
-        this.categories = newCategories
+        categories = newCategories
         notifyDataSetChanged()
     }
 }

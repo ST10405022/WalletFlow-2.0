@@ -11,10 +11,10 @@ class ExpenseViewModel(application: Application) : AndroidViewModel(application)
 
     private val expenseDao = AppDatabase.getInstance(application).expenseDao()
 
-    // Flow to observe all expenses
+    // Flow to observe all expenses.
     val allExpenses: Flow<List<Expense>> = expenseDao.getAllExpenses()
 
-    // Get expenses by between dates
+    // Get expenses by between dates.
     fun getExpensesBetweenDates(startDate: Date?, endDate: Date?): Flow<List<Expense>> {
         return expenseDao.getExpensesBetweenDates(startDate, endDate)
     }
