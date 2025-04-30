@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="add_a_category">Add a Category</string>
+    <string name="add_an_expense">Add an Expense</string>
+    <string name="add_expense">Add Expense</string>
+    <string name="amount">Amount</string>
+    <string name="app_name">Prog7313UI</string>
+    <string name="apply_filter">Apply Filter</string>
+    <string name="back_to_hub">Back to Hub</string>
+    <string name="back_to_login">Back to login</string>
+    <string name="categories">Categories</string>
+    <string name="category">Category</string>
+    <string name="category_alpha">Category Alpha</string>
+    <string name="category_name">Category Name</string>
+    <string name="category_preview">Preview</string>
+    <string name="continue_without_logging_in">Continue without logging in</string>
+    <string name="create_a_category">Create a Category</string>
+    <string name="create_a_description_for_your_expense">Create a description for your expense</string>
+    <string name="create_expense">Create Expense</string>
+    <string name="date_info">Date info: </string>
+    <string name="description">Description</string>
+    <string name="done">✓ Done</string>
+    <string name="email">Email</string>
+    <string name="end">End: </string>
+    <string name="filter_by_date">Filter by Date</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="from_mm_dd_yyyy">From (mm/dd/yyyy)</string>
+    <string name="image_preview">Image Preview</string>
+    <string name="insert_end_date">Insert End Date</string>
+    <string name="insert_start_date">Insert Start Date</string>
+    <string name="is_this_a_recurring_expense">Is this a recurring expense?</string>
+    <string name="list_item_1">List item 1</string>
+    <string name="list_item_2">List item 2</string>
+    <string name="list_item_3">List item 3</string>
+    <string name="list_item_4">List item 4</string>
+    <string name="name_of_your_expense">Name of your expense</string>
+    <string name="name_of_your_expense_category">Name of your expense category</string>
+    <string name="password">Password</string>
+    <string name="placeholder_image">Placeholder Image</string>
+    <string name="recurring_no">Recurring: No</string>
+    <string name="select_end_date">Select End Date</string>
+    <string name="select_start_date">Select Start Date</string>
+    <string name="select_the_cost_amount_of_your_expense">Select the cost amount of your expense</string>
+    <string name="select_the_date_of_expense">Select the date of expense</string>
+    <string name="set_monthly_total_budget_goal">Set Monthly Total Budget Goal</string>
+    <string name="sign_in">Sign In</string>
+    <string name="start">Start: </string>
+    <string name="to_mm_dd_yyyy">To (mm/dd/yyyy)</string>
+    <string name="update">Update</string>
+    <string name="upload_an_image_of_your_category">Upload an image of your category</string>
+    <string name="upload_an_image_of_your_choice">Upload an image of your choice</string>
+    <string name="view_photo">View Photo</string>
+    <string name="wallet_logo">Wallet logo</string>
+    <string name="welcome">Welcome!</string>
+    <string name="your_categories">Your Categories</string>
+    <style name="Base.Theme.Prog7313UI" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="Theme.Prog7313UI" parent="Base.Theme.Prog7313UI"/>
+</resources>
