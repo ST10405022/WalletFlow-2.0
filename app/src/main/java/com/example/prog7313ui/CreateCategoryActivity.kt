@@ -76,22 +76,37 @@ class CreateCategoryActivity : AppCompatActivity() {
         doneButton.setOnClickListener {
             val categoryName = nameInput.text.toString()
 
-            var categoryMin = minLimit.text.toString().toDouble()
-            var categoryMax = maxLimit.text.toString().toDouble()
+            val categoryMin = minLimit.text.toString().toDouble()
+            val categoryMax = maxLimit.text.toString().toDouble()
 
-            if (categoryName.isNotBlank() && (categoryMin.toString().isNotBlank()) && (categoryMax.toString().isNotBlank()))
+            if (categoryName.isNotBlank())
             {
-                val category = BudgetCategory(name = nameInput.text.toString(), minLimit = categoryMin, maxLimit = categoryMax)
-
-                CoroutineScope(Dispatchers.IO).launch {
-                    val budgetCategoryDao = AppDatabase.getInstance(applicationContext).budgetCategoryDao()
-                    withContext(Dispatchers.IO){
-                        budgetCategoryDao.insertCategory(category)
-                    }
+                if (categoryMin.toString().isBlank())
+                {
+                    Toast.makeText(this, "Enter min category limit", Toast.LENGTH_SHORT).show()
                 }
-                Toast.makeText(this, "Category added", Toast.LENGTH_SHORT).show()
-                finish() // Optional: Close this activity after saving
-            } else {
+                else
+                    if (categoryMax.toString().isBlank())
+                    {
+                        Toast.makeText(this, "Enter max category limit", Toast.LENGTH_SHORT).show()
+                    }
+                    else
+                    {
+                        val category = BudgetCategory(name = nameInput.text.toString(), minLimit = categoryMin, maxLimit = categoryMax, imageUri = imageUri)
+
+                        CoroutineScope(Dispatchers.IO).launch {
+                            val budgetCategoryDao = AppDatabase.getInstance(applicationContext).budgetCategoryDao()
+                            withContext(Dispatchers.IO){
+                                budgetCategoryDao.insertCategory(category)
+                            }
+                        }
+                        Toast.makeText(this, "Category added", Toast.LENGTH_SHORT).show()
+                        finish() // Optional: Close this activity after saving
+                    }
+
+            }
+            else
+            {
                 Toast.makeText(this, "Please enter a category name", Toast.LENGTH_SHORT).show()
             }
         }

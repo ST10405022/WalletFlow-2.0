@@ -3341,7 +3341,6 @@ id floating
 id forever
 id forgotPassword
 id fragment_container_view_tag
-id fromDate
 id frost
 id fullscreen_header
 id ghost_view
@@ -3376,11 +3375,12 @@ id inputDate
 id inputDescription
 id inputEndDate
 id inputExpenseName
+id inputMaxValue
+id inputMinValue
 id inputStartDate
 id invisible
 id inward
 id italic
-id itemList
 id item_touch_helper_previous_elevation
 id jumpToEnd
 id jumpToStart
@@ -3522,6 +3522,7 @@ id radio
 id ratio
 id rectangles
 id recurringExpenseCheckBox
+id recyclerViewExpenses
 id report_drawn
 id reverseSawtooth
 id right
@@ -3633,7 +3634,6 @@ id titleBar
 id titleDividerNoCustom
 id titleText
 id title_template
-id toDate
 id toggle
 id top
 id topPanel
@@ -3649,6 +3649,8 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id txtMaxLimit
+id txtMinLimit
 id unchecked
 id uniform
 id unlabeled

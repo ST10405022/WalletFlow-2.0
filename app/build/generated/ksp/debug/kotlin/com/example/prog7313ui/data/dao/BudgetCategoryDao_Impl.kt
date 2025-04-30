@@ -131,6 +131,45 @@ public class BudgetCategoryDao_Impl(
     }
   }
 
+  public override suspend fun getCategoryId(id: Int): BudgetCategory? {
+    val _sql: String = "SELECT * FROM budget_categories WHERE id = ?"
+    return performSuspending(__db, true, false) { _connection ->
+      val _stmt: SQLiteStatement = _connection.prepare(_sql)
+      try {
+        var _argIndex: Int = 1
+        _stmt.bindLong(_argIndex, id.toLong())
+        val _columnIndexOfId: Int = getColumnIndexOrThrow(_stmt, "id")
+        val _columnIndexOfName: Int = getColumnIndexOrThrow(_stmt, "name")
+        val _columnIndexOfMinLimit: Int = getColumnIndexOrThrow(_stmt, "minLimit")
+        val _columnIndexOfMaxLimit: Int = getColumnIndexOrThrow(_stmt, "maxLimit")
+        val _columnIndexOfImageUri: Int = getColumnIndexOrThrow(_stmt, "imageUri")
+        val _result: BudgetCategory?
+        if (_stmt.step()) {
+          val _tmpId: Int
+          _tmpId = _stmt.getLong(_columnIndexOfId).toInt()
+          val _tmpName: String
+          _tmpName = _stmt.getText(_columnIndexOfName)
+          val _tmpMinLimit: Double
+          _tmpMinLimit = _stmt.getDouble(_columnIndexOfMinLimit)
+          val _tmpMaxLimit: Double
+          _tmpMaxLimit = _stmt.getDouble(_columnIndexOfMaxLimit)
+          val _tmpImageUri: String?
+          if (_stmt.isNull(_columnIndexOfImageUri)) {
+            _tmpImageUri = null
+          } else {
+            _tmpImageUri = _stmt.getText(_columnIndexOfImageUri)
+          }
+          _result = BudgetCategory(_tmpId,_tmpName,_tmpMinLimit,_tmpMaxLimit,_tmpImageUri)
+        } else {
+          _result = null
+        }
+        _result
+      } finally {
+        _stmt.close()
+      }
+    }
+  }
+
   public companion object {
     public fun getRequiredConverters(): List<KClass<*>> = emptyList()
   }

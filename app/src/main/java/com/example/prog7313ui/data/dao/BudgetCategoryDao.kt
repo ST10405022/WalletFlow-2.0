@@ -44,4 +44,7 @@ interface BudgetCategoryDao {
      */
     @Query("SELECT * FROM budget_categories")
     fun getAllCategories(): Flow<List<BudgetCategory>>
+
+    @Query("SELECT * FROM budget_categories WHERE id = :id")
+    suspend fun getCategoryId(id: Int): BudgetCategory?
 }
