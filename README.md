@@ -86,9 +86,9 @@ AndroidDevelopers, 2021. Developers. [Online] Available at: https://developer.an
 
 GeeksForGeeks, 2025. GeeksForGeeks. [Online] Available at: https://www.geeksforgeeks.org/how-to-create-and-add-data-to-sqlite-database-in-android/ [Accessed 15 April 2025].
 
-Malone, 2024. Youtube. [Online] Available at: https://www.youtube.com/watch?v=saKrGCWlJDs&ab_channel=DJMalone[Accessed 20 April 2025]. 
+Malone, 2024. Youtube. [Online] Available at: https://www.youtube.com/watch?v=saKrGCWlJDs&ab_channel=DJMalone [Accessed 20 April 2025]. 
 
-MikeT, 2022. stackOverflow. [Online] Available at: https://stackoverflow.com/questions/74477964/android-studio-add-a-database[Accessed 28 April 2025].
+MikeT, 2022. stackOverflow. [Online] Available at: https://stackoverflow.com/questions/74477964/android-studio-add-a-database [Accessed 28 April 2025].
 
 Sekhon, S., 2020. Medium. [Online] Available at: https://medium.com/@sukhbirsekhon3939/how-to-create-a-login-application-on-android-studio-d664662578f8 [Accessed 20 April 2025].
 
@@ -96,6 +96,6 @@ Team, A., 2024. AndroidDeveloper. [Online] Available at: https://developer.andro
 
 Team, G., 2025. geeksforgeeks. [Online] Available at: https://www.geeksforgeeks.org/kotlin-android-tutorial/ [Accessed 2 April 2025].
 
-Tuto, E., 2023. Youtube. [Online] Available at: https://www.youtube.com/watch?v=H2potb8pGDQ&ab_channel=EasyTuto[Accessed 17 April 2025].
+Tuto, E., 2023. Youtube. [Online] Available at: https://www.youtube.com/watch?v=H2potb8pGDQ&ab_channel=EasyTuto [Accessed 17 April 2025].
 
-tutorialspoint, 2024. tutortialspoint. [Online] Available at: https://www.tutorialspoint.com/android/android_login_screen.htm [Accessed 7 April 2025].
+Tutorialspoint, 2024. tutortialspoint. [Online] Available at: https://www.tutorialspoint.com/android/android_login_screen.htm [Accessed 7 April 2025].
