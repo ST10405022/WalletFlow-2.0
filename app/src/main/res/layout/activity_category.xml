@@ -8,37 +8,34 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:orientation="vertical">
 
         <!-- Title Bar with Back Button -->
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
             android:layout_marginBottom="16dp">
 
             <!-- Back Button -->
             <ImageButton
                 android:id="@+id/backToHubBtn"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_media_previous"
                 android:background="@android:color/transparent"
-                android:contentDescription="Back to Hub"
-                android:src="@android:drawable/ic_media_previous" />
+                android:contentDescription="Back to Hub" />
 
             <!-- Page Title -->
             <TextView
                 android:id="@+id/categoryTitle"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text=""
+                android:text="Category Alpha"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:gravity="center" />
-        </LinearLayout>
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true" />
+        </RelativeLayout>
 
         <!-- Placeholder Image -->
         <ImageView
@@ -52,52 +49,72 @@
 
         <!-- Budget Goal Section -->
         <TextView
-            android:id="@+id/txtMinLimit"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Min limit:"
-            android:textSize="18sp"
+            android:text="Set Monthly Total Budget Goal"
+            android:textStyle="bold"
             android:layout_marginBottom="8dp" />
 
-        <TextView
-            android:id="@+id/inputMinValue"
+        <!-- Date Range -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:background="#F5F5F5"
-            android:padding="8dp"
+            android:orientation="horizontal"
             android:gravity="center"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="24dp">
 
-        <TextView
-            android:id="@+id/txtMaxLimit"
+            <EditText
+                android:id="@+id/fromDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="From (mm/dd/yyyy)"
+                android:background="@drawable/edittext_border"
+                android:padding="12dp"
+                android:layout_marginEnd="8dp" />
+
+            <EditText
+                android:id="@+id/toDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="To (mm/dd/yyyy)"
+                android:background="@drawable/edittext_border"
+                android:padding="12dp"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <!-- List of Items -->
+        <LinearLayout
+            android:id="@+id/itemList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Max limit:"
-            android:textSize="18sp"
-            android:layout_marginBottom="16dp" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/inputMaxValue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:background="#F5F5F5"
-            android:padding="8dp"
-            android:gravity="center"
-            android:layout_marginBottom="16dp" />
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="List item 1"
+                android:layout_marginBottom="8dp" />
 
-        <!-- RecyclerView for Expense List -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewExpenses"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:nestedScrollingEnabled="false" />
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="List item 2"
+                android:layout_marginBottom="8dp" />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="List item 3"
+                android:layout_marginBottom="8dp" />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="List item 4"
+                android:layout_marginBottom="8dp" />
+        </LinearLayout>
 
         <!-- Update Button -->
         <Button
@@ -107,6 +124,7 @@
             android:text="Update"
             android:backgroundTint="#7B5CC4"
             android:textColor="#FFFFFF"
+            android:layout_gravity="center"
             android:layout_marginTop="24dp" />
     </LinearLayout>
 </ScrollView>
