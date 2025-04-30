@@ -56,7 +56,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cfc8692-2694-4a79-bd43-d4b0388b0137" name="Changes" comment="Implemented ExpenseListActivity with date range filtering and photo viewing. Added ExpenseAdapter for displaying expense items in RecyclerView. Created expense_item.xml for individual expense display." />
+    <list default="true" id="1cfc8692-2694-4a79-bd43-d4b0388b0137" name="Changes" comment="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/compiler.xml&#10;#&#9;.idea/deploymentTargetSelector.xml&#10;#&#9;.idea/gradle.xml&#10;#&#9;.idea/misc.xml&#10;#&#9;app/src/main/res/layout/item_expense.xml">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <list id="db1e7e20-ce2c-4f80-8109-2080bba97383" name="Uncommitted_changes_before_Update_at_2025_04_26_16_17_[Changes]" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +68,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=R58T90K860M)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -156,6 +158,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "android.gradle.sync.needed": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "com.google.services.firebase.aqiPopupShown": "true",
@@ -350,7 +353,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746037900684</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/compiler.xml&#10;#&#9;.idea/deploymentTargetSelector.xml&#10;#&#9;.idea/gradle.xml&#10;#&#9;.idea/misc.xml&#10;#&#9;app/src/main/res/layout/item_expense.xml">
+      <option name="closed" value="true" />
+      <created>1746038342308</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1746038342308</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -373,7 +384,8 @@
     <MESSAGE value="Implemented &quot;Add Expense&quot; screen with category selection, date range, and photo attachment support. Added Room TypeConverters for LocalDate and nullable fields" />
     <MESSAGE value="Save local changes before switching branches." />
     <MESSAGE value="Implemented ExpenseListActivity with date range filtering and photo viewing. Added ExpenseAdapter for displaying expense items in RecyclerView. Created expense_item.xml for individual expense display." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented ExpenseListActivity with date range filtering and photo viewing. Added ExpenseAdapter for displaying expense items in RecyclerView. Created expense_item.xml for individual expense display." />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/compiler.xml&#10;#&#9;.idea/deploymentTargetSelector.xml&#10;#&#9;.idea/gradle.xml&#10;#&#9;.idea/misc.xml&#10;#&#9;app/src/main/res/layout/item_expense.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/compiler.xml&#10;#&#9;.idea/deploymentTargetSelector.xml&#10;#&#9;.idea/gradle.xml&#10;#&#9;.idea/misc.xml&#10;#&#9;app/src/main/res/layout/item_expense.xml" />
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">
