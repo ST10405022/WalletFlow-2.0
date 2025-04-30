@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="16dp"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Title Bar with Back Button -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <!-- Back Button -->
+            <ImageButton
+                android:id="@+id/backToHubBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_media_previous"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/back_to_hub"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <!-- Page Title -->
+            <TextView
+                android:id="@+id/categoryTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_alpha"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true" />
+        </RelativeLayout>
+
+        <!-- Placeholder Image -->
+        <ImageView
+            android:id="@+id/categoryImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:contentDescription="@string/placeholder_image"
+            android:src="@drawable/ic_launcher_background"
+            android:scaleType="centerInside"
+            android:background="#E0E0E0"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Budget Goal Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/set_monthly_total_budget_goal"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Date Range -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="24dp">
+
+            <EditText
+                android:id="@+id/fromDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/from_mm_dd_yyyy"
+                android:background="@drawable/edittext_border"
+                android:inputType="datetime"
+                android:padding="12dp"
+                android:layout_marginEnd="8dp" />
+
+            <EditText
+                android:id="@+id/toDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/to_mm_dd_yyyy"
+                android:background="@drawable/edittext_border"
+                android:inputType="datetime"
+                android:padding="12dp"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <!-- List of Items -->
+        <LinearLayout
+            android:id="@+id/itemList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/list_item_1"
+                android:layout_marginBottom="8dp" />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/list_item_2"
+                android:layout_marginBottom="8dp" />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/list_item_3"
+                android:layout_marginBottom="8dp" />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/list_item_4"
+                android:layout_marginBottom="8dp" />
+        </LinearLayout>
+
+        <!-- Update Button -->
+        <Button
+            android:id="@+id/updateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/update"
+            android:backgroundTint="#7B5CC4"
+            android:textColor="#FFFFFF"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp" />
+    </LinearLayout>
+</ScrollView>

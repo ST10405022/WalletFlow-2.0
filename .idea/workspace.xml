@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+    <layouts>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_expense.xml">
+        <config>
+          <theme>@style/Theme.Material3.Light.NoActionBar</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_category.xml">
+        <config>
+          <theme>@style/Theme.Material3.Light.NoActionBar</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_create_category.xml">
+        <config>
+          <theme>@style/Theme.Material3.Light.NoActionBar</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_expense_list.xml">
+        <config>
+          <theme>@style/Theme.Material3.Light.NoActionBar</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_hub.xml">
+        <config>
+          <theme>@style/Theme.Material3.Light.NoActionBar</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+        <config>
+          <theme>@style/Theme.Material3.Light.NoActionBar</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/expense_item.xml">
+        <config>
+          <theme>@style/Theme.Material3.Light.NoActionBar</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_category.xml">
+        <config>
+          <theme>@style/Theme.Material3.Light.NoActionBar</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_expense.xml">
+        <config>
+          <theme>@style/Theme.Material3.Light.NoActionBar</theme>
+        </config>
+      </layout>
+    </layouts>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1cfc8692-2694-4a79-bd43-d4b0388b0137" name="Changes" comment="Implemented ExpenseListActivity with date range filtering and photo viewing. Added ExpenseAdapter for displaying expense items in RecyclerView. Created expense_item.xml for individual expense display." />
+    <list id="db1e7e20-ce2c-4f80-8109-2080bba97383" name="Uncommitted_changes_before_Update_at_2025_04_26_16_17_[Changes]" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=R58T90K860M)]" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/app">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Interface" />
+        <option value="Kotlin Data Class" />
+        <option value="Kotlin Class" />
+        <option value="layoutResourceFile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/Omega" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Omega" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ST10405022&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/St10405022/WalletFlow-2.0.git&quot;,
+    &quot;accountId&quot;: &quot;34f354f6-f80d-45ff-8589-0c5a57da53a9&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2w7oR06VP2zqfH2O1dJaTQ8CsPd" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectReloadState">
+    <option name="STATE" value="1" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Android App.app.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "com.google.services.firebase.aqiPopupShown": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/fungh/AndroidStudioProjects/WalletFlow-2.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="Prog7313UI.app" />
+      <option name="ANDROID_RUN_CONFIGURATION_SCHEMA_VERSION" value="1" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="ALLOW_ASSUME_VERIFIED" value="false" />
+      <option name="CLEAR_APP_STORAGE" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="RESTORE_ENABLED" value="false" />
+      <option name="RESTORE_FILE" value="" />
+      <option name="RESTORE_FRESH_INSTALL_ONLY" value="false" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Hybrid>
+      <Java>
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Java>
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1cfc8692-2694-4a79-bd43-d4b0388b0137" name="Changes" comment="" />
+      <created>1745401963094</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1745401963094</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Save local changes before switching branches.">
+      <option name="closed" value="true" />
+      <created>1745402615110</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1745402615112</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Configured RoomDB and KSP dependencies. Applied KSP plugin in top-level build.gradle.kts for RoomDB support.">
+      <option name="closed" value="true" />
+      <created>1745414752508</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1745414752512</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Configured RoomDB and KSP dependencies. Applied KSP plugin in top-level build.gradle.kts for RoomDB support.">
+      <option name="closed" value="true" />
+      <created>1745416326343</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1745416326345</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added User entity for Room database.&#10;Added UserDao with insert, login, and username check queries.">
+      <option name="closed" value="true" />
+      <created>1745424085359</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1745424085360</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Created AppDatabase class binding User entity and UserDao. Added singleton DatabaseProvider to manage Room DB instance">
+      <option name="closed" value="true" />
+      <created>1745488468922</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1745488468923</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added Expense and BudgetCategory entities. Created DAOs for Expense and BudgetCategory. Updated AppDatabase to register new entities and DAOs.">
+      <option name="closed" value="true" />
+      <created>1745565854193</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1745565854193</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added Expense and BudgetCategory entities. Created DAOs for Expense and BudgetCategory. Updated AppDatabase to register new entities and DAOs.">
+      <option name="closed" value="true" />
+      <created>1745567691364</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1745567691365</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Implemented &quot;Add Expense&quot; screen with category selection, date range, and photo attachment support. Added Room TypeConverters for LocalDate and nullable fields">
+      <option name="closed" value="true" />
+      <created>1745676878709</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1745676878712</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Save local changes before switching branches.">
+      <option name="closed" value="true" />
+      <created>1745842216484</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1745842216484</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Save local changes before switching branches.">
+      <option name="closed" value="true" />
+      <created>1745842254849</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1745842254849</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Implemented ExpenseListActivity with date range filtering and photo viewing. Added ExpenseAdapter for displaying expense items in RecyclerView. Created expense_item.xml for individual expense display.">
+      <option name="closed" value="true" />
+      <created>1745870716473</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1745870716473</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Implemented ExpenseListActivity with date range filtering and photo viewing. Added ExpenseAdapter for displaying expense items in RecyclerView. Created expense_item.xml for individual expense display.">
+      <option name="closed" value="true" />
+      <created>1746035958880</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1746035958881</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Implemented ExpenseListActivity with date range filtering and photo viewing. Added ExpenseAdapter for displaying expense items in RecyclerView. Created expense_item.xml for individual expense display.">
+      <option name="closed" value="true" />
+      <created>1746037900684</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1746037900684</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial commit" />
+    <MESSAGE value="Configured RoomDB and KSP dependencies. Applied KSP plugin in top-level build.gradle.kts for RoomDB support." />
+    <MESSAGE value="Added User entity for Room database.&#10;Added UserDao with insert, login, and username check queries." />
+    <MESSAGE value="Created AppDatabase class binding User entity and UserDao. Added singleton DatabaseProvider to manage Room DB instance" />
+    <MESSAGE value="Added Expense and BudgetCategory entities. Created DAOs for Expense and BudgetCategory. Updated AppDatabase to register new entities and DAOs." />
+    <MESSAGE value="Implemented &quot;Add Expense&quot; screen with category selection, date range, and photo attachment support. Added Room TypeConverters for LocalDate and nullable fields" />
+    <MESSAGE value="Save local changes before switching branches." />
+    <MESSAGE value="Implemented ExpenseListActivity with date range filtering and photo viewing. Added ExpenseAdapter for displaying expense items in RecyclerView. Created expense_item.xml for individual expense display." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented ExpenseListActivity with date range filtering and photo viewing. Added ExpenseAdapter for displaying expense items in RecyclerView. Created expense_item.xml for individual expense display." />
+  </component>
+  <component name="play_dynamic_filters_status">
+    <option name="appIdToCheckInfo">
+      <map>
+        <entry key="com.example.prog7313ui">
+          <value>
+            <CheckInfo lastCheckTimestamp="1745991707939" />
+          </value>
+        </entry>
+        <entry key="com.example.prog7313ui.test">
+          <value>
+            <CheckInfo lastCheckTimestamp="1745991707967" />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

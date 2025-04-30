@@ -1,0 +1,685 @@
+Index: app/src/main/java/com/example/prog7313ui/CategoryViewModel.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/prog7313ui/CategoryViewModel.kt b/app/src/main/java/com/example/prog7313ui/CategoryViewModel.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/example/prog7313ui/CategoryViewModel.kt	(revision b778e7aad5603c50d456215b5e0a9de3eac2dcf7)
++++ /dev/null	(revision b778e7aad5603c50d456215b5e0a9de3eac2dcf7)
+@@ -1,21 +0,0 @@
+-package com.example.prog7313ui
+-
+-import androidx.lifecycle.LiveData
+-import androidx.lifecycle.ViewModel
+-import com.example.prog7313ui.data.dao.BudgetCategoryDao
+-import com.example.prog7313ui.data.entity.BudgetCategory
+-import kotlinx.coroutines.flow.Flow
+-import dagger.hilt.android.lifecycle.HiltViewModel
+-import javax.inject.Inject
+-
+-@HiltViewModel
+-class CategoryViewModel @Inject constructor(
+-    private val repository: CategoryRepository
+-) : ViewModel() {
+-
+-    val allCategories: LiveData<List<BudgetCategory>> = repository.getAllCategories().asLiveData()
+-}
+-
+-class CategoryRepository (private val dao: BudgetCategoryDao) {
+-    fun getAllCategories(): Flow<List<BudgetCategory>> = dao.getAllCategories()
+-}
+Index: app/src/main/java/com/example/prog7313ui/CategoryAdapter.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.prog7313ui\r\n\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport android.widget.Button\r\nimport androidx.recyclerview.widget.RecyclerView\r\nimport com.example.prog7313ui.data.entity.BudgetCategory\r\n\r\nclass CategoryAdapter(\r\n    private var categories: List<BudgetCategory>,\r\n    private val onClick: (BudgetCategory) -> Unit\r\n) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {\r\n\r\n    inner class CategoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {\r\n        val button: Button = view.findViewById(R.id.categoryButton)\r\n    }\r\n\r\n    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {\r\n        val view = LayoutInflater.from(parent.context)\r\n            .inflate(R.layout.item_category, parent, false)\r\n        return CategoryViewHolder(view)\r\n    }\r\n\r\n    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {\r\n        val category = categories[position]\r\n        holder.button.text = category.name\r\n        holder.button.setOnClickListener { onClick(category) }\r\n    }\r\n\r\n    override fun getItemCount(): Int = categories.size\r\n\r\n    fun updateData(newCategories: List<BudgetCategory>) {\r\n        this.categories = newCategories\r\n        notifyDataSetChanged()\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/prog7313ui/CategoryAdapter.kt b/app/src/main/java/com/example/prog7313ui/CategoryAdapter.kt
+--- a/app/src/main/java/com/example/prog7313ui/CategoryAdapter.kt	(revision b778e7aad5603c50d456215b5e0a9de3eac2dcf7)
++++ b/app/src/main/java/com/example/prog7313ui/CategoryAdapter.kt	(date 1745991491951)
+@@ -4,8 +4,10 @@
+ import android.view.View
+ import android.view.ViewGroup
+ import android.widget.Button
++import android.widget.TextView
+ import androidx.recyclerview.widget.RecyclerView
+ import com.example.prog7313ui.data.entity.BudgetCategory
++import org.w3c.dom.Text
+ 
+ class CategoryAdapter(
+     private var categories: List<BudgetCategory>,
+@@ -14,6 +16,14 @@
+ 
+     inner class CategoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+         val button: Button = view.findViewById(R.id.categoryButton)
++
++        fun bind (category: BudgetCategory)
++        {
++            itemView.findViewById<TextView>(R.id.categoryTitle).text = category.name
++            itemView.setOnClickListener{
++                onClick(category)
++            }
++        }
+     }
+ 
+     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
+@@ -31,7 +41,7 @@
+     override fun getItemCount(): Int = categories.size
+ 
+     fun updateData(newCategories: List<BudgetCategory>) {
+-        this.categories = newCategories
++        categories = newCategories
+         notifyDataSetChanged()
+     }
+-}
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/prog7313ui/CategoryActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.prog7313ui\r\n\r\nimport android.content.Intent\r\nimport android.os.Bundle\r\nimport android.widget.ImageButton\r\nimport androidx.appcompat.app.AppCompatActivity\r\n\r\nclass CategoryActivity : AppCompatActivity() {\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        setContentView(R.layout.activity_category)\r\n\r\n        // Back to Hub screen\r\n        val backBtn = findViewById<ImageButton>(R.id.backToHubBtn)\r\n        backBtn.setOnClickListener {\r\n            val intent = Intent(this, HubActivity::class.java)\r\n            startActivity(intent)\r\n            finish()\r\n        }\r\n\r\n        // TODO: Add category-specific logic later (e.g. fetch title, image, etc.)\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/prog7313ui/CategoryActivity.kt b/app/src/main/java/com/example/prog7313ui/CategoryActivity.kt
+--- a/app/src/main/java/com/example/prog7313ui/CategoryActivity.kt	(revision b778e7aad5603c50d456215b5e0a9de3eac2dcf7)
++++ b/app/src/main/java/com/example/prog7313ui/CategoryActivity.kt	(date 1745991457642)
+@@ -1,15 +1,34 @@
+ package com.example.prog7313ui
+ 
+ import android.content.Intent
++import android.net.Uri
+ import android.os.Bundle
+ import android.widget.ImageButton
++import android.widget.ImageView
++import android.widget.TextView
+ import androidx.appcompat.app.AppCompatActivity
+ 
+ class CategoryActivity : AppCompatActivity() {
++    private lateinit var categoryTitle: TextView
++
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+         setContentView(R.layout.activity_category)
+ 
++        //Pass category name
++        val budgetCategoryName = intent.getStringExtra("Category_Name") ?: "Unnamed Category"
++        val titleTextView = findViewById<TextView>(R.id.categoryTitle)
++        titleTextView.text = budgetCategoryName
++
++        //Pass category image
++        val budgetCategoryImage = intent.getStringExtra("Category_Image")
++        val imageCategory = findViewById<ImageView>(R.id.categoryImage)
++        budgetCategoryImage?.let {
++            val imageUri = Uri.parse(it)
++            imageCategory.setImageURI(imageUri)
++        }
++
++
+         // Back to Hub screen
+         val backBtn = findViewById<ImageButton>(R.id.backToHubBtn)
+         backBtn.setOnClickListener {
+@@ -18,6 +37,8 @@
+             finish()
+         }
+ 
++        val categoryName = intent.getStringExtra("Category_Name")
++
+         // TODO: Add category-specific logic later (e.g. fetch title, image, etc.)
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/prog7313ui/AddExpenseActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.prog7313ui\r\n\r\nimport android.app.DatePickerDialog\r\nimport android.content.Intent\r\nimport android.net.Uri\r\nimport android.os.Bundle\r\nimport android.view.View\r\nimport android.widget.ArrayAdapter\r\nimport android.widget.Button\r\nimport android.widget.CheckBox\r\nimport android.widget.EditText\r\nimport android.widget.ImageButton\r\nimport android.widget.ImageView\r\nimport android.widget.Spinner\r\nimport android.widget.Toast\r\nimport androidx.activity.result.contract.ActivityResultContracts\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport androidx.lifecycle.lifecycleScope\r\nimport com.example.prog7313ui.data.AppDatabase\r\nimport com.example.prog7313ui.data.entity.BudgetCategory\r\nimport com.example.prog7313ui.data.entity.Expense\r\nimport kotlinx.coroutines.Dispatchers\r\nimport kotlinx.coroutines.launch\r\nimport kotlinx.coroutines.withContext\r\nimport java.text.SimpleDateFormat\r\nimport java.util.Calendar\r\nimport java.util.Date\r\nimport java.util.Locale\r\n\r\n/**\r\n * Activity for adding a new expense to the database.\r\n*/\r\nclass AddExpenseActivity : AppCompatActivity() {\r\n    // UI elements\r\n    private lateinit var nameInput: EditText // EditText for name\r\n    private lateinit var amountInput: EditText // EditText for amount\r\n    private lateinit var dateInput: EditText // EditText for date\r\n    private lateinit var descInput: EditText // EditText for description\r\n    private lateinit var createExpenseButton: Button // Button to create the expense\r\n    private lateinit var backButton: ImageButton // Button to go back to HubActivity\r\n    private lateinit var startDateInput: EditText // EditText for start date\r\n    private lateinit var endDateInput: EditText // EditText for end date\r\n    private lateinit var previewImage: ImageView // ImageView to preview the selected image\r\n    private lateinit var uploadPhotoBtn: Button // Button to upload receipt image\r\n    private lateinit var recurringExpenseCheckBox: CheckBox // Checkbox for recurring expenses\r\n    private lateinit var categorySpinner: Spinner // Spinner for selecting a category\r\n\r\n    // SimpleDateFormat for parsing the date input\r\n    private val dateFormat = SimpleDateFormat(\"dd/MM/yyyy\", Locale.getDefault())\r\n\r\n    private var selectedImageUri: Uri? = null // URI for the selected image\r\n\r\n    // Explicit launcher for picking an image using the MediaStore (via SAF)\r\n    private val pickImageLauncher = registerForActivityResult(\r\n        ActivityResultContracts.OpenDocument()\r\n    ) { uri: Uri? ->\r\n        uri?.let {\r\n            selectedImageUri = it\r\n\r\n            // Allow long-term access\r\n            contentResolver.takePersistableUriPermission(\r\n                it,\r\n                Intent.FLAG_GRANT_READ_URI_PERMISSION\r\n            )\r\n\r\n            Toast.makeText(\r\n                this, \"Photo selected!\",\r\n                Toast.LENGTH_SHORT\r\n            ).show() // Inform user of selection\r\n        } ?: run {\r\n            Toast.makeText(\r\n                this, \"No photo selected\",\r\n                Toast.LENGTH_SHORT\r\n            ).show() // Inform user of no selection\r\n        }\r\n    }\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        setContentView(R.layout.activity_add_expense)\r\n\r\n        categorySpinner = findViewById(R.id.categorySpinner)\r\n\r\n        loadCategoriesIntoSpinner() // Load categories from the database and populate the spinner\r\n\r\n        // Bind views to variables\r\n        nameInput = findViewById(R.id.inputExpenseName)\r\n        amountInput = findViewById(R.id.inputAmount)\r\n        dateInput = findViewById(R.id.inputDate)\r\n        descInput = findViewById(R.id.inputDescription)\r\n        categorySpinner = findViewById(R.id.categorySpinner)\r\n        //uploadButton = findViewById(R.id.uploadReceiptBtn)\r\n        createExpenseButton = findViewById(R.id.createExpenseBtn)\r\n        backButton = findViewById(R.id.backToHubBtn)\r\n        recurringExpenseCheckBox = findViewById(R.id.recurringExpenseCheckBox)\r\n        startDateInput = findViewById(R.id.inputStartDate)\r\n        endDateInput = findViewById(R.id.inputEndDate)\r\n        uploadPhotoBtn = findViewById(R.id.uploadReceiptBtn)\r\n        previewImage = findViewById(R.id.previewImage)\r\n\r\n//        // Sample data for the BudgetCategory Spinner\r\n//        val budgetCategories = listOf(\r\n//            BudgetCategory(1, \"Food\"),\r\n//            BudgetCategory(2, \"Transport\"),\r\n//            BudgetCategory(3, \"Entertainment\")\r\n//        )\r\n//\r\n//        // Adapter for the Spinner\r\n//        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, budgetCategories)\r\n//\r\n//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)\r\n//        categorySpinner.adapter = adapter\r\n\r\n        // Set up date picker for Date\r\n        dateInput.setOnClickListener {\r\n            showDatePickerDialog(dateInput)\r\n        }\r\n\r\n        // Set up date picker for Start Date\r\n        startDateInput.setOnClickListener {\r\n            showDatePickerDialog(startDateInput)\r\n        }\r\n\r\n        // Set up date picker for End Date\r\n        endDateInput.setOnClickListener {\r\n            showDatePickerDialog(endDateInput)\r\n        }\r\n\r\n        // Back to HubActivity\r\n        backButton.setOnClickListener {\r\n            val intent = Intent(this, HubActivity::class.java)\r\n            startActivity(intent)\r\n            finish()\r\n        }\r\n\r\n        // Toggle visibility of start/end dates based on recurring checkbox\r\n        recurringExpenseCheckBox.setOnCheckedChangeListener { _, isChecked ->\r\n            if (isChecked) {\r\n                startDateInput.visibility = View.VISIBLE\r\n                endDateInput.visibility = View.VISIBLE\r\n            } else {\r\n                startDateInput.visibility = View.GONE\r\n                endDateInput.visibility = View.GONE\r\n            }\r\n        }\r\n\r\n        // Handle expense creation with validation and RoomDB insert\r\n        createExpenseButton.setOnClickListener {\r\n            if (validateInputs()) {\r\n                saveExpenseToDatabase()\r\n            }\r\n        }\r\n\r\n        // Upload Receipt Image\r\n        uploadPhotoBtn.setOnClickListener {\r\n            pickImageLauncher.launch(arrayOf(\"image/*\")) // Pick image using SAF\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Load all categories from the database and populate the spinner.\r\n     * This is done in a background thread using coroutines.\r\n     * @return A list of BudgetCategory objects.\r\n     */\r\n    private fun loadCategoriesIntoSpinner() {\r\n        lifecycleScope.launch {\r\n            try {\r\n                // Get the database instance\r\n                val db = AppDatabase.getInstance(this@AddExpenseActivity)\r\n                val categoryDao = db.budgetCategoryDao()\r\n\r\n                // Load all categories from the database in a background thread\r\n                categoryDao.getAllCategories().collect { categories ->\r\n                    val adapter = ArrayAdapter(\r\n                        this@AddExpenseActivity,\r\n                        android.R.layout.simple_spinner_item,\r\n                        categories.map { \"${it.id}. ${it.name}\" }\r\n                    )\r\n                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)\r\n                    categorySpinner.adapter = adapter // Set the adapter to the spinner\r\n                }\r\n\r\n            } catch (e: Exception) { // Handle exceptions if needed\r\n                Toast.makeText(this@AddExpenseActivity, \"Failed to load categories: ${e.message}\", Toast.LENGTH_SHORT).show()\r\n            }\r\n        }\r\n    }\r\n\r\n\r\n    /**\r\n     * Validate all required inputs and show inline errors if needed.\r\n     * @return True if all fields are valid, false otherwise.\r\n     */\r\n    private fun validateInputs(): Boolean {\r\n        var valid = true // Assume all fields are valid\r\n\r\n        // Validate name input\r\n        if (nameInput.text.isNullOrBlank()) { // Check if name is empty\r\n            nameInput.error = \"Name is required\" // Set error message if empty\r\n            valid = false // Set to false if any field is invalid\r\n        }\r\n\r\n        // Validate amount input\r\n        if (amountInput.text.isNullOrBlank()) { // Check if amount is empty\r\n            amountInput.error = \"Amount is required\" // Set error message if empty\r\n            valid = false // Set to false if any field is invalid\r\n        } else {\r\n            try {\r\n                amountInput.text.toString().toDouble() // Convert to double for validation\r\n            } catch (e: NumberFormatException) { // Handle non-numeric input\r\n                amountInput.error = \"Invalid amount format\" // Set error message if invalid\r\n                valid = false // Set to false if any field is invalid\r\n            }\r\n        }\r\n\r\n        // Validate date input\r\n        if (dateInput.text.isNullOrBlank()) { // Check if date is empty\r\n            dateInput.error = \"Date is required\" // Set error message if empty\r\n            valid = false // Set to false if any field is invalid\r\n        }\r\n\r\n        // Validate description input\r\n        if (descInput.text.isNullOrBlank()) { // Check if description is empty\r\n            descInput.error = \"Description is required\" // Set error message if empty\r\n            valid = false // Set to false if any field is invalid\r\n        }\r\n\r\n        // Validate category selection\r\n        if (categorySpinner.selectedItem == null ||\r\n            categorySpinner.selectedItem.toString().isEmpty()) { // Check if category is selected\r\n            Toast.makeText(this,\r\n                \"Please select a category\", Toast.LENGTH_SHORT).show() // Inform user\r\n            valid = false // Set to false if any field is invalid\r\n        }\r\n\r\n        // Validate start and end dates if the expense is recurring\r\n        if (recurringExpenseCheckBox.isChecked) {\r\n            if (startDateInput.text.isNullOrBlank()) {\r\n                startDateInput.error = \"Start date is required for recurring expenses\"\r\n                valid = false\r\n            }\r\n            if (endDateInput.text.isNullOrBlank()) {\r\n                endDateInput.error = \"End date is required for recurring expenses\"\r\n                valid = false\r\n            }\r\n        }\r\n\r\n        return valid // Return true if all fields are valid\r\n    }\r\n\r\n    /**\r\n     * Insert validated expense into RoomDB.\r\n     */\r\n    private fun saveExpenseToDatabase() {\r\n        // Parse date input\r\n        val parsedDate = try { // Attempt to parse the date\r\n            dateFormat.parse(dateInput.text.toString().trim()) // Trim leading/trailing spaces\r\n        } catch (e: Exception) { // Handle invalid date format\r\n            Toast.makeText(this, \"Invalid date format. Use YYYY-MM-DD.\",\r\n                Toast.LENGTH_LONG).show() // Inform user of invalid format\r\n            return // Exit function if date is invalid\r\n        }\r\n\r\n        // Parse start and end dates if recurring\r\n        val startDate: Date? = if (recurringExpenseCheckBox.isChecked && !startDateInput.text.isNullOrBlank()) {\r\n            parseDate(startDateInput.text.toString())\r\n        } else { null }\r\n        val endDate: Date? = if (recurringExpenseCheckBox.isChecked && !endDateInput.text.isNullOrBlank()) {\r\n            parseDate(endDateInput.text.toString())\r\n        } else { null }\r\n\r\n        // Convert category ID from spinner (assuming it's mapped to BudgetCategory objects)\r\n        val selectedCategory = categorySpinner.selectedItem as? BudgetCategory // Cast to BudgetCategory\r\n        if (selectedCategory == null) { // Handle invalid category selection\r\n            Toast.makeText(this, \"Invalid category selected.\",\r\n                Toast.LENGTH_SHORT).show() // Inform user of invalid selection\r\n            return // Exit function if category is invalid\r\n        }\r\n\r\n        // Create Expense object with parsed date\r\n        val expense = Expense(\r\n            amount = amountInput.text.toString().toDouble(), // Convert to double\r\n            date = parsedDate!!, // Non-null assertion as we checked for validity\r\n            description = descInput.text.toString().trim(), // Trim leading/trailing spaces\r\n            categoryId = selectedCategory.id, // Use the ID from the selected category\r\n            photoPath = null, // Optional: Add another input if needed\r\n            startDate = startDate, // insert startDate if recurring\r\n            endDate = endDate // insert endDate if recurring\r\n        )\r\n\r\n        lifecycleScope.launch {\r\n            try {\r\n                val expenseDao = AppDatabase.getInstance(applicationContext).expenseDao()\r\n                withContext(Dispatchers.IO) {\r\n                    expenseDao.insertExpense(expense) // Insert expense into database\r\n                }\r\n                Toast.makeText(this@AddExpenseActivity,\r\n                    \"Expense saved!\", Toast.LENGTH_SHORT).show() // Inform user of success\r\n                finish() // Optional: go back after saving\r\n            }\r\n            catch (e: Exception) { // Handle exceptions if needed\r\n                Toast.makeText(this@AddExpenseActivity,\r\n                    \"Error saving expense: ${e.localizedMessage}\",\r\n                    Toast.LENGTH_LONG).show() // Inform user of failure\r\n            }\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Convert date string to Date object using SimpleDateFormat.\r\n     * @param dateString The date string to parse.\r\n     * @return The parsed Date object or null if parsing fails.\r\n     */\r\n    private fun parseDate(dateString: String): Date? {\r\n        return try {\r\n            dateFormat.parse(dateString) // Parse the date string into a Date object\r\n        } catch (e: Exception) { // Handle exceptions if needed\r\n            null // Return null if parsing fails\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Show a DatePickerDialog to select a date.\r\n     * @param editText The EditText to display the selected date.\r\n     */\r\n    private fun showDatePickerDialog(editText: EditText) {\r\n        val calendar = Calendar.getInstance()\r\n        val year = calendar.get(Calendar.YEAR)\r\n        val month = calendar.get(Calendar.MONTH)\r\n        val day = calendar.get(Calendar.DAY_OF_MONTH)\r\n\r\n        val datePickerDialog = DatePickerDialog(this, { _, selectedYear, selectedMonth, selectedDay ->\r\n            // Update the EditText with the selected date\r\n            val selectedDate = \"$selectedDay/${selectedMonth + 1}/$selectedYear\"\r\n            editText.setText(selectedDate)\r\n        }, year, month, day)\r\n\r\n        datePickerDialog.show()\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/prog7313ui/AddExpenseActivity.kt b/app/src/main/java/com/example/prog7313ui/AddExpenseActivity.kt
+--- a/app/src/main/java/com/example/prog7313ui/AddExpenseActivity.kt	(revision b778e7aad5603c50d456215b5e0a9de3eac2dcf7)
++++ b/app/src/main/java/com/example/prog7313ui/AddExpenseActivity.kt	(date 1746009909045)
+@@ -174,10 +174,10 @@
+                     val adapter = ArrayAdapter(
+                         this@AddExpenseActivity,
+                         android.R.layout.simple_spinner_item,
+-                        categories.map { "${it.id}. ${it.name}" }
++                        categories // pass the full objects, not strings
+                     )
+                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+-                    categorySpinner.adapter = adapter // Set the adapter to the spinner
++                    categorySpinner.adapter = adapter
+                 }
+ 
+             } catch (e: Exception) { // Handle exceptions if needed
+@@ -186,7 +186,6 @@
+         }
+     }
+ 
+-
+     /**
+      * Validate all required inputs and show inline errors if needed.
+      * @return True if all fields are valid, false otherwise.
+Index: app/src/main/java/com/example/prog7313ui/data/AppDatabase.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.prog7313ui.data\r\n\r\nimport android.content.Context\r\nimport androidx.room.TypeConverters\r\nimport androidx.room.Room\r\nimport androidx.room.Database\r\nimport androidx.room.RoomDatabase\r\nimport com.example.prog7313ui.data.dao.UserDao\r\nimport com.example.prog7313ui.data.entity.User\r\nimport com.example.prog7313ui.data.dao.ExpenseDao\r\nimport com.example.prog7313ui.data.entity.Expense\r\nimport com.example.prog7313ui.data.dao.BudgetCategoryDao\r\nimport com.example.prog7313ui.data.entity.BudgetCategory\r\n\r\n/**\r\n * The main Room database class that connects all the entities and DAOs.\r\n * @Database annotation registers entities and version number.\r\n * @TypeConverters annotation registers the custom converter.\r\n * @Companion object provides a singleton instance of the database.\r\n * @getInstance method returns the singleton instance.\r\n */\r\n\r\n@Database(\r\n    entities = [User::class, Expense::class, BudgetCategory::class],\r\n    version = 1, // Increase version number when schema changes\r\n    exportSchema = true) // Keep schema version history\r\n\r\n@TypeConverters(Converters::class) // Use the custom converter to handle java.util.Date and Long\r\n\r\n// AppDatabase is an abstract class that extends RoomDatabase and must be annotated with @Database\r\nabstract class AppDatabase : RoomDatabase() {\r\n    // Each DAO must be exposed as an abstract method\r\n    abstract fun userDao(): UserDao // DAO for User entity\r\n    abstract fun expenseDao(): ExpenseDao // DAO for Expense entity\r\n    abstract fun budgetCategoryDao(): BudgetCategoryDao // DAO for BudgetCategory entity\r\n\r\n    // Companion object to provide a singleton instance of the database\r\n    companion object {\r\n        @Volatile\r\n        private var INSTANCE: AppDatabase? = null // Singleton instance\r\n\r\n        /**\r\n         * Returns a singleton instance of AppDatabase to prevent multiple DB connections.\r\n         * @param context The application context.\r\n         * @return The singleton instance of AppDatabase.\r\n         */\r\n        fun getInstance(context: Context): AppDatabase {\r\n            return INSTANCE ?: synchronized(this) {\r\n                val instance = Room.databaseBuilder(\r\n                    context.applicationContext,\r\n                    AppDatabase::class.java,\r\n                    \"walletflow_database\"\r\n                ).build()\r\n                INSTANCE = instance\r\n                instance\r\n            }\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/prog7313ui/data/AppDatabase.kt b/app/src/main/java/com/example/prog7313ui/data/AppDatabase.kt
+--- a/app/src/main/java/com/example/prog7313ui/data/AppDatabase.kt	(revision b778e7aad5603c50d456215b5e0a9de3eac2dcf7)
++++ b/app/src/main/java/com/example/prog7313ui/data/AppDatabase.kt	(date 1746008521275)
+@@ -5,6 +5,8 @@
+ import androidx.room.Room
+ import androidx.room.Database
+ import androidx.room.RoomDatabase
++import androidx.room.migration.Migration
++import androidx.sqlite.db.SupportSQLiteDatabase
+ import com.example.prog7313ui.data.dao.UserDao
+ import com.example.prog7313ui.data.entity.User
+ import com.example.prog7313ui.data.dao.ExpenseDao
+@@ -20,9 +22,17 @@
+  * @getInstance method returns the singleton instance.
+  */
+ 
++val Migration012 = object : Migration(1, 2){
++    override fun migrate(database: SupportSQLiteDatabase)
++    {
++        database.execSQL("ALTER TABLE budget_categories " +
++                "ADD COLUMN imageUri TEXT")
++    }
++}
++
+ @Database(
+     entities = [User::class, Expense::class, BudgetCategory::class],
+-    version = 1, // Increase version number when schema changes
++    version = 2, // Increase version number when schema changes
+     exportSchema = true) // Keep schema version history
+ 
+ @TypeConverters(Converters::class) // Use the custom converter to handle java.util.Date and Long
+@@ -50,7 +60,8 @@
+                     context.applicationContext,
+                     AppDatabase::class.java,
+                     "walletflow_database"
+-                ).build()
++                ).addMigrations(Migration012)
++                .build()
+                 INSTANCE = instance
+                 instance
+             }
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">Prog7313UI</string>\r\n    <string name=\"back_to_hub\">Back to Hub</string>\r\n    <string name=\"filter_by_date\">Filter by Date</string>\r\n    <string name=\"add_an_expense\">Add an Expense</string>\r\n    <string name=\"name_of_your_expense\">Name of your expense</string>\r\n    <string name=\"select_the_date_of_expense\">Select the date of expense</string>\r\n    <string name=\"is_this_a_recurring_expense\">Is this a recurring expense?</string>\r\n    <string name=\"insert_start_date\">Insert Start Date</string>\r\n    <string name=\"insert_end_date\">Insert End Date</string>\r\n    <string name=\"select_the_cost_amount_of_your_expense\">Select the cost amount of your expense</string>\r\n    <string name=\"create_a_description_for_your_expense\">Create a description for your expense</string>\r\n    <string name=\"upload_an_image_of_your_choice\">Upload an image of your choice</string>\r\n    <string name=\"image_preview\">Image Preview</string>\r\n    <string name=\"create_expense\">Create Expense</string>\r\n    <string name=\"description\">Description</string>\r\n    <string name=\"date_info\">Date info: </string>\r\n    <string name=\"category\">Category</string>\r\n    <string name=\"view_photo\">View Photo</string>\r\n    <string name=\"category_name\">Category Name</string>\r\n    <string name=\"welcome\">Welcome!</string>\r\n    <string name=\"wallet_logo\">Wallet logo</string>\r\n    <string name=\"email\">Email</string>\r\n    <string name=\"password\">Password</string>\r\n    <string name=\"sign_in\">Sign In</string>\r\n    <string name=\"continue_without_logging_in\">Continue without logging in</string>\r\n    <string name=\"forgot_password\">Forgot password?</string>\r\n    <string name=\"back_to_login\">Back to login</string>\r\n    <string name=\"your_categories\">Your Categories</string>\r\n    <string name=\"add_a_category\">Add a Category</string>\r\n    <string name=\"add_expense\">Add Expense</string>\r\n    <string name=\"create_a_category\">Create a Category</string>\r\n    <string name=\"name_of_your_expense_category\">Name of your expense category</string>\r\n    <string name=\"upload_an_image_of_your_category\">Upload an image of your category</string>\r\n    <string name=\"category_preview\">Preview</string>\r\n    <string name=\"done\">✓ Done</string>\r\n    <string name=\"category_alpha\">Category Alpha</string>\r\n    <string name=\"placeholder_image\">Placeholder Image</string>\r\n    <string name=\"set_monthly_total_budget_goal\">Set Monthly Total Budget Goal</string>\r\n    <string name=\"from_mm_dd_yyyy\">From (mm/dd/yyyy)</string>\r\n    <string name=\"to_mm_dd_yyyy\">To (mm/dd/yyyy)</string>\r\n    <string name=\"list_item_1\">List item 1</string>\r\n    <string name=\"list_item_2\">List item 2</string>\r\n    <string name=\"list_item_3\">List item 3</string>\r\n    <string name=\"list_item_4\">List item 4</string>\r\n    <string name=\"update\">Update</string>\r\n    <string name=\"amount\">Amount</string>\r\n    <string name=\"select_start_date\">Select Start Date</string>\r\n    <string name=\"select_end_date\">Select End Date</string>\r\n    <string name=\"apply_filter\">Apply Filter</string>\r\n    <string name=\"recurring_no\">Recurring: No</string>\r\n    <string name=\"start\">Start: </string>\r\n    <string name=\"end\">End: </string>\r\n\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml	(revision b778e7aad5603c50d456215b5e0a9de3eac2dcf7)
++++ b/app/src/main/res/values/strings.xml	(date 1745991790337)
+@@ -51,5 +51,6 @@
+     <string name="recurring_no">Recurring: No</string>
+     <string name="start">Start: </string>
+     <string name="end">End: </string>
++    <string name="categories">Categories</string>
+ 
+ </resources>
+\ No newline at end of file
+Index: app/src/main/java/com/example/prog7313ui/CreateCategoryActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.prog7313ui\r\n\r\nimport android.content.Intent\r\nimport android.net.Uri\r\nimport android.os.Bundle\r\nimport android.text.Editable\r\nimport android.text.TextWatcher\r\nimport android.widget.Button\r\nimport android.widget.EditText\r\nimport android.widget.ImageButton\r\nimport android.widget.ImageView\r\nimport android.widget.TextView\r\nimport android.widget.Toast\r\nimport androidx.activity.result.contract.ActivityResultContracts\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport com.example.prog7313ui.data.AppDatabase\r\nimport com.example.prog7313ui.data.entity.BudgetCategory\r\nimport kotlinx.coroutines.CoroutineScope\r\nimport kotlinx.coroutines.Dispatchers\r\nimport kotlinx.coroutines.launch\r\nimport kotlinx.coroutines.withContext\r\n\r\nclass CreateCategoryActivity : AppCompatActivity() {\r\n    private var imageUri: String? = null\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        setContentView(R.layout.activity_create_category)\r\n\r\n        // UI references\r\n        val nameInput = findViewById<EditText>(R.id.categoryNameInput)\r\n        val previewLabel = findViewById<TextView>(R.id.categoryPreviewLabel)\r\n        val uploadImageBtn = findViewById<Button>(R.id.uploadImageBtn)\r\n        val previewImage = findViewById<ImageView>(R.id.previewImage)\r\n        val doneButton = findViewById<Button>(R.id.doneButton)\r\n        val backToHubBtn = findViewById<ImageButton>(R.id.backToHubBtn)\r\n\r\n        // Back to Main Hub button\r\n        backToHubBtn.setOnClickListener {\r\n            // Go back to HubActivity\r\n            val intent = Intent(this, HubActivity::class.java)\r\n            startActivity(intent)\r\n            finish()\r\n        }\r\n\r\n        // Image selector\r\n        val imageSelector = registerForActivityResult(ActivityResultContracts.GetContent())\r\n        { uri: Uri? ->\r\n            uri?.let {\r\n                imageUri = it.toString()\r\n                previewImage.setImageURI(uri) // Preview the selected image\r\n            }\r\n        }\r\n\r\n        // Upload image button\r\n        uploadImageBtn.setOnClickListener {\r\n            imageSelector.launch(\"image/*\")\r\n        }\r\n\r\n        nameInput.addTextChangedListener(object : TextWatcher {\r\n            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {\r\n            }\r\n\r\n            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {\r\n                // Update the preview label with the current input\r\n                previewLabel.text = s.toString()\r\n            }\r\n\r\n            override fun afterTextChanged(s: Editable?) {\r\n            }\r\n        })\r\n\r\n        // Done button: Save category\r\n        doneButton.setOnClickListener {\r\n            val categoryName = nameInput.text.toString()\r\n\r\n            if (categoryName.isNotBlank()) {\r\n                val category = BudgetCategory(name = nameInput.text.toString())\r\n\r\n                CoroutineScope(Dispatchers.IO).launch {\r\n                    val budgetCategoryDao = AppDatabase.getInstance(applicationContext).budgetCategoryDao()\r\n                    withContext(Dispatchers.IO){\r\n                        budgetCategoryDao.insertCategory(category)\r\n                    }\r\n                }\r\n                Toast.makeText(this, \"Category added\", Toast.LENGTH_SHORT).show()\r\n                finish() // Optional: Close this activity after saving\r\n            } else {\r\n                Toast.makeText(this, \"Please enter a category name\", Toast.LENGTH_SHORT).show()\r\n            }\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/prog7313ui/CreateCategoryActivity.kt b/app/src/main/java/com/example/prog7313ui/CreateCategoryActivity.kt
+--- a/app/src/main/java/com/example/prog7313ui/CreateCategoryActivity.kt	(revision b778e7aad5603c50d456215b5e0a9de3eac2dcf7)
++++ b/app/src/main/java/com/example/prog7313ui/CreateCategoryActivity.kt	(date 1745991533750)
+@@ -90,4 +90,4 @@
+             }
+         }
+     }
+-}
++}
+\ No newline at end of file
+Index: .idea/caches/deviceStreaming.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"DeviceStreaming\">\r\n    <option name=\"deviceSelectionList\">\r\n      <list>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"27\" />\r\n          <option name=\"brand\" value=\"DOCOMO\" />\r\n          <option name=\"codename\" value=\"F01L\" />\r\n          <option name=\"id\" value=\"F01L\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"FUJITSU\" />\r\n          <option name=\"name\" value=\"F-01L\" />\r\n          <option name=\"screenDensity\" value=\"360\" />\r\n          <option name=\"screenX\" value=\"720\" />\r\n          <option name=\"screenY\" value=\"1280\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"OnePlus\" />\r\n          <option name=\"codename\" value=\"OP5552L1\" />\r\n          <option name=\"id\" value=\"OP5552L1\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"OnePlus\" />\r\n          <option name=\"name\" value=\"CPH2415\" />\r\n          <option name=\"screenDensity\" value=\"480\" />\r\n          <option name=\"screenX\" value=\"1080\" />\r\n          <option name=\"screenY\" value=\"2412\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"OPPO\" />\r\n          <option name=\"codename\" value=\"OP573DL1\" />\r\n          <option name=\"id\" value=\"OP573DL1\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"OPPO\" />\r\n          <option name=\"name\" value=\"CPH2557\" />\r\n          <option name=\"screenDensity\" value=\"480\" />\r\n          <option name=\"screenX\" value=\"1080\" />\r\n          <option name=\"screenY\" value=\"2400\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"28\" />\r\n          <option name=\"brand\" value=\"DOCOMO\" />\r\n          <option name=\"codename\" value=\"SH-01L\" />\r\n          <option name=\"id\" value=\"SH-01L\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"SHARP\" />\r\n          <option name=\"name\" value=\"AQUOS sense2 SH-01L\" />\r\n          <option name=\"screenDensity\" value=\"480\" />\r\n          <option name=\"screenX\" value=\"1080\" />\r\n          <option name=\"screenY\" value=\"2160\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"Lenovo\" />\r\n          <option name=\"codename\" value=\"TB370FU\" />\r\n          <option name=\"formFactor\" value=\"Tablet\" />\r\n          <option name=\"id\" value=\"TB370FU\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Lenovo\" />\r\n          <option name=\"name\" value=\"Tab P12\" />\r\n          <option name=\"screenDensity\" value=\"340\" />\r\n          <option name=\"screenX\" value=\"1840\" />\r\n          <option name=\"screenY\" value=\"2944\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"samsung\" />\r\n          <option name=\"codename\" value=\"a15\" />\r\n          <option name=\"id\" value=\"a15\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Samsung\" />\r\n          <option name=\"name\" value=\"A15\" />\r\n          <option name=\"screenDensity\" value=\"450\" />\r\n          <option name=\"screenX\" value=\"1080\" />\r\n          <option name=\"screenY\" value=\"2340\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"samsung\" />\r\n          <option name=\"codename\" value=\"a35x\" />\r\n          <option name=\"id\" value=\"a35x\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Samsung\" />\r\n          <option name=\"name\" value=\"A35\" />\r\n          <option name=\"screenDensity\" value=\"450\" />\r\n          <option name=\"screenX\" value=\"1080\" />\r\n          <option name=\"screenY\" value=\"2340\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"31\" />\r\n          <option name=\"brand\" value=\"samsung\" />\r\n          <option name=\"codename\" value=\"a51\" />\r\n          <option name=\"id\" value=\"a51\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Samsung\" />\r\n          <option name=\"name\" value=\"Galaxy A51\" />\r\n          <option name=\"screenDensity\" value=\"420\" />\r\n          <option name=\"screenX\" value=\"1080\" />\r\n          <option name=\"screenY\" value=\"2400\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"google\" />\r\n          <option name=\"codename\" value=\"akita\" />\r\n          <option name=\"id\" value=\"akita\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Google\" />\r\n          <option name=\"name\" value=\"Pixel 8a\" />\r\n          <option name=\"screenDensity\" value=\"420\" />\r\n          <option name=\"screenX\" value=\"1080\" />\r\n          <option name=\"screenY\" value=\"2400\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"motorola\" />\r\n          <option name=\"codename\" value=\"arcfox\" />\r\n          <option name=\"id\" value=\"arcfox\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Motorola\" />\r\n          <option name=\"name\" value=\"razr plus 2024\" />\r\n          <option name=\"screenDensity\" value=\"360\" />\r\n          <option name=\"screenX\" value=\"1080\" />\r\n          <option name=\"screenY\" value=\"1272\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"33\" />\r\n          <option name=\"brand\" value=\"motorola\" />\r\n          <option name=\"codename\" value=\"austin\" />\r\n          <option name=\"id\" value=\"austin\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Motorola\" />\r\n          <option name=\"name\" value=\"moto g 5G (2022)\" />\r\n          <option name=\"screenDensity\" value=\"280\" />\r\n          <option name=\"screenX\" value=\"720\" />\r\n          <option name=\"screenY\" value=\"1600\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"33\" />\r\n          <option name=\"brand\" value=\"samsung\" />\r\n          <option name=\"codename\" value=\"b0q\" />\r\n          <option name=\"id\" value=\"b0q\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Samsung\" />\r\n          <option name=\"name\" value=\"Galaxy S22 Ultra\" />\r\n          <option name=\"screenDensity\" value=\"600\" />\r\n          <option name=\"screenX\" value=\"1440\" />\r\n          <option name=\"screenY\" value=\"3088\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"32\" />\r\n          <option name=\"brand\" value=\"google\" />\r\n          <option name=\"codename\" value=\"bluejay\" />\r\n          <option name=\"id\" value=\"bluejay\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Google\" />\r\n          <option name=\"name\" value=\"Pixel 6a\" />\r\n          <option name=\"screenDensity\" value=\"420\" />\r\n          <option name=\"screenX\" value=\"1080\" />\r\n          <option name=\"screenY\" value=\"2400\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"google\" />\r\n          <option name=\"codename\" value=\"caiman\" />\r\n          <option name=\"id\" value=\"caiman\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Google\" />\r\n          <option name=\"name\" value=\"Pixel 9 Pro\" />\r\n          <option name=\"screenDensity\" value=\"360\" />\r\n          <option name=\"screenX\" value=\"960\" />\r\n          <option name=\"screenY\" value=\"2142\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"google\" />\r\n          <option name=\"codename\" value=\"comet\" />\r\n          <option name=\"default\" value=\"true\" />\r\n          <option name=\"id\" value=\"comet\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Google\" />\r\n          <option name=\"name\" value=\"Pixel 9 Pro Fold\" />\r\n          <option name=\"screenDensity\" value=\"390\" />\r\n          <option name=\"screenX\" value=\"2076\" />\r\n          <option name=\"screenY\" value=\"2152\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"29\" />\r\n          <option name=\"brand\" value=\"samsung\" />\r\n          <option name=\"codename\" value=\"crownqlteue\" />\r\n          <option name=\"id\" value=\"crownqlteue\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Samsung\" />\r\n          <option name=\"name\" value=\"Galaxy Note9\" />\r\n          <option name=\"screenDensity\" value=\"420\" />\r\n          <option name=\"screenX\" value=\"2220\" />\r\n          <option name=\"screenY\" value=\"1080\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"samsung\" />\r\n          <option name=\"codename\" value=\"dm2q\" />\r\n          <option name=\"id\" value=\"dm2q\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Samsung\" />\r\n          <option name=\"name\" value=\"S23 Plus\" />\r\n          <option name=\"screenDensity\" value=\"450\" />\r\n          <option name=\"screenX\" value=\"1080\" />\r\n          <option name=\"screenY\" value=\"2340\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"samsung\" />\r\n          <option name=\"codename\" value=\"dm3q\" />\r\n          <option name=\"id\" value=\"dm3q\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Samsung\" />\r\n          <option name=\"name\" value=\"Galaxy S23 Ultra\" />\r\n          <option name=\"screenDensity\" value=\"600\" />\r\n          <option name=\"screenX\" value=\"1440\" />\r\n          <option name=\"screenY\" value=\"3088\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"samsung\" />\r\n          <option name=\"codename\" value=\"e1q\" />\r\n          <option name=\"default\" value=\"true\" />\r\n          <option name=\"id\" value=\"e1q\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Samsung\" />\r\n          <option name=\"name\" value=\"Galaxy S24\" />\r\n          <option name=\"screenDensity\" value=\"480\" />\r\n          <option name=\"screenX\" value=\"1080\" />\r\n          <option name=\"screenY\" value=\"2340\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"samsung\" />\r\n          <option name=\"codename\" value=\"e3q\" />\r\n          <option name=\"id\" value=\"e3q\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Samsung\" />\r\n          <option name=\"name\" value=\"Galaxy S24 Ultra\" />\r\n          <option name=\"screenDensity\" value=\"450\" />\r\n          <option name=\"screenX\" value=\"1440\" />\r\n          <option name=\"screenY\" value=\"3120\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"33\" />\r\n          <option name=\"brand\" value=\"google\" />\r\n          <option name=\"codename\" value=\"eos\" />\r\n          <option name=\"id\" value=\"eos\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Google\" />\r\n          <option name=\"name\" value=\"Eos\" />\r\n          <option name=\"screenDensity\" value=\"320\" />\r\n          <option name=\"screenX\" value=\"384\" />\r\n          <option name=\"screenY\" value=\"384\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"33\" />\r\n          <option name=\"brand\" value=\"google\" />\r\n          <option name=\"codename\" value=\"felix\" />\r\n          <option name=\"id\" value=\"felix\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Google\" />\r\n          <option name=\"name\" value=\"Pixel Fold\" />\r\n          <option name=\"screenDensity\" value=\"420\" />\r\n          <option name=\"screenX\" value=\"2208\" />\r\n          <option name=\"screenY\" value=\"1840\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"google\" />\r\n          <option name=\"codename\" value=\"felix\" />\r\n          <option name=\"id\" value=\"felix\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Google\" />\r\n          <option name=\"name\" value=\"Pixel Fold\" />\r\n          <option name=\"screenDensity\" value=\"420\" />\r\n          <option name=\"screenX\" value=\"2208\" />\r\n          <option name=\"screenY\" value=\"1840\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"33\" />\r\n          <option name=\"brand\" value=\"google\" />\r\n          <option name=\"codename\" value=\"felix_camera\" />\r\n          <option name=\"id\" value=\"felix_camera\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Google\" />\r\n          <option name=\"name\" value=\"Pixel Fold (Camera-enabled)\" />\r\n          <option name=\"screenDensity\" value=\"420\" />\r\n          <option name=\"screenX\" value=\"2208\" />\r\n          <option name=\"screenY\" value=\"1840\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"motorola\" />\r\n          <option name=\"codename\" value=\"fogona\" />\r\n          <option name=\"id\" value=\"fogona\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Motorola\" />\r\n          <option name=\"name\" value=\"moto g play - 2024\" />\r\n          <option name=\"screenDensity\" value=\"280\" />\r\n          <option name=\"screenX\" value=\"720\" />\r\n          <option name=\"screenY\" value=\"1600\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"samsung\" />\r\n          <option name=\"codename\" value=\"g0q\" />\r\n          <option name=\"id\" value=\"g0q\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Samsung\" />\r\n          <option name=\"name\" value=\"SM-S906U1\" />\r\n          <option name=\"screenDensity\" value=\"450\" />\r\n          <option name=\"screenX\" value=\"1080\" />\r\n          <option name=\"screenY\" value=\"2340\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"samsung\" />\r\n          <option name=\"codename\" value=\"gta9pwifi\" />\r\n          <option name=\"id\" value=\"gta9pwifi\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Samsung\" />\r\n          <option name=\"name\" value=\"SM-X210\" />\r\n          <option name=\"screenDensity\" value=\"240\" />\r\n          <option name=\"screenX\" value=\"1200\" />\r\n          <option name=\"screenY\" value=\"1920\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"samsung\" />\r\n          <option name=\"codename\" value=\"gts7xllite\" />\r\n          <option name=\"id\" value=\"gts7xllite\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Samsung\" />\r\n          <option name=\"name\" value=\"SM-T738U\" />\r\n          <option name=\"screenDensity\" value=\"340\" />\r\n          <option name=\"screenX\" value=\"1600\" />\r\n          <option name=\"screenY\" value=\"2560\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"33\" />\r\n          <option name=\"brand\" value=\"samsung\" />\r\n          <option name=\"codename\" value=\"gts8uwifi\" />\r\n          <option name=\"formFactor\" value=\"Tablet\" />\r\n          <option name=\"id\" value=\"gts8uwifi\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Samsung\" />\r\n          <option name=\"name\" value=\"Galaxy Tab S8 Ultra\" />\r\n          <option name=\"screenDensity\" value=\"320\" />\r\n          <option name=\"screenX\" value=\"1848\" />\r\n          <option name=\"screenY\" value=\"2960\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"samsung\" />\r\n          <option name=\"codename\" value=\"gts8wifi\" />\r\n          <option name=\"formFactor\" value=\"Tablet\" />\r\n          <option name=\"id\" value=\"gts8wifi\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Samsung\" />\r\n          <option name=\"name\" value=\"Galaxy Tab S8\" />\r\n          <option name=\"screenDensity\" value=\"274\" />\r\n          <option name=\"screenX\" value=\"1600\" />\r\n          <option name=\"screenY\" value=\"2560\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"samsung\" />\r\n          <option name=\"codename\" value=\"gts9fe\" />\r\n          <option name=\"id\" value=\"gts9fe\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Samsung\" />\r\n          <option name=\"name\" value=\"Galaxy Tab S9 FE 5G\" />\r\n          <option name=\"screenDensity\" value=\"280\" />\r\n          <option name=\"screenX\" value=\"1440\" />\r\n          <option name=\"screenY\" value=\"2304\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"google\" />\r\n          <option name=\"codename\" value=\"husky\" />\r\n          <option name=\"id\" value=\"husky\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Google\" />\r\n          <option name=\"name\" value=\"Pixel 8 Pro\" />\r\n          <option name=\"screenDensity\" value=\"390\" />\r\n          <option name=\"screenX\" value=\"1008\" />\r\n          <option name=\"screenY\" value=\"2244\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"30\" />\r\n          <option name=\"brand\" value=\"motorola\" />\r\n          <option name=\"codename\" value=\"java\" />\r\n          <option name=\"id\" value=\"java\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Motorola\" />\r\n          <option name=\"name\" value=\"G20\" />\r\n          <option name=\"screenDensity\" value=\"280\" />\r\n          <option name=\"screenX\" value=\"720\" />\r\n          <option name=\"screenY\" value=\"1600\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"google\" />\r\n          <option name=\"codename\" value=\"komodo\" />\r\n          <option name=\"id\" value=\"komodo\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Google\" />\r\n          <option name=\"name\" value=\"Pixel 9 Pro XL\" />\r\n          <option name=\"screenDensity\" value=\"360\" />\r\n          <option name=\"screenX\" value=\"1008\" />\r\n          <option name=\"screenY\" value=\"2244\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"33\" />\r\n          <option name=\"brand\" value=\"google\" />\r\n          <option name=\"codename\" value=\"lynx\" />\r\n          <option name=\"id\" value=\"lynx\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Google\" />\r\n          <option name=\"name\" value=\"Pixel 7a\" />\r\n          <option name=\"screenDensity\" value=\"420\" />\r\n          <option name=\"screenX\" value=\"1080\" />\r\n          <option name=\"screenY\" value=\"2400\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"33\" />\r\n          <option name=\"brand\" value=\"motorola\" />\r\n          <option name=\"codename\" value=\"maui\" />\r\n          <option name=\"id\" value=\"maui\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Motorola\" />\r\n          <option name=\"name\" value=\"moto g play - 2023\" />\r\n          <option name=\"screenDensity\" value=\"280\" />\r\n          <option name=\"screenX\" value=\"720\" />\r\n          <option name=\"screenY\" value=\"1600\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"samsung\" />\r\n          <option name=\"codename\" value=\"o1q\" />\r\n          <option name=\"id\" value=\"o1q\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Samsung\" />\r\n          <option name=\"name\" value=\"Galaxy S21\" />\r\n          <option name=\"screenDensity\" value=\"421\" />\r\n          <option name=\"screenX\" value=\"1080\" />\r\n          <option name=\"screenY\" value=\"2400\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"31\" />\r\n          <option name=\"brand\" value=\"google\" />\r\n          <option name=\"codename\" value=\"oriole\" />\r\n          <option name=\"id\" value=\"oriole\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Google\" />\r\n          <option name=\"name\" value=\"Pixel 6\" />\r\n          <option name=\"screenDensity\" value=\"420\" />\r\n          <option name=\"screenX\" value=\"1080\" />\r\n          <option name=\"screenY\" value=\"2400\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"33\" />\r\n          <option name=\"brand\" value=\"google\" />\r\n          <option name=\"codename\" value=\"panther\" />\r\n          <option name=\"id\" value=\"panther\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Google\" />\r\n          <option name=\"name\" value=\"Pixel 7\" />\r\n          <option name=\"screenDensity\" value=\"420\" />\r\n          <option name=\"screenX\" value=\"1080\" />\r\n          <option name=\"screenY\" value=\"2400\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"samsung\" />\r\n          <option name=\"codename\" value=\"q5q\" />\r\n          <option name=\"id\" value=\"q5q\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Samsung\" />\r\n          <option name=\"name\" value=\"Galaxy Z Fold5\" />\r\n          <option name=\"screenDensity\" value=\"420\" />\r\n          <option name=\"screenX\" value=\"1812\" />\r\n          <option name=\"screenY\" value=\"2176\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"samsung\" />\r\n          <option name=\"codename\" value=\"q6q\" />\r\n          <option name=\"id\" value=\"q6q\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Samsung\" />\r\n          <option name=\"name\" value=\"Galaxy Z Fold6\" />\r\n          <option name=\"screenDensity\" value=\"420\" />\r\n          <option name=\"screenX\" value=\"1856\" />\r\n          <option name=\"screenY\" value=\"2160\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"30\" />\r\n          <option name=\"brand\" value=\"google\" />\r\n          <option name=\"codename\" value=\"r11\" />\r\n          <option name=\"formFactor\" value=\"Wear OS\" />\r\n          <option name=\"id\" value=\"r11\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Google\" />\r\n          <option name=\"name\" value=\"Pixel Watch\" />\r\n          <option name=\"screenDensity\" value=\"320\" />\r\n          <option name=\"screenX\" value=\"384\" />\r\n          <option name=\"screenY\" value=\"384\" />\r\n          <option name=\"type\" value=\"WEAR_OS\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"samsung\" />\r\n          <option name=\"codename\" value=\"r11q\" />\r\n          <option name=\"id\" value=\"r11q\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Samsung\" />\r\n          <option name=\"name\" value=\"SM-S711U\" />\r\n          <option name=\"screenDensity\" value=\"450\" />\r\n          <option name=\"screenX\" value=\"1080\" />\r\n          <option name=\"screenY\" value=\"2340\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"30\" />\r\n          <option name=\"brand\" value=\"google\" />\r\n          <option name=\"codename\" value=\"redfin\" />\r\n          <option name=\"id\" value=\"redfin\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Google\" />\r\n          <option name=\"name\" value=\"Pixel 5\" />\r\n          <option name=\"screenDensity\" value=\"440\" />\r\n          <option name=\"screenX\" value=\"1080\" />\r\n          <option name=\"screenY\" value=\"2340\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"google\" />\r\n          <option name=\"codename\" value=\"shiba\" />\r\n          <option name=\"id\" value=\"shiba\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Google\" />\r\n          <option name=\"name\" value=\"Pixel 8\" />\r\n          <option name=\"screenDensity\" value=\"420\" />\r\n          <option name=\"screenX\" value=\"1080\" />\r\n          <option name=\"screenY\" value=\"2400\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"samsung\" />\r\n          <option name=\"codename\" value=\"t2q\" />\r\n          <option name=\"id\" value=\"t2q\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Samsung\" />\r\n          <option name=\"name\" value=\"Galaxy S21 Plus\" />\r\n          <option name=\"screenDensity\" value=\"394\" />\r\n          <option name=\"screenX\" value=\"1080\" />\r\n          <option name=\"screenY\" value=\"2400\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"33\" />\r\n          <option name=\"brand\" value=\"google\" />\r\n          <option name=\"codename\" value=\"tangorpro\" />\r\n          <option name=\"formFactor\" value=\"Tablet\" />\r\n          <option name=\"id\" value=\"tangorpro\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Google\" />\r\n          <option name=\"name\" value=\"Pixel Tablet\" />\r\n          <option name=\"screenDensity\" value=\"320\" />\r\n          <option name=\"screenX\" value=\"1600\" />\r\n          <option name=\"screenY\" value=\"2560\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"34\" />\r\n          <option name=\"brand\" value=\"google\" />\r\n          <option name=\"codename\" value=\"tokay\" />\r\n          <option name=\"default\" value=\"true\" />\r\n          <option name=\"id\" value=\"tokay\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Google\" />\r\n          <option name=\"name\" value=\"Pixel 9\" />\r\n          <option name=\"screenDensity\" value=\"420\" />\r\n          <option name=\"screenX\" value=\"1080\" />\r\n          <option name=\"screenY\" value=\"2424\" />\r\n        </PersistentDeviceSelectionData>\r\n        <PersistentDeviceSelectionData>\r\n          <option name=\"api\" value=\"35\" />\r\n          <option name=\"brand\" value=\"google\" />\r\n          <option name=\"codename\" value=\"tokay\" />\r\n          <option name=\"default\" value=\"true\" />\r\n          <option name=\"id\" value=\"tokay\" />\r\n          <option name=\"labId\" value=\"google\" />\r\n          <option name=\"manufacturer\" value=\"Google\" />\r\n          <option name=\"name\" value=\"Pixel 9\" />\r\n          <option name=\"screenDensity\" value=\"420\" />\r\n          <option name=\"screenX\" value=\"1080\" />\r\n          <option name=\"screenY\" value=\"2424\" />\r\n        </PersistentDeviceSelectionData>\r\n      </list>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/caches/deviceStreaming.xml b/.idea/caches/deviceStreaming.xml
+--- a/.idea/caches/deviceStreaming.xml	(revision b778e7aad5603c50d456215b5e0a9de3eac2dcf7)
++++ b/.idea/caches/deviceStreaming.xml	(date 1745991062504)
+@@ -79,6 +79,18 @@
+         <PersistentDeviceSelectionData>
+           <option name="api" value="34" />
+           <option name="brand" value="samsung" />
++          <option name="codename" value="a16x" />
++          <option name="id" value="a16x" />
++          <option name="labId" value="google" />
++          <option name="manufacturer" value="Samsung" />
++          <option name="name" value="A16 5G" />
++          <option name="screenDensity" value="450" />
++          <option name="screenX" value="1080" />
++          <option name="screenY" value="2340" />
++        </PersistentDeviceSelectionData>
++        <PersistentDeviceSelectionData>
++          <option name="api" value="34" />
++          <option name="brand" value="samsung" />
+           <option name="codename" value="a35x" />
+           <option name="id" value="a35x" />
+           <option name="labId" value="google" />
+Index: app/build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    alias(libs.plugins.android.application)\r\n    alias(libs.plugins.kotlin.android)\r\n    alias(libs.plugins.ksp) //applies the KSP plugin\r\n    id(\"com.google.dagger.hilt.android\") version \"2.53.1\"\r\n    kotlin(\"kapt\")\r\n}\r\n\r\nconfigurations {\r\n    kapt\r\n}\r\n\r\nandroid {\r\n    namespace = \"com.example.prog7313ui\"\r\n    compileSdk = 35\r\n\r\n    defaultConfig {\r\n        applicationId = \"com.example.prog7313ui\"\r\n        minSdk = 24\r\n        targetSdk = 35\r\n        versionCode = 1\r\n        versionName = \"1.0\"\r\n\r\n        testInstrumentationRunner = \"androidx.test.runner.AndroidJUnitRunner\"\r\n\r\n        // Tells KSP where to output schema JSONs\r\n        ksp {\r\n            arg(\"room.schemaLocation\", \"$projectDir/schemas\")\r\n        }\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            isMinifyEnabled = false\r\n            proguardFiles(\r\n                getDefaultProguardFile(\"proguard-android-optimize.txt\"),\r\n                \"proguard-rules.pro\"\r\n            )\r\n        }\r\n    }\r\n    compileOptions {\r\n        sourceCompatibility = JavaVersion.VERSION_11\r\n        targetCompatibility = JavaVersion.VERSION_11\r\n    }\r\n    kotlinOptions {\r\n        jvmTarget = \"11\"\r\n    }\r\n}\r\n\r\ndependencies {\r\n\r\n    implementation(libs.androidx.core.ktx)\r\n    implementation(libs.androidx.appcompat)\r\n    implementation(libs.material)\r\n    implementation(libs.androidx.activity)\r\n    implementation(libs.androidx.constraintlayout)\r\n    implementation(libs.hilt.android) // Hilt\r\n    kapt(libs.hilt.compiler)      // Kotlin Annotation Processing Tool for Hilt\r\n\r\n    testImplementation(libs.junit)\r\n    androidTestImplementation(libs.androidx.junit)\r\n    androidTestImplementation(libs.androidx.espresso.core)\r\n\r\n    // ROOM Database dependencies\r\n    implementation(libs.room.runtime)\r\n    // KSP (Kotlin Symbol Processing) needed to generate Room code\r\n    ksp(libs.androidx.room.compiler)\r\n    // Adds Kotlin extensions and support for Coroutines\r\n    implementation(libs.room.ktx)\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle.kts b/app/build.gradle.kts
+--- a/app/build.gradle.kts	(revision b778e7aad5603c50d456215b5e0a9de3eac2dcf7)
++++ b/app/build.gradle.kts	(date 1745991240103)
+@@ -2,12 +2,6 @@
+     alias(libs.plugins.android.application)
+     alias(libs.plugins.kotlin.android)
+     alias(libs.plugins.ksp) //applies the KSP plugin
+-    id("com.google.dagger.hilt.android") version "2.53.1"
+-    kotlin("kapt")
+-}
+-
+-configurations {
+-    kapt
+ }
+ 
+ android {
+@@ -54,8 +48,6 @@
+     implementation(libs.material)
+     implementation(libs.androidx.activity)
+     implementation(libs.androidx.constraintlayout)
+-    implementation(libs.hilt.android) // Hilt
+-    kapt(libs.hilt.compiler)      // Kotlin Annotation Processing Tool for Hilt
+ 
+     testImplementation(libs.junit)
+     androidTestImplementation(libs.androidx.junit)
+Index: app/src/main/java/com/example/prog7313ui/data/entity/BudgetCategory.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.prog7313ui.data.entity\r\n\r\nimport androidx.room.Entity\r\nimport androidx.room.PrimaryKey\r\n\r\n/**\r\n * Represents a category under which expenses can be grouped.\r\n *\r\n * Examples include categories like 'Food', 'Transport', or 'Utilities'.\r\n * Each category can have:\r\n * - A minimum monthly goal (e.g., spend at least R500 on food).\r\n * - A maximum monthly limit (e.g., spend no more than R2000 on entertainment).\r\n * These limits are used to provide financial insights and warnings during expense entry.\r\n */\r\n@Entity(tableName = \"budget_categories\")\r\ndata class BudgetCategory(\r\n    @PrimaryKey(autoGenerate = true)\r\n    val id: Int = 0, // Unique identifier for each category\r\n    val name: String, // Name of the category, e.g., 'Food', 'Transport', etc.\r\n    val minLimit: Double = 0.0, // The minimum amount the user aims to spend monthly in this category. Default is 0.\r\n    val maxLimit: Double = 0.0, // The maximum amount the user aims to spend monthly in this category. Default is 0.\r\n    val imageUri: String? = null // Optional URI to an image representing the category.\r\n)\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/prog7313ui/data/entity/BudgetCategory.kt b/app/src/main/java/com/example/prog7313ui/data/entity/BudgetCategory.kt
+--- a/app/src/main/java/com/example/prog7313ui/data/entity/BudgetCategory.kt	(revision b778e7aad5603c50d456215b5e0a9de3eac2dcf7)
++++ b/app/src/main/java/com/example/prog7313ui/data/entity/BudgetCategory.kt	(date 1746009496105)
+@@ -19,5 +19,9 @@
+     val name: String, // Name of the category, e.g., 'Food', 'Transport', etc.
+     val minLimit: Double = 0.0, // The minimum amount the user aims to spend monthly in this category. Default is 0.
+     val maxLimit: Double = 0.0, // The maximum amount the user aims to spend monthly in this category. Default is 0.
+-    val imageUri: String? = null // Optional URI to an image representing the category.
+-)
++    val imageUri: String? = null
++){
++    override fun toString(): String {
++        return "$id. $name"
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/expense_item.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.cardview.widget.CardView\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"wrap_content\"\r\n    android:layout_margin=\"8dp\"\r\n    app:cardCornerRadius=\"12dp\"\r\n    app:cardElevation=\"4dp\">\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:padding=\"16dp\"\r\n        android:orientation=\"vertical\">\r\n\r\n        <TextView\r\n            android:id=\"@+id/expenseDescription\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"@string/description\"\r\n            android:textSize=\"18sp\"\r\n            android:textStyle=\"bold\"/>\r\n\r\n        <TextView\r\n            android:id=\"@+id/expenseAmount\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"@string/amount\"\r\n            android:textSize=\"16sp\"\r\n            android:textStyle=\"bold\"/>\r\n\r\n        <TextView\r\n            android:id=\"@+id/expenseDate\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"@string/date_info\"\r\n            android:textSize=\"14sp\"\r\n            android:layout_marginTop=\"4dp\"/>\r\n\r\n        <TextView\r\n            android:id=\"@+id/expenseRecurring\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"@string/recurring_no\"\r\n            android:textSize=\"14sp\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toBottomOf=\"@id/expenseAmount\"\r\n            app:layout_constraintTop_margin=\"8dp\"/>\r\n\r\n        <TextView\r\n            android:id=\"@+id/expenseStartDate\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"@string/start\"\r\n            android:textSize=\"14sp\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toBottomOf=\"@id/expenseRecurring\"\r\n            app:layout_constraintTop_margin=\"4dp\"/>\r\n\r\n        <TextView\r\n            android:id=\"@+id/expenseEndDate\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"@string/end\"\r\n            android:textSize=\"14sp\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toBottomOf=\"@id/expenseStartDate\"\r\n            app:layout_constraintTop_margin=\"4dp\"/>\r\n\r\n        <TextView\r\n            android:id=\"@+id/expenseCategory\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"@string/category\"\r\n            android:textSize=\"14sp\"\r\n            android:layout_marginTop=\"4dp\"/>\r\n\r\n        <Button\r\n            android:id=\"@+id/viewPhotoBtn\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"@string/view_photo\"\r\n            android:layout_marginTop=\"8dp\"\r\n            android:visibility=\"gone\"/>\r\n    </LinearLayout>\r\n\r\n</androidx.cardview.widget.CardView>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/expense_item.xml b/app/src/main/res/layout/expense_item.xml
+--- a/app/src/main/res/layout/expense_item.xml	(revision b778e7aad5603c50d456215b5e0a9de3eac2dcf7)
++++ b/app/src/main/res/layout/expense_item.xml	(date 1745993097631)
+@@ -45,8 +45,7 @@
+             android:text="@string/recurring_no"
+             android:textSize="14sp"
+             app:layout_constraintStart_toStartOf="parent"
+-            app:layout_constraintTop_toBottomOf="@id/expenseAmount"
+-            app:layout_constraintTop_margin="8dp"/>
++            app:layout_constraintTop_toBottomOf="@id/expenseAmount" />
+ 
+         <TextView
+             android:id="@+id/expenseStartDate"
+@@ -55,8 +54,7 @@
+             android:text="@string/start"
+             android:textSize="14sp"
+             app:layout_constraintStart_toStartOf="parent"
+-            app:layout_constraintTop_toBottomOf="@id/expenseRecurring"
+-            app:layout_constraintTop_margin="4dp"/>
++            app:layout_constraintTop_toBottomOf="@id/expenseRecurring" />
+ 
+         <TextView
+             android:id="@+id/expenseEndDate"
+@@ -65,16 +63,14 @@
+             android:text="@string/end"
+             android:textSize="14sp"
+             app:layout_constraintStart_toStartOf="parent"
+-            app:layout_constraintTop_toBottomOf="@id/expenseStartDate"
+-            app:layout_constraintTop_margin="4dp"/>
++            app:layout_constraintTop_toBottomOf="@id/expenseStartDate" />
+ 
+         <TextView
+             android:id="@+id/expenseCategory"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="@string/category"
+-            android:textSize="14sp"
+-            android:layout_marginTop="4dp"/>
++            android:textSize="14sp" />
+ 
+         <Button
+             android:id="@+id/viewPhotoBtn"
+Index: app/src/main/res/layout/item_category.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><Button xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    android:id=\"@+id/categoryButton\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"wrap_content\"\r\n    android:layout_marginBottom=\"12dp\"\r\n    android:backgroundTint=\"#EEEEEE\"\r\n    android:textColor=\"#000000\"\r\n    android:text=\"@string/category_name\" />\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/item_category.xml b/app/src/main/res/layout/item_category.xml
+--- a/app/src/main/res/layout/item_category.xml	(revision b778e7aad5603c50d456215b5e0a9de3eac2dcf7)
++++ b/app/src/main/res/layout/item_category.xml	(date 1745991849693)
+@@ -5,4 +5,4 @@
+     android:layout_marginBottom="12dp"
+     android:backgroundTint="#EEEEEE"
+     android:textColor="#000000"
+-    android:text="@string/category_name" />
++    android:text="@string/category_name" />
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_hub.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    android:id=\"@+id/hubRoot\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:background=\"#FFFFFF\">\r\n\r\n    <!-- Top Bar -->\r\n    <RelativeLayout\r\n        android:id=\"@+id/titleBar\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:padding=\"16dp\">\r\n\r\n        <!-- Back Button -->\r\n        <ImageButton\r\n            android:id=\"@+id/backToLoginBtn\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:src=\"@android:drawable/ic_media_previous\"\r\n            android:background=\"@android:color/transparent\"\r\n            android:contentDescription=\"@string/back_to_login\" />\r\n\r\n        <!-- Title -->\r\n        <TextView\r\n            android:id=\"@+id/titleText\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"@string/your_categories\"\r\n            android:textSize=\"24sp\"\r\n            android:textStyle=\"bold\"\r\n            android:layout_centerHorizontal=\"true\"\r\n            android:layout_alignParentTop=\"true\" />\r\n    </RelativeLayout>\r\n\r\n    <!-- Scrollable content (Categories) -->\r\n    <androidx.recyclerview.widget.RecyclerView\r\n        android:id=\"@+id/categoryRecyclerView\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_below=\"@id/titleBar\"\r\n        android:layout_above=\"@id/addButtonsLayout\"\r\n        android:padding=\"16dp\"\r\n        android:clipToPadding=\"false\"\r\n        android:scrollbars=\"vertical\" />\r\n\r\n    <!-- Add Buttons (Categories and Expenses) -->\r\n    <LinearLayout\r\n        android:id=\"@+id/addButtonsLayout\"\r\n        style=\"?android:attr/buttonBarStyle\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_above=\"@id/bottomNavigation\"\r\n        android:orientation=\"horizontal\"\r\n        android:gravity=\"center\"\r\n        android:padding=\"16dp\">\r\n\r\n        <Button\r\n            android:id=\"@+id/addCategoryBtn\"\r\n            style=\"?android:attr/buttonBarButtonStyle\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"@string/add_a_category\"\r\n            android:layout_marginEnd=\"12dp\" />\r\n\r\n        <Button\r\n            android:id=\"@+id/addExpenseBtn\"\r\n            style=\"?android:attr/buttonBarButtonStyle\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"@string/add_expense\" />\r\n    </LinearLayout>\r\n\r\n    <!-- Bottom Navigation -->\r\n    <com.google.android.material.bottomnavigation.BottomNavigationView\r\n        android:id=\"@+id/bottomNavigation\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_alignParentBottom=\"true\"\r\n        android:background=\"#FDEEFF\"\r\n        app:menu=\"@menu/bottom_nav_menu\"\r\n        app:labelVisibilityMode=\"labeled\" />\r\n</RelativeLayout>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_hub.xml b/app/src/main/res/layout/activity_hub.xml
+--- a/app/src/main/res/layout/activity_hub.xml	(revision b778e7aad5603c50d456215b5e0a9de3eac2dcf7)
++++ b/app/src/main/res/layout/activity_hub.xml	(date 1745991790374)
+@@ -20,26 +20,35 @@
+             android:layout_height="wrap_content"
+             android:src="@android:drawable/ic_media_previous"
+             android:background="@android:color/transparent"
+-            android:contentDescription="@string/back_to_login" />
++            android:contentDescription="@string/back_to_hub" />
+ 
+         <!-- Title -->
+         <TextView
+             android:id="@+id/titleText"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+-            android:text="@string/your_categories"
++            android:text="@string/categories"
+             android:textSize="24sp"
+             android:textStyle="bold"
+             android:layout_centerHorizontal="true"
+             android:layout_alignParentTop="true" />
+     </RelativeLayout>
+ 
++    <!-- Category Selection Spinner -->
++    <Spinner
++        android:id="@+id/categorySpinner"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_below="@id/titleBar"
++        android:layout_margin="16dp"
++        android:spinnerMode="dropdown"/>
++
+     <!-- Scrollable content (Categories) -->
+     <androidx.recyclerview.widget.RecyclerView
+         android:id="@+id/categoryRecyclerView"
+         android:layout_width="match_parent"
+         android:layout_height="0dp"
+-        android:layout_below="@id/titleBar"
++        android:layout_below="@id/categorySpinner"
+         android:layout_above="@id/addButtonsLayout"
+         android:padding="16dp"
+         android:clipToPadding="false"
+@@ -69,7 +78,7 @@
+             style="?android:attr/buttonBarButtonStyle"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+-            android:text="@string/add_expense" />
++            android:text="@string/add_an_expense" />
+     </LinearLayout>
+ 
+     <!-- Bottom Navigation -->
+@@ -81,4 +90,4 @@
+         android:background="#FDEEFF"
+         app:menu="@menu/bottom_nav_menu"
+         app:labelVisibilityMode="labeled" />
+-</RelativeLayout>
++</RelativeLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/prog7313ui/HubActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.prog7313ui\r\n\r\nimport android.content.Intent\r\nimport android.os.Bundle\r\nimport android.widget.Button\r\nimport android.widget.ImageButton\r\nimport android.widget.Toast\r\nimport androidx.activity.viewModels\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport androidx.recyclerview.widget.LinearLayoutManager\r\nimport androidx.recyclerview.widget.RecyclerView\r\nimport com.google.android.material.bottomnavigation.BottomNavigationView\r\n\r\nclass HubActivity : AppCompatActivity() {\r\n    private lateinit var adapter: CategoryAdapter\r\n    private val categoryViewModel: CategoryViewModel by viewModels()\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        setContentView(R.layout.activity_hub)\r\n\r\n        // RecyclerView initialization\r\n        val recyclerView = findViewById<RecyclerView>(R.id.categoryRecyclerView)\r\n        adapter = CategoryAdapter(emptyList()){\r\n            budgetCategory -> val intent = Intent(this, CategoryActivity::class.java)\r\n            intent.putExtra(\"Category_ID\", budgetCategory.id)\r\n            startActivity(intent)\r\n        }\r\n        recyclerView.layoutManager = LinearLayoutManager(this)\r\n        recyclerView.adapter = adapter\r\n\r\n        // RoomDB data\r\n        categoryViewModel.allCategories.observe(this){\r\n            categories -> adapter.updateData(categories)\r\n        }\r\n\r\n        // --- Navigation Buttons ---\r\n        // Add Category\r\n        val addCategoryBtn = findViewById<Button>(R.id.addCategoryBtn)\r\n        addCategoryBtn.setOnClickListener {\r\n            val intent = Intent(this, CreateCategoryActivity::class.java)\r\n            startActivity(intent)\r\n        }\r\n\r\n        // Add Expense\r\n        val addExpenseBtn = findViewById<Button>(R.id.addExpenseBtn)\r\n        addExpenseBtn.setOnClickListener {\r\n            val intent = Intent(this, AddExpenseActivity::class.java)\r\n            startActivity(intent)\r\n        }\r\n\r\n        // Back to Login\r\n        val backToLoginBtn = findViewById<ImageButton>(R.id.backToLoginBtn)\r\n        backToLoginBtn.setOnClickListener {\r\n            val intent = Intent(this, MainActivity::class.java)\r\n            startActivity(intent)\r\n            finish()\r\n        }\r\n\r\n        // --- Category Buttons ---\r\n\r\n        // --- Bottom Navigation ---\r\n        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)\r\n        bottomNav.setOnItemSelectedListener {\r\n            when (it.itemId) {\r\n                R.id.nav_categories -> {\r\n                    // Already on this screen\r\n                    true\r\n                }\r\n                R.id.nav_flow -> {\r\n                    // TODO: Navigate to FlowActivity\r\n                    Toast.makeText(this, \"Flow State tapped\", Toast.LENGTH_SHORT).show()\r\n                    true\r\n                }\r\n                R.id.nav_achievements -> {\r\n                    // TODO: Navigate to AchievementsActivity\r\n                    Toast.makeText(this, \"Achievements tapped\", Toast.LENGTH_SHORT).show()\r\n                    true\r\n                }\r\n                R.id.nav_expenses -> {\r\n                    // Navigate to Expense List\r\n                    val intent = Intent(this, ExpenseListActivity::class.java)\r\n                    startActivity(intent)\r\n                    true\r\n                }\r\n                else -> false\r\n            }\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/prog7313ui/HubActivity.kt b/app/src/main/java/com/example/prog7313ui/HubActivity.kt
+--- a/app/src/main/java/com/example/prog7313ui/HubActivity.kt	(revision b778e7aad5603c50d456215b5e0a9de3eac2dcf7)
++++ b/app/src/main/java/com/example/prog7313ui/HubActivity.kt	(date 1745995536451)
+@@ -2,47 +2,54 @@
+ 
+ import android.content.Intent
+ import android.os.Bundle
++import android.widget.ArrayAdapter
+ import android.widget.Button
+ import android.widget.ImageButton
++import android.widget.Spinner
+ import android.widget.Toast
+-import androidx.activity.viewModels
+ import androidx.appcompat.app.AppCompatActivity
++import androidx.lifecycle.lifecycleScope
+ import androidx.recyclerview.widget.LinearLayoutManager
+ import androidx.recyclerview.widget.RecyclerView
++import com.example.prog7313ui.data.AppDatabase
+ import com.google.android.material.bottomnavigation.BottomNavigationView
++import kotlinx.coroutines.launch
+ 
+ class HubActivity : AppCompatActivity() {
+     private lateinit var adapter: CategoryAdapter
+-    private val categoryViewModel: CategoryViewModel by viewModels()
++    private lateinit var categorySpinner: Spinner // Spinner for selecting a category
+ 
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+         setContentView(R.layout.activity_hub)
+ 
+-        // RecyclerView initialization
++        categorySpinner = findViewById(R.id.categorySpinner)
++
++        // Load categories into the spinner
++        loadCategoriesIntoSpinner()
++        loadCategoriesIntoRecyclerView()
++
++        // RecyclerView initialization (List of Categories)
+         val recyclerView = findViewById<RecyclerView>(R.id.categoryRecyclerView)
+-        adapter = CategoryAdapter(emptyList()){
+-            budgetCategory -> val intent = Intent(this, CategoryActivity::class.java)
+-            intent.putExtra("Category_ID", budgetCategory.id)
++        adapter = CategoryAdapter(emptyList()) { category ->
++            val intent = Intent(this, CategoryActivity::class.java)
++            intent.putExtra("Category_ID", category.id)
++            intent.putExtra("Category_Name", category.name)
++            intent.putExtra("Category_Image", category.imageUri)
+             startActivity(intent)
+         }
++
+         recyclerView.layoutManager = LinearLayoutManager(this)
+         recyclerView.adapter = adapter
+ 
+-        // RoomDB data
+-        categoryViewModel.allCategories.observe(this){
+-            categories -> adapter.updateData(categories)
+-        }
+-
+-        // --- Navigation Buttons ---
+-        // Add Category
++        // Add Category Button
+         val addCategoryBtn = findViewById<Button>(R.id.addCategoryBtn)
+         addCategoryBtn.setOnClickListener {
+             val intent = Intent(this, CreateCategoryActivity::class.java)
+             startActivity(intent)
+         }
+ 
+-        // Add Expense
++        // Add Expense Button
+         val addExpenseBtn = findViewById<Button>(R.id.addExpenseBtn)
+         addExpenseBtn.setOnClickListener {
+             val intent = Intent(this, AddExpenseActivity::class.java)
+@@ -57,28 +64,20 @@
+             finish()
+         }
+ 
+-        // --- Category Buttons ---
+-
+-        // --- Bottom Navigation ---
++        // Bottom Navigation
+         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
+         bottomNav.setOnItemSelectedListener {
+             when (it.itemId) {
+-                R.id.nav_categories -> {
+-                    // Already on this screen
+-                    true
+-                }
++                R.id.nav_categories -> true // Already here
+                 R.id.nav_flow -> {
+-                    // TODO: Navigate to FlowActivity
+                     Toast.makeText(this, "Flow State tapped", Toast.LENGTH_SHORT).show()
+                     true
+                 }
+                 R.id.nav_achievements -> {
+-                    // TODO: Navigate to AchievementsActivity
+                     Toast.makeText(this, "Achievements tapped", Toast.LENGTH_SHORT).show()
+                     true
+                 }
+                 R.id.nav_expenses -> {
+-                    // Navigate to Expense List
+                     val intent = Intent(this, ExpenseListActivity::class.java)
+                     startActivity(intent)
+                     true
+@@ -87,4 +86,56 @@
+             }
+         }
+     }
++
++    private fun loadCategoriesIntoSpinner() {
++        lifecycleScope.launch {
++            try {
++                val db = AppDatabase.getInstance(this@HubActivity)
++                val categoryDao = db.budgetCategoryDao()
++
++                categoryDao.getAllCategories().collect { categories ->
++                    if (categories.isNotEmpty()) {
++                        val categoryList = categories.map { "${it.id}. ${it.name}" }
++
++                        val adapter = ArrayAdapter(
++                            this@HubActivity,
++                            android.R.layout.simple_spinner_item,
++                            categoryList
++                        )
++                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
++                        categorySpinner.adapter = adapter
++                    } else {
++                        Toast.makeText(this@HubActivity, "No categories found", Toast.LENGTH_SHORT).show()
++                    }
++                }
++
++            } catch (e: Exception) {
++                Toast.makeText(
++                    this@HubActivity,
++                    "Failed to load categories: ${e.message}",
++                    Toast.LENGTH_LONG
++                ).show()
++            }
++        }
++    }
++
++    private fun loadCategoriesIntoRecyclerView() {
++        lifecycleScope.launch {
++            try {
++                val db = AppDatabase.getInstance(this@HubActivity)
++                val categoryDao = db.budgetCategoryDao()
++
++                categoryDao.getAllCategories().collect { categories ->
++                    adapter.updateData(categories)
++                }
++
++            } catch (e: Exception) {
++                Toast.makeText(
++                    this@HubActivity,
++                    "Failed to load categories: ${e.message}",
++                    Toast.LENGTH_LONG
++                ).show()
++            }
++        }
++    }
+ }
+\ No newline at end of file
+Index: app/src/main/res/layout/item_expense.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/item_expense.xml b/app/src/main/res/layout/item_expense.xml
+new file mode 100644
+--- /dev/null	(date 1745991062478)
++++ b/app/src/main/res/layout/item_expense.xml	(date 1745991062478)
+@@ -0,0 +1,48 @@
++<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="wrap_content"
++    android:layout_marginBottom="12dp"
++    android:elevation="4dp"
++    android:padding="12dp"
++    android:background="@android:color/white"
++    android:radius="8dp">
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:orientation="vertical">
++
++        <TextView
++            android:id="@+id/expenseDescription"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:text="Groceries"
++            android:textSize="18sp"
++            android:textStyle="bold"
++            android:textColor="#000000" />
++
++        <TextView
++            android:id="@+id/expenseAmount"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="R 120.00"
++            android:textSize="16sp"
++            android:textColor="#388E3C" />
++
++        <TextView
++            android:id="@+id/expenseDate"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="2025-04-20"
++            android:textSize="14sp"
++            android:textColor="#757575" />
++
++        <ImageView
++            android:id="@+id/expensePhoto"
++            android:layout_width="match_parent"
++            android:layout_height="180dp"
++            android:scaleType="centerCrop"
++            android:layout_marginTop="8dp"
++            android:visibility="gone" />
++    </LinearLayout>
++</androidx.cardview.widget.CardView>

@@ -27,7 +27,7 @@
         android:gravity="center_horizontal"
         android:layout_marginTop="1dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent" >
 
         <!-- Buttons for selecting start, end dates and applying the filter -->
         <Button
