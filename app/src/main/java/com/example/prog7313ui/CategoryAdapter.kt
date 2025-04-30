@@ -18,13 +18,6 @@ class CategoryAdapter(
     inner class CategoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val button: Button = view.findViewById(R.id.categoryButton)
 
-        fun bind (category: BudgetCategory)
-        {
-            itemView.findViewById<TextView>(R.id.categoryTitle).text = category.name
-            itemView.setOnClickListener{
-                onClick(category)
-            }
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
@@ -36,14 +29,13 @@ class CategoryAdapter(
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val category = categories[position]
         holder.button.text = category.name
-        holder.button.setOnClickListener {
-            onClick(category)
-        }
 
         holder.button.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, CategoryActivity::class.java)
             intent.putExtra("CATEGORY_NAME", category.name) // Passing the category name
+            intent.putExtra("CATEGORY_ID", category.id)     // Passing the category id
+            intent  .putExtra("CATEGORY_IMAGE", category.imageUri)  // Passing the category image
             context.startActivity(intent)
         }
     }

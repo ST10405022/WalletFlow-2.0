@@ -25,7 +25,7 @@ class HubActivity : AppCompatActivity() {
 
         categorySpinner = findViewById(R.id.categorySpinner)
 
-        // Load categories into the spinner
+        // Load categories into the Spinner/RecyclerView
         loadCategoriesIntoSpinner()
         loadCategoriesIntoRecyclerView()
 
@@ -34,8 +34,6 @@ class HubActivity : AppCompatActivity() {
         adapter = CategoryAdapter(emptyList()) { category ->
             val intent = Intent(this, CategoryActivity::class.java)
             intent.putExtra("Category_ID", category.id)
-            intent.putExtra("Category_Name", category.name)
-            intent.putExtra("Category_Image", category.imageUri)
             startActivity(intent)
         }
 

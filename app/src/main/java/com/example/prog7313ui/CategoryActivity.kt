@@ -6,27 +6,39 @@ import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.prog7313ui.R.id.categoryTitle
+import com.example.prog7313ui.data.AppDatabase
+import kotlinx.coroutines.launch
 
 class CategoryActivity : AppCompatActivity() {
-    private lateinit var categoryTitle: TextView
+    private lateinit var adapter: ExpenseAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
 
-        //Pass category name
-        val budgetCategoryName = intent.getStringExtra("Category_Name") ?: "Unnamed Category"
+        //UI references
         val titleTextView = findViewById<TextView>(R.id.categoryTitle)
-        titleTextView.text = budgetCategoryName
-
-        //Pass category image
-        val budgetCategoryImage = intent.getStringExtra("Category_Image")
         val imageCategory = findViewById<ImageView>(R.id.categoryImage)
+        val txtMinLimit = findViewById<TextView>(R.id.inputMinValue)
+        val txtMaxLimit = findViewById<TextView>(R.id.inputMaxValue)
+
+        //Pass category name, id, and image
+        val budgetCategoryName = intent.getStringExtra("CATEGORY_NAME")
+        val budgetCategoryId = intent.getIntExtra("CATEGORY_ID", -1)
+        val budgetCategoryImage = intent.getStringExtra("CATEGORY_IMAGE")
+
         budgetCategoryImage?.let {
             val imageUri = Uri.parse(it)
             imageCategory.setImageURI(imageUri)
         }
+
+        titleTextView.text = budgetCategoryName
 
 
         // Back to Hub screen
@@ -37,8 +49,47 @@ class CategoryActivity : AppCompatActivity() {
             finish()
         }
 
-        val categoryName = intent.getStringExtra("Category_Name")
-
         // TODO: Add category-specific logic later (e.g. fetch title, image, etc.)
+
+        // Expenses recyclerView initialization
+        adapter = ExpenseAdapter(ExpenseListActivity())
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewExpenses)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = adapter
+
+        //Load expenses
+        loadCategoryDetails(categoryTitle, txtMinLimit, txtMaxLimit)
+    }
+
+    private fun loadCategoryDetails(
+        categoryId: Int,
+        minLimit: TextView,
+        maxLimit: TextView
+    ) {
+        lifecycleScope.launch {
+            try {
+                val db = AppDatabase.getInstance(this@CategoryActivity)
+                val expenseDao = db.expenseDao()
+
+                val category = db.budgetCategoryDao().getCategoryId(categoryId)
+                minLimit.text = category?.minLimit.toString()
+                maxLimit.text = category?.maxLimit.toString()
+
+                expenseDao.getAllExpenses().collect { expenses ->
+                    adapter.submitList(expenses)
+                }
+
+                db.expenseDao().getExpensesByCategory(categoryId).collect{
+                    expenses -> adapter.submitList(expenses)
+                }
+
+            } catch (e: Exception) {
+                Toast.makeText(
+                    this@CategoryActivity,
+                    "Failed to load categories: ${e.message}",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
     }
 }
