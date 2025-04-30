@@ -29,7 +29,7 @@ import java.util.Locale
 
 /**
  * Activity for adding a new expense to the database.
- */
+*/
 class AddExpenseActivity : AppCompatActivity() {
     // UI elements
     private lateinit var nameInput: EditText // EditText for name
@@ -89,7 +89,6 @@ class AddExpenseActivity : AppCompatActivity() {
         dateInput = findViewById(R.id.inputDate)
         descInput = findViewById(R.id.inputDescription)
         categorySpinner = findViewById(R.id.categorySpinner)
-
         //uploadButton = findViewById(R.id.uploadReceiptBtn)
         createExpenseButton = findViewById(R.id.createExpenseBtn)
         backButton = findViewById(R.id.backToHubBtn)
@@ -175,10 +174,10 @@ class AddExpenseActivity : AppCompatActivity() {
                     val adapter = ArrayAdapter(
                         this@AddExpenseActivity,
                         android.R.layout.simple_spinner_item,
-                        categories.map { "${it.id}. ${it.name}" }
+                        categories // pass the full objects, not strings
                     )
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                    categorySpinner.adapter = adapter // Set the adapter to the spinner
+                    categorySpinner.adapter = adapter
                 }
 
             } catch (e: Exception) { // Handle exceptions if needed
@@ -186,7 +185,6 @@ class AddExpenseActivity : AppCompatActivity() {
             }
         }
     }
-
 
     /**
      * Validate all required inputs and show inline errors if needed.
