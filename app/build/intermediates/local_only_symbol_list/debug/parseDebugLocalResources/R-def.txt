@@ -45,6 +45,8 @@ id inputExpenseName
 id inputStartDate
 id itemList
 id logoImage
+id maxLimit
+id minLimit
 id nav_achievements
 id nav_categories
 id nav_expenses
@@ -55,6 +57,7 @@ id recurringExpenseCheckBox
 id selectEndDateBtn
 id selectStartDateBtn
 id signInButton
+id textView3
 id titleBar
 id titleText
 id toDate

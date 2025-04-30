@@ -3421,8 +3421,10 @@ id material_timepicker_ok_button
 id material_timepicker_view
 id material_value_index
 id matrix
+id maxLimit
 id message
 id middle
+id minLimit
 id mini
 id month_grid
 id month_navigation_bar
@@ -3615,6 +3617,7 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
+id textView3
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
