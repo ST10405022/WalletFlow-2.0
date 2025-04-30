@@ -31,6 +31,7 @@ interface BudgetCategoryDao {
      * Deletes a category from the database.
      * If the category does not exist, nothing happens.
      * @param category The category to delete.
+     * @see BudgetCategory
      */
     @Delete
     suspend fun deleteCategory(category: BudgetCategory)

@@ -19,5 +19,9 @@ data class BudgetCategory(
     val name: String, // Name of the category, e.g., 'Food', 'Transport', etc.
     val minLimit: Double = 0.0, // The minimum amount the user aims to spend monthly in this category. Default is 0.
     val maxLimit: Double = 0.0, // The maximum amount the user aims to spend monthly in this category. Default is 0.
-    val imageUri: String? = null // Optional URI to an image representing the category.
-)
+    val imageUri: String? = null // The URI of an image associated with this category.
+){
+    override fun toString(): String {
+        return "$id. $name"
+    }
+}

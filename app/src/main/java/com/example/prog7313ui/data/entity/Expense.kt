@@ -18,7 +18,7 @@ import java.util.*
 data class Expense(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0, // Unique identifier for each expense
-    val amount: Double, // Monetary value
+    val amount: Double, // Monetary value of expense
     val date: Date, // Date of expense
     val startDate: Date? = null, // Optional start date for recurring expenses
     val endDate: Date? = null, // Optional end date for recurring expenses

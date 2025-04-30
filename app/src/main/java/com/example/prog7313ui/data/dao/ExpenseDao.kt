@@ -16,6 +16,7 @@ interface ExpenseDao {
      * Inserts a new expense into the database.
      * If the expense already exists, replaces the old record.
      * @param expense The expense to insert.
+     * @return The ID of the newly inserted expense.
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertExpense(expense: Expense)
@@ -60,7 +61,7 @@ interface ExpenseDao {
     /**
      * Retrieves all expenses within a specific date range.
      * The list is automatically updated when the database is changed.
-     * Flow is used to handle asynchronous data streams.
+     * Flow is used to handle asynchronous data streams
      * @param startDate The start of the date range.
      * @param endDate The end of the date range.
      * @return A Flow emitting a list of expenses within the specified date range.

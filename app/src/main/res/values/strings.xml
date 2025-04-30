@@ -51,5 +51,6 @@
     <string name="recurring_no">Recurring: No</string>
     <string name="start">Start: </string>
     <string name="end">End: </string>
+    <string name="categories">Categories</string>
 
 </resources>

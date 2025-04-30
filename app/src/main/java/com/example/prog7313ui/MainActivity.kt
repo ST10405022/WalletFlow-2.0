@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         val continueBtn = findViewById<Button>(R.id.continueBtn)
         continueBtn.setOnClickListener {
             val intent = Intent(this, HubActivity::class.java)
-            startActivity(intent)
+            startActivity(intent) // Start the HubActivity
             finish() // Optional: prevents back to login via back button
         }
 

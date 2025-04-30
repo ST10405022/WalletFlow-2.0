@@ -38,7 +38,7 @@ class ExpenseListActivity : AppCompatActivity() {
                 val calendar = Calendar.getInstance().apply {
                     set(year, month, day, 0, 0, 0)
                 }
-                startDate = calendar.time
+                startDate = calendar.time // Update the start date
                 Toast.makeText(this, "Start Date: ${formatDate(calendar.time)}", Toast.LENGTH_SHORT).show()
             }
         }
@@ -48,7 +48,7 @@ class ExpenseListActivity : AppCompatActivity() {
                 val calendar = Calendar.getInstance().apply {
                     set(year, month, day, 23, 59, 59)
                 }
-                endDate = calendar.time
+                endDate = calendar.time // Update the end date
                 Toast.makeText(this, "End Date: ${formatDate(calendar.time)}", Toast.LENGTH_SHORT).show()
             }
         }

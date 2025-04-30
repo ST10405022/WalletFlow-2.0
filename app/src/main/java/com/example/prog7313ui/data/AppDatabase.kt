@@ -5,6 +5,8 @@ import androidx.room.TypeConverters
 import androidx.room.Room
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.prog7313ui.data.dao.UserDao
 import com.example.prog7313ui.data.entity.User
 import com.example.prog7313ui.data.dao.ExpenseDao
@@ -20,9 +22,17 @@ import com.example.prog7313ui.data.entity.BudgetCategory
  * @getInstance method returns the singleton instance.
  */
 
+val Migration012 = object : Migration(1, 2){
+    override fun migrate(database: SupportSQLiteDatabase)
+    {
+        database.execSQL("ALTER TABLE budget_categories " +
+                "ADD COLUMN imageUri TEXT")
+    }
+}
+
 @Database(
     entities = [User::class, Expense::class, BudgetCategory::class],
-    version = 1, // Increase version number when schema changes
+    version = 2, // Increase version number when schema changes
     exportSchema = true) // Keep schema version history
 
 @TypeConverters(Converters::class) // Use the custom converter to handle java.util.Date and Long
@@ -50,7 +60,8 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "walletflow_database"
-                ).build()
+                ).addMigrations(Migration012)
+                .build()
                 INSTANCE = instance
                 instance
             }

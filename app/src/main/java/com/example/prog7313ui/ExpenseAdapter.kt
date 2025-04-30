@@ -64,9 +64,14 @@ class ExpenseAdapter(
         }
     }
 
+    /**
+     * A DiffUtil.ItemCallback for comparing expenses in the RecyclerView.
+     * This is used to efficiently update the RecyclerView when data changes.
+     * @see DiffUtil.ItemCallback
+     */
     class ExpenseDiffCallback : DiffUtil.ItemCallback<Expense>() {
         override fun areItemsTheSame(oldItem: Expense, newItem: Expense): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.id == newItem.id // Assuming each expense has a unique ID
         }
 
         override fun areContentsTheSame(oldItem: Expense, newItem: Expense): Boolean {

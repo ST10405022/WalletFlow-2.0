@@ -45,8 +45,7 @@
             android:text="@string/recurring_no"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/expenseAmount"
-            app:layout_constraintTop_margin="8dp"/>
+            app:layout_constraintTop_toBottomOf="@id/expenseAmount" />
 
         <TextView
             android:id="@+id/expenseStartDate"
@@ -55,8 +54,7 @@
             android:text="@string/start"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/expenseRecurring"
-            app:layout_constraintTop_margin="4dp"/>
+            app:layout_constraintTop_toBottomOf="@id/expenseRecurring" />
 
         <TextView
             android:id="@+id/expenseEndDate"
@@ -65,16 +63,14 @@
             android:text="@string/end"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/expenseStartDate"
-            app:layout_constraintTop_margin="4dp"/>
+            app:layout_constraintTop_toBottomOf="@id/expenseStartDate" />
 
         <TextView
             android:id="@+id/expenseCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/category"
-            android:textSize="14sp"
-            android:layout_marginTop="4dp"/>
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/viewPhotoBtn"

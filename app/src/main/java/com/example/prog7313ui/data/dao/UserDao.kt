@@ -16,6 +16,7 @@ interface UserDao {
      * Inserts a new user into the database.
      * If the user already exists, replaces the old record.
      * @param user The user to insert.
+     * @return The ID of the newly inserted user.
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUser(user: User)
