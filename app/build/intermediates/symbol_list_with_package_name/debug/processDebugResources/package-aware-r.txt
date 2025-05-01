@@ -3030,6 +3030,7 @@ drawable ic_launcher_foreground
 drawable ic_m3_chip_check
 drawable ic_m3_chip_checked_circle
 drawable ic_m3_chip_close
+drawable ic_menu_close_clear_cancel
 drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
@@ -3220,6 +3221,7 @@ id bounce
 id bounceBoth
 id bounceEnd
 id bounceStart
+id buttonClearFilter
 id buttonPanel
 id cache_measures
 id callMeasure

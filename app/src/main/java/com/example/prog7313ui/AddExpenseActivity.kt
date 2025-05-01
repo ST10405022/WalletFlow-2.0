@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -34,12 +35,12 @@ class AddExpenseActivity : AppCompatActivity() {
     // UI elements
     private lateinit var nameInput: EditText // EditText for name
     private lateinit var amountInput: EditText // EditText for amount
-    private lateinit var dateInput: EditText // EditText for date
+    private lateinit var dateInput: Button // Button for date
     private lateinit var descInput: EditText // EditText for description
     private lateinit var createExpenseButton: Button // Button to create the expense
     private lateinit var backButton: ImageButton // Button to go back to HubActivity
-    private lateinit var startDateInput: EditText // EditText for start date
-    private lateinit var endDateInput: EditText // EditText for end date
+    private lateinit var startDateInput: Button // Button for start date
+    private lateinit var endDateInput: Button // Button for end date
     private lateinit var previewImage: ImageView // ImageView to preview the selected image
     private lateinit var uploadPhotoBtn: Button // Button to upload receipt image
     private lateinit var recurringExpenseCheckBox: CheckBox // Checkbox for recurring expenses
@@ -89,7 +90,6 @@ class AddExpenseActivity : AppCompatActivity() {
         dateInput = findViewById(R.id.inputDate)
         descInput = findViewById(R.id.inputDescription)
         categorySpinner = findViewById(R.id.categorySpinner)
-        //uploadButton = findViewById(R.id.uploadReceiptBtn)
         createExpenseButton = findViewById(R.id.createExpenseBtn)
         backButton = findViewById(R.id.backToHubBtn)
         recurringExpenseCheckBox = findViewById(R.id.recurringExpenseCheckBox)
@@ -98,32 +98,28 @@ class AddExpenseActivity : AppCompatActivity() {
         uploadPhotoBtn = findViewById(R.id.uploadReceiptBtn)
         previewImage = findViewById(R.id.previewImage)
 
-//        // Sample data for the BudgetCategory Spinner
-//        val budgetCategories = listOf(
-//            BudgetCategory(1, "Food"),
-//            BudgetCategory(2, "Transport"),
-//            BudgetCategory(3, "Entertainment")
-//        )
-//
-//        // Adapter for the Spinner
-//        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, budgetCategories)
-//
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//        categorySpinner.adapter = adapter
-
-        // Set up date picker for Date
+        // Set up date picker for Date input
         dateInput.setOnClickListener {
-            showDatePickerDialog(dateInput)
+            showDatePickerDialog { year, month, day ->
+                val formatted = "%02d/%02d/%04d".format(day, month + 1, year)
+                dateInput.text = formatted
+            }
         }
 
-        // Set up date picker for Start Date
+        // Set up date picker for Start Date (only visible if recurring)
         startDateInput.setOnClickListener {
-            showDatePickerDialog(startDateInput)
+            showDatePickerDialog { year, month, day ->
+                val formatted = "%02d/%02d/%04d".format(day, month + 1, year)
+                startDateInput.text = formatted
+            }
         }
 
-        // Set up date picker for End Date
+        // Set up date picker for End Date (only visible if recurring)
         endDateInput.setOnClickListener {
-            showDatePickerDialog(endDateInput)
+            showDatePickerDialog { year, month, day ->
+                val formatted = "%02d/%02d/%04d".format(day, month + 1, year)
+                endDateInput.text = formatted
+            }
         }
 
         // Back to HubActivity
@@ -282,10 +278,11 @@ class AddExpenseActivity : AppCompatActivity() {
             date = parsedDate!!, // Non-null assertion as we checked for validity
             description = descInput.text.toString().trim(), // Trim leading/trailing spaces
             categoryId = selectedCategory.id, // Use the ID from the selected category
-            photoPath = null, // Optional: Add another input if needed
+            photoPath = selectedImageUri?.toString(), // Convert to string for storage
             startDate = startDate, // insert startDate if recurring
             endDate = endDate // insert endDate if recurring
         )
+        Log.d("ExpensePhotoPath", "Saving photo at path: ${expense.photoPath}")
 
         lifecycleScope.launch {
             try {
@@ -320,20 +317,19 @@ class AddExpenseActivity : AppCompatActivity() {
 
     /**
      * Show a DatePickerDialog to select a date.
-     * @param editText The EditText to display the selected date.
+     * @param onDateSet A callback function to handle the selected date.
+     * It takes three parameters: year, month, and day.
+     * These parameters represent the selected date.
      */
-    private fun showDatePickerDialog(editText: EditText) {
+    private fun showDatePickerDialog(onDateSet: (Int, Int, Int) -> Unit) {
         val calendar = Calendar.getInstance()
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
-
-        val datePickerDialog = DatePickerDialog(this, { _, selectedYear, selectedMonth, selectedDay ->
-            // Update the EditText with the selected date
-            val selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
-            editText.setText(selectedDate)
-        }, year, month, day)
-
+        val datePickerDialog = DatePickerDialog(
+            this,
+            { _, year, month, dayOfMonth -> onDateSet(year, month, dayOfMonth) },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
         datePickerDialog.show()
     }
 }

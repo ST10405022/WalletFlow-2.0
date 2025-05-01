@@ -78,7 +78,8 @@
             android:layout_height="wrap_content"
             android:text="@string/view_photo"
             android:layout_marginTop="8dp"
-            android:visibility="gone"/>
+            android:visibility="gone" />
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

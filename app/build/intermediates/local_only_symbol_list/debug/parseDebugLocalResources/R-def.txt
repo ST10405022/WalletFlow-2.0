@@ -6,6 +6,7 @@ drawable circle_background
 drawable edittext_border
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable ic_menu_close_clear_cancel
 drawable wallet_flow_logo
 id addButtonsLayout
 id addCategoryBtn
@@ -14,6 +15,7 @@ id applyDateFilterBtn
 id backToHubBtn
 id backToLoginBtn
 id bottomNavigation
+id buttonClearFilter
 id categoryButton
 id categoryImage
 id categoryNameInput

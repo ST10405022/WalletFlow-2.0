@@ -30,6 +30,15 @@
         app:layout_constraintStart_toStartOf="parent" >
 
         <!-- Buttons for selecting start, end dates and applying the filter -->
+        <ImageButton
+            android:id="@+id/buttonClearFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:background="@android:color/transparent"
+            android:contentDescription="Clear Start Date"
+            android:visibility="gone" />
+
         <Button
             android:id="@+id/selectStartDateBtn"
             style="?android:attr/buttonBarButtonStyle"
