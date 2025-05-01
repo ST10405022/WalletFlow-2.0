@@ -104,7 +104,7 @@
             android:id="@+id/updateButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Update"
+            android:text="OK"
             android:backgroundTint="#7B5CC4"
             android:textColor="#FFFFFF"
             android:layout_marginTop="24dp" />

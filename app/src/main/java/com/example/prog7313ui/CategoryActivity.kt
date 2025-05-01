@@ -1,8 +1,8 @@
 package com.example.prog7313ui
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.prog7313ui.R.id.categoryTitle
 import com.example.prog7313ui.data.AppDatabase
 import kotlinx.coroutines.launch
+import androidx.core.net.toUri
 
 class CategoryActivity : AppCompatActivity() {
     private lateinit var adapter: ExpenseAdapter
@@ -23,27 +24,38 @@ class CategoryActivity : AppCompatActivity() {
         setContentView(R.layout.activity_category)
 
         //UI references
-        val titleTextView = findViewById<TextView>(R.id.categoryTitle)
+        val titleTextView = findViewById<TextView>(categoryTitle)
         val imageCategory = findViewById<ImageView>(R.id.categoryImage)
         val txtMinLimit = findViewById<TextView>(R.id.inputMinValue)
         val txtMaxLimit = findViewById<TextView>(R.id.inputMaxValue)
 
         //Pass category name, id, and image
         val budgetCategoryName = intent.getStringExtra("CATEGORY_NAME")
-        val budgetCategoryId = intent.getIntExtra("CATEGORY_ID", -1)
         val budgetCategoryImage = intent.getStringExtra("CATEGORY_IMAGE")
+        val budgetCategoryMinLimit = intent.getStringExtra("Category_MINLIMIT")
+        val budgetCategoryMaxLimit = intent.getStringExtra("Category_MAXLIMIT")
+
+        titleTextView.text = budgetCategoryName     // Set category title
 
         budgetCategoryImage?.let {
-            val imageUri = Uri.parse(it)
-            imageCategory.setImageURI(imageUri)
+            val imageUri = it.toUri()
+            imageCategory.setImageURI(imageUri)     // Set category image
         }
 
-        titleTextView.text = budgetCategoryName
+        txtMinLimit.text = budgetCategoryMinLimit   // Set category min limit
+        txtMaxLimit.text = budgetCategoryMaxLimit   // Set category max limit
 
 
         // Back to Hub screen
         val backBtn = findViewById<ImageButton>(R.id.backToHubBtn)
         backBtn.setOnClickListener {
+            val intent = Intent(this, HubActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        val btnOk = findViewById<Button>(R.id.updateButton)
+        btnOk.setOnClickListener {
             val intent = Intent(this, HubActivity::class.java)
             startActivity(intent)
             finish()
@@ -80,7 +92,7 @@ class CategoryActivity : AppCompatActivity() {
                 }
 
                 db.expenseDao().getExpensesByCategory(categoryId).collect{
-                    expenses -> adapter.submitList(expenses)
+                        expenses -> adapter.submitList(expenses)
                 }
 
             } catch (e: Exception) {

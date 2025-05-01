@@ -34,6 +34,10 @@ class HubActivity : AppCompatActivity() {
         adapter = CategoryAdapter(emptyList()) { category ->
             val intent = Intent(this, CategoryActivity::class.java)
             intent.putExtra("Category_ID", category.id)
+            intent.putExtra("Category_NAME", category.name)
+            intent.putExtra("Category_IMAGE", category.imageUri)
+            intent.putExtra("Category_MINLIMIT", category.minLimit)
+            intent.putExtra("Category_MAXLIMIT", category.maxLimit)
             startActivity(intent)
         }
 
