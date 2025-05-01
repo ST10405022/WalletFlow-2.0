@@ -65,7 +65,7 @@ class CategoryActivity : AppCompatActivity() {
 
         // Expenses recyclerView initialization
         adapter = ExpenseAdapter(ExpenseListActivity())
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewExpenses)
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewExpenses)    // (Android, 2025)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
 
@@ -105,3 +105,10 @@ class CategoryActivity : AppCompatActivity() {
         }
     }
 }
+
+/*  Reference List
+*       Android. 2025. Create dynamic lists with RecyclerView:   views:   Android developers,
+*           Android Developers. [Online].
+*           Available at: https://developer.android.com/develop/ui/views/layout/recyclerview
+*           (Accessed: 01 May 2025).
+* */

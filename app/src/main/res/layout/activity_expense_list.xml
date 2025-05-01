@@ -63,7 +63,7 @@
             android:layout_marginStart="8dp" />
     </LinearLayout>
 
-    <!-- RecyclerView for displaying expenses -->
+    <!-- RecyclerView for displaying expenses // (Android, 2025) -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/expenseRecyclerView"
         android:layout_width="match_parent"
@@ -77,3 +77,10 @@
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </LinearLayout>
+
+<!-- Reference List
+        Android. 2025. Create dynamic lists with RecyclerView:   views:   Android developers,
+            Android Developers. [Online].
+            Available at: https://developer.android.com/develop/ui/views/layout/recyclerview
+            (Accessed: 01 May 2025).
+-->
