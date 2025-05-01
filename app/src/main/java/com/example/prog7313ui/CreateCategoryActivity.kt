@@ -2,6 +2,7 @@ package com.example.prog7313ui
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -12,6 +13,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.prog7313ui.data.AppDatabase
 import com.example.prog7313ui.data.entity.BudgetCategory
@@ -21,8 +23,35 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class CreateCategoryActivity : AppCompatActivity() {
-    private var imageUri: String? = null
+    private var imageUri: Uri? = null    // selected Image Uri
 
+    // Explicit launcher for picking an image using the MediaStore (via SAF)
+    @RequiresApi(Build.VERSION_CODES.P)
+    private val pickImageLauncher = registerForActivityResult(
+        ActivityResultContracts.OpenDocument()
+    ) { uri: Uri? ->
+        uri?.let {
+            imageUri = it
+
+            // Allow long-term access
+            contentResolver.takePersistableUriPermission(
+                it,
+                Intent.FLAG_GRANT_READ_URI_PERMISSION
+            )
+
+            Toast.makeText(
+                this, "Photo selected!",
+                Toast.LENGTH_SHORT
+            ).show() // Inform user of selection
+        } ?: run {
+            Toast.makeText(
+                this, "No photo selected",
+                Toast.LENGTH_SHORT
+            ).show() // Inform user of no selection
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_category)
@@ -31,7 +60,6 @@ class CreateCategoryActivity : AppCompatActivity() {
         val nameInput = findViewById<EditText>(R.id.categoryNameInput)
         val previewLabel = findViewById<TextView>(R.id.categoryPreviewLabel)
         val uploadImageBtn = findViewById<Button>(R.id.uploadImageBtn)
-        val previewImage = findViewById<ImageView>(R.id.previewImage)
         val doneButton = findViewById<Button>(R.id.doneButton)
         val backToHubBtn = findViewById<ImageButton>(R.id.backToHubBtn)
         val minLimit = findViewById<EditText>(R.id.minLimit)
@@ -45,20 +73,7 @@ class CreateCategoryActivity : AppCompatActivity() {
             finish()
         }
 
-        // Image selector
-        val imageSelector = registerForActivityResult(ActivityResultContracts.GetContent())
-        { uri: Uri? ->
-            uri?.let {
-                imageUri = it.toString()
-                previewImage.setImageURI(uri) // Preview the selected image
-            }
-        }
-
-        // Upload image button
-        uploadImageBtn.setOnClickListener {
-            imageSelector.launch("image/*")
-        }
-
+        // Category name change preview
         nameInput.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
@@ -72,42 +87,48 @@ class CreateCategoryActivity : AppCompatActivity() {
             }
         })
 
+        // Upload category image
+        uploadImageBtn.setOnClickListener {
+            pickImageLauncher.launch(arrayOf("image/*")) // Pick image using SAF
+        }
+
         // Done button: Save category
-        doneButton.setOnClickListener {
-            val categoryName = nameInput.text.toString()
+        doneButton.setOnClickListener{
+            val categoryName = nameInput.text.toString().trim()
+            val minLimitStringValue = minLimit.text.toString().trim()           // Retrieve minLimit as a string
+            val maxLimitStringValue = maxLimit.text.toString().trim()           // Retrieve minLimit as a string
 
-            val categoryMin = minLimit.text.toString().toDouble()
-            val categoryMax = maxLimit.text.toString().toDouble()
-
-            if (categoryName.isNotBlank())
-            {
-                if (categoryMin.toString().isBlank())
-                {
+            when {                                                              // Check category values
+                categoryName.isBlank() -> {
+                    Toast.makeText(this, "Please enter a category name", Toast.LENGTH_SHORT).show()
+                }
+                minLimitStringValue.isBlank() -> {
                     Toast.makeText(this, "Enter min category limit", Toast.LENGTH_SHORT).show()
                 }
-                else
-                    if (categoryMax.toString().isBlank())
-                    {
-                        Toast.makeText(this, "Enter max category limit", Toast.LENGTH_SHORT).show()
-                    }
-                    else
-                    {
-                        val category = BudgetCategory(name = nameInput.text.toString(), minLimit = categoryMin, maxLimit = categoryMax, imageUri = imageUri)
+                maxLimitStringValue.isBlank() -> {
+                    Toast.makeText(this, "Enter max category limit", Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    val categoryMinLimit = minLimitStringValue.toDouble()   // Convert min limit to double
+                    val categoryMaxLimit = maxLimitStringValue.toDouble()   // Convert max limit to double
 
-                        CoroutineScope(Dispatchers.IO).launch {
-                            val budgetCategoryDao = AppDatabase.getInstance(applicationContext).budgetCategoryDao()
-                            withContext(Dispatchers.IO){
-                                budgetCategoryDao.insertCategory(category)
-                            }
+                    // Category instantiation
+                    val category = BudgetCategory(                          // Pass Category values for creation
+                        name = categoryName,
+                        minLimit = categoryMinLimit,
+                        maxLimit = categoryMaxLimit,
+                        imageUri = imageUri?.toString()
+                    )
+
+                    CoroutineScope(Dispatchers.IO).launch {
+                        val dao = AppDatabase.getInstance(applicationContext).budgetCategoryDao()
+                        dao.insertCategory(category)
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(this@CreateCategoryActivity, "Category added", Toast.LENGTH_SHORT).show()
+                            finish()
                         }
-                        Toast.makeText(this, "Category added", Toast.LENGTH_SHORT).show()
-                        finish() // Optional: Close this activity after saving
                     }
-
-            }
-            else
-            {
-                Toast.makeText(this, "Please enter a category name", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
