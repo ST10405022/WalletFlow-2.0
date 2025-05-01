@@ -60,4 +60,5 @@ dependencies {
     ksp(libs.androidx.room.compiler)
     // Adds Kotlin extensions and support for Coroutines
     implementation(libs.room.ktx)
+
 }

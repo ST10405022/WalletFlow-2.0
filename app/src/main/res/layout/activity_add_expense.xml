@@ -61,12 +61,12 @@
             android:layout_marginBottom="16dp" />
 
         <!-- Date (Recurring/Once-off) -->
-        <EditText
+        <Button
             android:id="@+id/inputDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/select_the_date_of_expense"
-            android:inputType="datetime"
+            android:textColor="#FFFFFF"
             android:background="@drawable/edittext_border"
             android:padding="12dp"
             android:layout_marginBottom="16dp" />
@@ -80,27 +80,27 @@
             android:layout_marginBottom="16dp"/>
 
         <!-- Input for Start Date (only visible if recurring) -->
-        <EditText
+        <Button
             android:id="@+id/inputStartDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/insert_start_date"
-            android:inputType="datetime"
             android:visibility="gone"
             android:background="@drawable/edittext_border"
             android:padding="12dp"
+            android:textColor="#FFFFFF"
             android:layout_marginBottom="16dp" />
 
         <!-- Input for End Date (only visible if recurring) -->
-        <EditText
+        <Button
             android:id="@+id/inputEndDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/insert_end_date"
-            android:inputType="datetime"
             android:visibility="gone"
             android:background="@drawable/edittext_border"
             android:padding="12dp"
+            android:textColor="#FFFFFF"
             android:layout_marginBottom="16dp" />
 
         <!-- Description -->

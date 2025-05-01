@@ -1,13 +1,13 @@
 package com.example.prog7313ui
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.flow.collectLatest
 import java.util.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,7 +32,7 @@ class ExpenseListActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = expenseAdapter
 
-        // Setup Date pickers
+        // Setup Date pickers and buttons
         findViewById<Button>(R.id.selectStartDateBtn).setOnClickListener {
             showDatePickerDialog { year, month, day ->
                 val calendar = Calendar.getInstance().apply {
@@ -53,15 +53,27 @@ class ExpenseListActivity : AppCompatActivity() {
             }
         }
 
+        // Setup Apply Date Filter button
         findViewById<Button>(R.id.applyDateFilterBtn).setOnClickListener {
             applyDateFilter()
+        }
+
+        // Back to HubActivity
+        findViewById<ImageButton>(R.id.backToHubBtn).setOnClickListener {
+            val intent = Intent(this, HubActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         observeExpenses() // Observe changes in expenses and update the list
     }
 
-
-
+    /**
+     * Show a date picker dialog.
+     * It takes three parameters: year, month, and day.
+     * This function will be called when the user selects a date.
+     * @param onDateSet Callback function to handle the selected date.
+     */
     private fun showDatePickerDialog(onDateSet: (Int, Int, Int) -> Unit) {
         val calendar = Calendar.getInstance()
         val datePickerDialog = DatePickerDialog(
@@ -74,6 +86,10 @@ class ExpenseListActivity : AppCompatActivity() {
         datePickerDialog.show()
     }
 
+    /**
+     * Apply the date filter to the list of expenses.
+     * This function is called when the user clicks the "Apply Date Filter" button.
+     */
     private fun applyDateFilter() {
         // Apply date filter using the selected start and end date
         observeExpenses(startDate, endDate)
@@ -85,25 +101,22 @@ class ExpenseListActivity : AppCompatActivity() {
      */
     private fun observeExpenses(startDate: Date? = null, endDate: Date? = null) {
         lifecycleScope.launch {
-            expenseViewModel.getExpensesBetweenDates(startDate, endDate).collectLatest { expenses ->
+            expenseViewModel.getExpensesBetweenDates(startDate, endDate).collect { expenses ->
                 expenseAdapter.submitList(expenses)
             }
         }
     }
 
+
+    /**
+     * Format a date to a readable string.
+     * @param date The date to format.
+     * @return A formatted string representation of the date.
+     */
     private fun formatDate(date: Date?): String {
         return if (date != null) {
             val dateFormat = java.text.SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault())
             dateFormat.format(date)
-        } else {
-            "-"
-        }
-    }
-
-    private fun formatTime(date: Date?): String {
-        return if (date != null) {
-            val timeFormat = java.text.SimpleDateFormat("HH:mm", Locale.getDefault())
-            timeFormat.format(date)
         } else {
             "-"
         }
