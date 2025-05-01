@@ -41,7 +41,7 @@ class HubActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = LinearLayoutManager(this)      // (Android, 2025)
         recyclerView.adapter = adapter
 
         // Add Category Button
@@ -141,3 +141,10 @@ class HubActivity : AppCompatActivity() {
         }
     }
 }
+
+/*  Reference List
+*       Android. 2025. Create dynamic lists with RecyclerView:   views:   Android developers,
+*           Android Developers. [Online].
+*           Available at: https://developer.android.com/develop/ui/views/layout/recyclerview
+*           (Accessed: 01 May 2025).
+* */

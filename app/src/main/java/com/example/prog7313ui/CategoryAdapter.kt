@@ -13,7 +13,7 @@ import org.w3c.dom.Text
 class CategoryAdapter(
     private var categories: List<BudgetCategory>,
     private val onClick: (BudgetCategory) -> Unit
-) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
+) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {        // (Android, 2025)
 
     inner class CategoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val button: Button = view.findViewById(R.id.categoryButton)
@@ -47,3 +47,10 @@ class CategoryAdapter(
         notifyDataSetChanged()
     }
 }
+
+/*  Reference List
+*       Android. 2025. Create dynamic lists with RecyclerView:   views:   Android developers,
+*           Android Developers. [Online].
+*           Available at: https://developer.android.com/develop/ui/views/layout/recyclerview
+*           (Accessed: 01 May 2025).
+* */
