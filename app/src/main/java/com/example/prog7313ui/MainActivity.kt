@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.prog7313ui.data.AppDatabase
-import com.example.prog7313ui.data.repository.UserRepository
+import com.example.prog7313ui.repository.UserRepository
 import com.example.prog7313ui.viewmodel.AuthViewModel
 import com.example.prog7313ui.viewmodel.AuthViewModelFactory
 import com.example.prog7313ui.viewmodel.LoginResult
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         continueBtn = findViewById(R.id.continueBtn)
 
         // Set up ViewModel
-        val userDao = AppDatabase.getDatabase(applicationContext).userDao()
+        val userDao = AppDatabase.getInstance(applicationContext).userDao()
         val repository = UserRepository(userDao)
         viewModel = ViewModelProvider(
             this,

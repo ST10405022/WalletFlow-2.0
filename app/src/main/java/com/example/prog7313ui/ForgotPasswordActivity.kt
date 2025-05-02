@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.prog7313ui.data.AppDatabase
-import com.example.prog7313ui.data.repository.UserRepository
+import com.example.prog7313ui.repository.UserRepository
 import com.example.prog7313ui.viewmodel.AuthViewModel
 import com.example.prog7313ui.viewmodel.AuthViewModelFactory
 import kotlin.jvm.java
@@ -35,7 +35,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
 //(Tutorialspoint, 2024)
 
         // ViewModel setup
-        val userDao = AppDatabase.getDatabase(applicationContext).userDao()
+        val userDao = AppDatabase.getInstance(applicationContext).userDao()
         val repository = UserRepository(userDao)
         viewModel = ViewModelProvider(this, AuthViewModelFactory(repository))[AuthViewModel::class.java]
 

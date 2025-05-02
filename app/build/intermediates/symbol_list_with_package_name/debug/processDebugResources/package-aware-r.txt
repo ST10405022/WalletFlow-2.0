@@ -4031,11 +4031,6 @@ string fab_transformation_sheet_behavior
 string filter_by_date
 string forgot_password
 string from_mm_dd_yyyy
-string gcm_defaultSenderId
-string google_api_key
-string google_app_id
-string google_crash_reporting_api_key
-string google_storage_bucket
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description
 string image_preview
@@ -4163,7 +4158,6 @@ string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
 string placeholder_image
-string project_id
 string recurring_no
 string search_menu_title
 string searchbar_scrolling_view_behavior

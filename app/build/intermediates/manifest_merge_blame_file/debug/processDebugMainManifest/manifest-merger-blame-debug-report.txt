@@ -9,193 +9,193 @@
 9        android:targetSdkVersion="35" />
 10
 11    <uses-feature
-11-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:5:5-7:36
+11-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:5:5-7:36
 12        android:name="android.hardware.camera"
-12-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:6:9-47
+12-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:6:9-47
 13        android:required="false" />
-13-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:7:9-33
+13-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:7:9-33
 14
 15    <uses-permission android:name="android.permission.CAMERA" />
-15-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:9:5-65
-15-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:9:22-62
+15-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:9:5-65
+15-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:9:22-62
 16    <uses-permission
-16-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:10:5-11:38
+16-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:10:5-11:38
 17        android:name="android.permission.READ_EXTERNAL_STORAGE"
-17-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:10:22-77
+17-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:10:22-77
 18        android:maxSdkVersion="32" />
-18-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:11:9-35
+18-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:11:9-35
 19    <uses-permission
-19-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:12:5-13:37
+19-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:12:5-13:37
 20        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-20-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:12:22-78
+20-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:12:22-78
 21        android:maxSdkVersion="28" />
-21-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:13:9-35
+21-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:13:9-35
 22    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-22-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:14:5-75
-22-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:14:22-73
+22-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:14:5-75
+22-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:14:22-73
 23
 24    <permission
-24-->[androidx.core:core:1.16.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\8705a8354060922f5368c2967fd369f7\transformed\core-1.16.0\AndroidManifest.xml:22:5-24:47
+24-->[androidx.core:core:1.16.0] C:\Users\fungh\.gradle\caches\8.14\transforms\7e3821bccd2eab8435dbbd0738fef8bb\transformed\core-1.16.0\AndroidManifest.xml:22:5-24:47
 25        android:name="com.example.prog7313ui.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-25-->[androidx.core:core:1.16.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\8705a8354060922f5368c2967fd369f7\transformed\core-1.16.0\AndroidManifest.xml:23:9-81
+25-->[androidx.core:core:1.16.0] C:\Users\fungh\.gradle\caches\8.14\transforms\7e3821bccd2eab8435dbbd0738fef8bb\transformed\core-1.16.0\AndroidManifest.xml:23:9-81
 26        android:protectionLevel="signature" />
-26-->[androidx.core:core:1.16.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\8705a8354060922f5368c2967fd369f7\transformed\core-1.16.0\AndroidManifest.xml:24:9-44
+26-->[androidx.core:core:1.16.0] C:\Users\fungh\.gradle\caches\8.14\transforms\7e3821bccd2eab8435dbbd0738fef8bb\transformed\core-1.16.0\AndroidManifest.xml:24:9-44
 27
 28    <uses-permission android:name="com.example.prog7313ui.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-28-->[androidx.core:core:1.16.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\8705a8354060922f5368c2967fd369f7\transformed\core-1.16.0\AndroidManifest.xml:26:5-97
-28-->[androidx.core:core:1.16.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\8705a8354060922f5368c2967fd369f7\transformed\core-1.16.0\AndroidManifest.xml:26:22-94
+28-->[androidx.core:core:1.16.0] C:\Users\fungh\.gradle\caches\8.14\transforms\7e3821bccd2eab8435dbbd0738fef8bb\transformed\core-1.16.0\AndroidManifest.xml:26:5-97
+28-->[androidx.core:core:1.16.0] C:\Users\fungh\.gradle\caches\8.14\transforms\7e3821bccd2eab8435dbbd0738fef8bb\transformed\core-1.16.0\AndroidManifest.xml:26:22-94
 29
 30    <application
-30-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:16:5-51:19
+30-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:16:5-51:19
 31        android:allowBackup="true"
-31-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:17:9-35
+31-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:17:9-35
 32        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-32-->[androidx.core:core:1.16.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\8705a8354060922f5368c2967fd369f7\transformed\core-1.16.0\AndroidManifest.xml:28:18-86
+32-->[androidx.core:core:1.16.0] C:\Users\fungh\.gradle\caches\8.14\transforms\7e3821bccd2eab8435dbbd0738fef8bb\transformed\core-1.16.0\AndroidManifest.xml:28:18-86
 33        android:debuggable="true"
 34        android:extractNativeLibs="false"
 35        android:icon="@mipmap/ic_launcher"
-35-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:19:9-43
+35-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:19:9-43
 36        android:label="WalletFlow"
-36-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:18:9-35
+36-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:18:9-35
 37        android:roundIcon="@mipmap/ic_launcher_round"
-37-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:20:9-54
+37-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:20:9-54
 38        android:supportsRtl="true"
-38-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:21:9-35
+38-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:21:9-35
 39        android:theme="@style/Theme.Material3.Light.NoActionBar" >
-39-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:22:9-65
+39-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:22:9-65
 40
 41        <!-- Login screen (launcher) -->
 42        <activity
-42-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:25:9-32:20
+42-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:25:9-32:20
 43            android:name="com.example.prog7313ui.MainActivity"
-43-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:26:13-41
+43-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:26:13-41
 44            android:exported="true" >
-44-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:27:13-36
+44-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:27:13-36
 45            <intent-filter>
-45-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:28:13-31:29
+45-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:28:13-31:29
 46                <action android:name="android.intent.action.MAIN" />
-46-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:29:17-69
-46-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:29:25-66
+46-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:29:17-69
+46-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:29:25-66
 47
 48                <category android:name="android.intent.category.LAUNCHER" />
-48-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:30:17-77
-48-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:30:27-74
+48-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:30:17-77
+48-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:30:27-74
 49            </intent-filter>
 50        </activity>
 51
 52        <!-- Forgot Password screen after/ during login -->
 53        <activity android:name="com.example.prog7313ui.ForgotPasswordActivity" />
-53-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:35:9-60
-53-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:35:19-57
+53-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:35:9-60
+53-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:35:19-57
 54
 55        <!-- Hub screen after login -->
 56        <activity android:name="com.example.prog7313ui.HubActivity" />
-56-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:38:9-49
-56-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:38:19-46
+56-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:38:9-49
+56-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:38:19-46
 57
 58        <!-- Create a new category -->
 59        <activity android:name="com.example.prog7313ui.CreateCategoryActivity" />
-59-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:41:9-60
-59-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:41:19-57
+59-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:41:9-60
+59-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:41:19-57
 60
 61        <!-- Add a new expense -->
 62        <activity android:name="com.example.prog7313ui.AddExpenseActivity" />
-62-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:44:9-56
-62-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:44:19-53
+62-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:44:9-56
+62-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:44:19-53
 63
 64        <!-- Category detail screen (Category Alpha) -->
 65        <activity android:name="com.example.prog7313ui.CategoryActivity" />
-65-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:47:9-54
-65-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:47:19-51
+65-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:47:9-54
+65-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:47:19-51
 66        <activity android:name="com.example.prog7313ui.ExpenseListActivity" />
-66-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:49:9-57
-66-->C:\Users\lab_services_student\Downloads\WalletFlow-2.0\app\src\main\AndroidManifest.xml:49:19-54
+66-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:49:9-57
+66-->C:\Users\fungh\AndroidStudioProjects\WalletFlow-2.0\app\src\main\AndroidManifest.xml:49:19-54
 67
 68        <provider
-68-->[androidx.emoji2:emoji2:1.3.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\0c0619f7a86bc413eac4027dc1a2b2d5\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+68-->[androidx.emoji2:emoji2:1.3.0] C:\Users\fungh\.gradle\caches\8.14\transforms\4f6f31023c9f7fb08d3b4b6010932759\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
 69            android:name="androidx.startup.InitializationProvider"
-69-->[androidx.emoji2:emoji2:1.3.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\0c0619f7a86bc413eac4027dc1a2b2d5\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
+69-->[androidx.emoji2:emoji2:1.3.0] C:\Users\fungh\.gradle\caches\8.14\transforms\4f6f31023c9f7fb08d3b4b6010932759\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
 70            android:authorities="com.example.prog7313ui.androidx-startup"
-70-->[androidx.emoji2:emoji2:1.3.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\0c0619f7a86bc413eac4027dc1a2b2d5\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
+70-->[androidx.emoji2:emoji2:1.3.0] C:\Users\fungh\.gradle\caches\8.14\transforms\4f6f31023c9f7fb08d3b4b6010932759\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
 71            android:exported="false" >
-71-->[androidx.emoji2:emoji2:1.3.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\0c0619f7a86bc413eac4027dc1a2b2d5\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
+71-->[androidx.emoji2:emoji2:1.3.0] C:\Users\fungh\.gradle\caches\8.14\transforms\4f6f31023c9f7fb08d3b4b6010932759\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
 72            <meta-data
-72-->[androidx.emoji2:emoji2:1.3.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\0c0619f7a86bc413eac4027dc1a2b2d5\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+72-->[androidx.emoji2:emoji2:1.3.0] C:\Users\fungh\.gradle\caches\8.14\transforms\4f6f31023c9f7fb08d3b4b6010932759\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
 73                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-73-->[androidx.emoji2:emoji2:1.3.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\0c0619f7a86bc413eac4027dc1a2b2d5\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
+73-->[androidx.emoji2:emoji2:1.3.0] C:\Users\fungh\.gradle\caches\8.14\transforms\4f6f31023c9f7fb08d3b4b6010932759\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
 74                android:value="androidx.startup" />
-74-->[androidx.emoji2:emoji2:1.3.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\0c0619f7a86bc413eac4027dc1a2b2d5\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
+74-->[androidx.emoji2:emoji2:1.3.0] C:\Users\fungh\.gradle\caches\8.14\transforms\4f6f31023c9f7fb08d3b4b6010932759\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
 75            <meta-data
-75-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\e64235a23f251415525ba504771c49b8\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
+75-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\fungh\.gradle\caches\8.14\transforms\fdcf55abfbbc75d24aee7aa626b35de5\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:29:13-31:52
 76                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-76-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\e64235a23f251415525ba504771c49b8\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
+76-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\fungh\.gradle\caches\8.14\transforms\fdcf55abfbbc75d24aee7aa626b35de5\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:30:17-78
 77                android:value="androidx.startup" />
-77-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\e64235a23f251415525ba504771c49b8\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
+77-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\fungh\.gradle\caches\8.14\transforms\fdcf55abfbbc75d24aee7aa626b35de5\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:31:17-49
 78            <meta-data
-78-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\1b7058811cc5bfb053d250b5f75ab322\transformed\profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
+78-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fungh\.gradle\caches\8.14\transforms\f1e503aeb2dedab4e799a95299c71f38\transformed\profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
 79                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-79-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\1b7058811cc5bfb053d250b5f75ab322\transformed\profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
+79-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fungh\.gradle\caches\8.14\transforms\f1e503aeb2dedab4e799a95299c71f38\transformed\profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
 80                android:value="androidx.startup" />
-80-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\1b7058811cc5bfb053d250b5f75ab322\transformed\profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
+80-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fungh\.gradle\caches\8.14\transforms\f1e503aeb2dedab4e799a95299c71f38\transformed\profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
 81        </provider>
 82
 83        <uses-library
-83-->[androidx.window:window:1.0.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\40dd0b68e1ad3144412b3cf3bba0ad79\transformed\window-1.0.0\AndroidManifest.xml:25:9-27:40
+83-->[androidx.window:window:1.0.0] C:\Users\fungh\.gradle\caches\8.14\transforms\2e285655c3b8c7c50c1e629d8c69e9cb\transformed\window-1.0.0\AndroidManifest.xml:25:9-27:40
 84            android:name="androidx.window.extensions"
-84-->[androidx.window:window:1.0.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\40dd0b68e1ad3144412b3cf3bba0ad79\transformed\window-1.0.0\AndroidManifest.xml:26:13-54
+84-->[androidx.window:window:1.0.0] C:\Users\fungh\.gradle\caches\8.14\transforms\2e285655c3b8c7c50c1e629d8c69e9cb\transformed\window-1.0.0\AndroidManifest.xml:26:13-54
 85            android:required="false" />
-85-->[androidx.window:window:1.0.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\40dd0b68e1ad3144412b3cf3bba0ad79\transformed\window-1.0.0\AndroidManifest.xml:27:13-37
+85-->[androidx.window:window:1.0.0] C:\Users\fungh\.gradle\caches\8.14\transforms\2e285655c3b8c7c50c1e629d8c69e9cb\transformed\window-1.0.0\AndroidManifest.xml:27:13-37
 86        <uses-library
-86-->[androidx.window:window:1.0.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\40dd0b68e1ad3144412b3cf3bba0ad79\transformed\window-1.0.0\AndroidManifest.xml:28:9-30:40
+86-->[androidx.window:window:1.0.0] C:\Users\fungh\.gradle\caches\8.14\transforms\2e285655c3b8c7c50c1e629d8c69e9cb\transformed\window-1.0.0\AndroidManifest.xml:28:9-30:40
 87            android:name="androidx.window.sidecar"
-87-->[androidx.window:window:1.0.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\40dd0b68e1ad3144412b3cf3bba0ad79\transformed\window-1.0.0\AndroidManifest.xml:29:13-51
+87-->[androidx.window:window:1.0.0] C:\Users\fungh\.gradle\caches\8.14\transforms\2e285655c3b8c7c50c1e629d8c69e9cb\transformed\window-1.0.0\AndroidManifest.xml:29:13-51
 88            android:required="false" />
-88-->[androidx.window:window:1.0.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\40dd0b68e1ad3144412b3cf3bba0ad79\transformed\window-1.0.0\AndroidManifest.xml:30:13-37
+88-->[androidx.window:window:1.0.0] C:\Users\fungh\.gradle\caches\8.14\transforms\2e285655c3b8c7c50c1e629d8c69e9cb\transformed\window-1.0.0\AndroidManifest.xml:30:13-37
 89
 90        <service
-90-->[androidx.room:room-runtime-android:2.7.1] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\c3bcb96b78487c6bf14be365dfa395e0\transformed\room-runtime-release\AndroidManifest.xml:24:9-28:63
+90-->[androidx.room:room-runtime-android:2.7.1] C:\Users\fungh\.gradle\caches\8.14\transforms\07173d210cb30fbbfada5de0b024d072\transformed\room-runtime-release\AndroidManifest.xml:24:9-28:63
 91            android:name="androidx.room.MultiInstanceInvalidationService"
-91-->[androidx.room:room-runtime-android:2.7.1] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\c3bcb96b78487c6bf14be365dfa395e0\transformed\room-runtime-release\AndroidManifest.xml:25:13-74
+91-->[androidx.room:room-runtime-android:2.7.1] C:\Users\fungh\.gradle\caches\8.14\transforms\07173d210cb30fbbfada5de0b024d072\transformed\room-runtime-release\AndroidManifest.xml:25:13-74
 92            android:directBootAware="true"
-92-->[androidx.room:room-runtime-android:2.7.1] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\c3bcb96b78487c6bf14be365dfa395e0\transformed\room-runtime-release\AndroidManifest.xml:26:13-43
+92-->[androidx.room:room-runtime-android:2.7.1] C:\Users\fungh\.gradle\caches\8.14\transforms\07173d210cb30fbbfada5de0b024d072\transformed\room-runtime-release\AndroidManifest.xml:26:13-43
 93            android:exported="false" />
-93-->[androidx.room:room-runtime-android:2.7.1] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\c3bcb96b78487c6bf14be365dfa395e0\transformed\room-runtime-release\AndroidManifest.xml:27:13-37
+93-->[androidx.room:room-runtime-android:2.7.1] C:\Users\fungh\.gradle\caches\8.14\transforms\07173d210cb30fbbfada5de0b024d072\transformed\room-runtime-release\AndroidManifest.xml:27:13-37
 94
 95        <receiver
-95-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\1b7058811cc5bfb053d250b5f75ab322\transformed\profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
+95-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fungh\.gradle\caches\8.14\transforms\f1e503aeb2dedab4e799a95299c71f38\transformed\profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
 96            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-96-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\1b7058811cc5bfb053d250b5f75ab322\transformed\profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
+96-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fungh\.gradle\caches\8.14\transforms\f1e503aeb2dedab4e799a95299c71f38\transformed\profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
 97            android:directBootAware="false"
-97-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\1b7058811cc5bfb053d250b5f75ab322\transformed\profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
+97-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fungh\.gradle\caches\8.14\transforms\f1e503aeb2dedab4e799a95299c71f38\transformed\profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
 98            android:enabled="true"
-98-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\1b7058811cc5bfb053d250b5f75ab322\transformed\profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
+98-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fungh\.gradle\caches\8.14\transforms\f1e503aeb2dedab4e799a95299c71f38\transformed\profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
 99            android:exported="true"
-99-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\1b7058811cc5bfb053d250b5f75ab322\transformed\profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
+99-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fungh\.gradle\caches\8.14\transforms\f1e503aeb2dedab4e799a95299c71f38\transformed\profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
 100            android:permission="android.permission.DUMP" >
-100-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\1b7058811cc5bfb053d250b5f75ab322\transformed\profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
+100-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fungh\.gradle\caches\8.14\transforms\f1e503aeb2dedab4e799a95299c71f38\transformed\profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
 101            <intent-filter>
-101-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\1b7058811cc5bfb053d250b5f75ab322\transformed\profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
+101-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fungh\.gradle\caches\8.14\transforms\f1e503aeb2dedab4e799a95299c71f38\transformed\profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
 102                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-102-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\1b7058811cc5bfb053d250b5f75ab322\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
-102-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\1b7058811cc5bfb053d250b5f75ab322\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
+102-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fungh\.gradle\caches\8.14\transforms\f1e503aeb2dedab4e799a95299c71f38\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
+102-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fungh\.gradle\caches\8.14\transforms\f1e503aeb2dedab4e799a95299c71f38\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
 103            </intent-filter>
 104            <intent-filter>
-104-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\1b7058811cc5bfb053d250b5f75ab322\transformed\profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
+104-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fungh\.gradle\caches\8.14\transforms\f1e503aeb2dedab4e799a95299c71f38\transformed\profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
 105                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-105-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\1b7058811cc5bfb053d250b5f75ab322\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
-105-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\1b7058811cc5bfb053d250b5f75ab322\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
+105-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fungh\.gradle\caches\8.14\transforms\f1e503aeb2dedab4e799a95299c71f38\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
+105-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fungh\.gradle\caches\8.14\transforms\f1e503aeb2dedab4e799a95299c71f38\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
 106            </intent-filter>
 107            <intent-filter>
-107-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\1b7058811cc5bfb053d250b5f75ab322\transformed\profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
+107-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fungh\.gradle\caches\8.14\transforms\f1e503aeb2dedab4e799a95299c71f38\transformed\profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
 108                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-108-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\1b7058811cc5bfb053d250b5f75ab322\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
-108-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\1b7058811cc5bfb053d250b5f75ab322\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
+108-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fungh\.gradle\caches\8.14\transforms\f1e503aeb2dedab4e799a95299c71f38\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
+108-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fungh\.gradle\caches\8.14\transforms\f1e503aeb2dedab4e799a95299c71f38\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
 109            </intent-filter>
 110            <intent-filter>
-110-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\1b7058811cc5bfb053d250b5f75ab322\transformed\profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
+110-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fungh\.gradle\caches\8.14\transforms\f1e503aeb2dedab4e799a95299c71f38\transformed\profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
 111                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-111-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\1b7058811cc5bfb053d250b5f75ab322\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
-111-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\lab_services_student\.gradle\caches\8.14\transforms\1b7058811cc5bfb053d250b5f75ab322\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
+111-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fungh\.gradle\caches\8.14\transforms\f1e503aeb2dedab4e799a95299c71f38\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
+111-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fungh\.gradle\caches\8.14\transforms\f1e503aeb2dedab4e799a95299c71f38\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
 112            </intent-filter>
 113        </receiver>
 114    </application>

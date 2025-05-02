@@ -1,10 +1,27 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.prog7313ui.app-mergeDebugResources-52:/values-ja/values-ja.xml",
+            "outputFile": "com.example.prog7313ui.app-mergeDebugResources-51:/values-ja/values-ja.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\lab_services_student\\.gradle\\caches\\8.14\\transforms\\3a27ddd718d33e43c4d2c5de8ed9f4c2\\transformed\\navigation-ui-2.8.9\\res\\values-ja\\values-ja.xml",
+                    "source": "C:\\Users\\fungh\\.gradle\\caches\\8.14\\transforms\\7e3821bccd2eab8435dbbd0738fef8bb\\transformed\\core-1.16.0\\res\\values-ja\\values-ja.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,147,247,341,437,530,623,724",
+                        "endColumns": "91,99,93,95,92,92,100,100",
+                        "endOffsets": "142,242,336,432,525,618,719,820"
+                    },
+                    "to": {
+                        "startLines": "38,39,40,41,42,43,44,118",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "3252,3344,3444,3538,3634,3727,3820,9196",
+                        "endColumns": "91,99,93,95,92,92,100,100",
+                        "endOffsets": "3339,3439,3533,3629,3722,3815,3916,9292"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\fungh\\.gradle\\caches\\8.14\\transforms\\e1240923031b288fe9dac68fec06d250\\transformed\\navigation-ui-2.8.9\\res\\values-ja\\values-ja.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -21,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\lab_services_student\\.gradle\\caches\\8.14\\transforms\\dfd6c48cd98df8a9c54aa08bd7a94fd4\\transformed\\material-1.12.0\\res\\values-ja\\values-ja.xml",
+                    "source": "C:\\Users\\fungh\\.gradle\\caches\\8.14\\transforms\\267366cd9b558ab5b76ff09cf6c44d27\\transformed\\material-1.12.0\\res\\values-ja\\values-ja.xml",
                     "from": {
                         "startLines": "2,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -40,24 +57,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\lab_services_student\\.gradle\\caches\\8.14\\transforms\\8705a8354060922f5368c2967fd369f7\\transformed\\core-1.16.0\\res\\values-ja\\values-ja.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,147,247,341,437,530,623,724",
-                        "endColumns": "91,99,93,95,92,92,100,100",
-                        "endOffsets": "142,242,336,432,525,618,719,820"
-                    },
-                    "to": {
-                        "startLines": "38,39,40,41,42,43,44,118",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "3252,3344,3444,3538,3634,3727,3820,9196",
-                        "endColumns": "91,99,93,95,92,92,100,100",
-                        "endOffsets": "3339,3439,3533,3629,3722,3815,3916,9292"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\lab_services_student\\.gradle\\caches\\8.14\\transforms\\dc27a5cd9ed8c2775352305641e4d786\\transformed\\appcompat-1.7.0\\res\\values-ja\\values-ja.xml",
+                    "source": "C:\\Users\\fungh\\.gradle\\caches\\8.14\\transforms\\bc0668067643614dd11e498e05ad346f\\transformed\\appcompat-1.7.0\\res\\values-ja\\values-ja.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

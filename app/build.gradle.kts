@@ -1,8 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.ksp) //applies the KSP plugin
-    alias(libs.plugins.googleServices)
+    alias(libs.plugins.ksp) // applies the KSP plugin
+    //alias(libs.plugins.googleServices) //
 }
 
 android {
@@ -50,10 +50,21 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
-    // Unit tests
+    // Unit tests dependencies
+    testImplementation(libs.room.testing)
     testImplementation(libs.junit)
+    testImplementation(libs.androidx.junit)
+    testImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.room.testing)
+    androidTestImplementation(libs.junit)
+    // Coroutine test support (runTest, TestScope, etc.)
+    testImplementation(libs.kotlinx.coroutines.test)
+    androidTestImplementation(libs.kotlinx.coroutines.test)
+    // Required for LiveData and Flow testing (InstantTaskExecutorRule)
+    testImplementation(libs.androidx.core.testing)
+    androidTestImplementation(libs.androidx.core.testing)
 
     // ROOM Database dependencies
     implementation(libs.room.runtime)
@@ -66,5 +77,6 @@ dependencies {
     ksp(libs.androidx.room.compiler)
     // Adds Kotlin extensions and support for Coroutines
     implementation(libs.room.ktx)
+    testImplementation(kotlin("test"))
 
 }

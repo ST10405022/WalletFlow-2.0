@@ -2,7 +2,7 @@ package com.example.prog7313ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.prog7313ui.data.repository.UserRepository
+import com.example.prog7313ui.repository.UserRepository
 
 
 class AuthViewModelFactory(
