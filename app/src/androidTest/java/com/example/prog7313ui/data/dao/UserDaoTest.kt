@@ -44,13 +44,15 @@ class UserDaoTest {
             surname = "User",
             username = "TestUser",
             email = "test@example.com",
-            password = "secret")
+            password = "secret",
+            hashedPassword = "secret")
         userDao.insertUser(user)
 
         val retrieved = userDao.getUserByEmail("test@example.com")
         assertNotNull(retrieved)
         assertEquals("TestUser", retrieved?.username)
         assertEquals("secret", retrieved?.password)
+        assertEquals("secret", retrieved?.hashedPassword)
     }
 
     @Test
@@ -61,14 +63,16 @@ class UserDaoTest {
             surname = "User",
             username = "UserOne",
             email = "conflict@example.com",
-            password = "first")
+            password = "first",
+            hashedPassword = "first")
         val user2 = User(
             id = 1,
             name = "Conflict",
             surname = "UserTwo",
             username = "UserTwo",
             email = "conflict@example.com",
-            password = "second")
+            password = "second",
+            hashedPassword = "second")
 
         userDao.insertUser(user1)
         userDao.insertUser(user2)
@@ -77,6 +81,7 @@ class UserDaoTest {
         assertNotNull(result)
         assertEquals("UserTwo", result?.username)
         assertEquals("second", result?.password)
+        assertEquals("second", result?.hashedPassword)
     }
 
     @Test
@@ -86,7 +91,8 @@ class UserDaoTest {
             surname = "User",
             username = "ById",
             email = "byid@example.com",
-            password = "idpass")
+            password = "idpass",
+            hashedPassword = "idpass")
         userDao.insertUser(user)
 
         val insertedUser = userDao.getUserByEmail("byid@example.com")
@@ -103,7 +109,8 @@ class UserDaoTest {
             surname = "User",
             username = "OldName",
             email = "update@example.com",
-            password = "123")
+            password = "123",
+            hashedPassword = "123")
         userDao.insertUser(user)
 
         val insertedUser = userDao.getUserByEmail("update@example.com")!!
@@ -122,7 +129,8 @@ class UserDaoTest {
             surname = "User",
             username = "ToDelete",
             email = "delete@example.com",
-            password = "del")
+            password = "del",
+            hashedPassword = "del")
         userDao.insertUser(user)
 
         val insertedUser = userDao.getUserByEmail("delete@example.com")!!
