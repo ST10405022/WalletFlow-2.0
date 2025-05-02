@@ -39,7 +39,7 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v2
         with:
-        api-level: 34
+          api-level: 34
 
       # Step 5: Make Gradle wrapper executable
       - name: Grant execute permission for gradlew
