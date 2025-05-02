@@ -50,3 +50,13 @@ jobs:
       # Step 7: Run unit tests
       - name: Run Unit Tests
         run: ./gradlew testDebugUnitTest
+        
+      # Step 8: Run Android tests
+      - name: Start emulator
+        uses: ReactiveCircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api-level }}
+          target: ${{ matrix.target }}
+          arch: x86_64
+          profile: Nexus 6
+          script: ./gradlew connectedDebugAndroidTest
