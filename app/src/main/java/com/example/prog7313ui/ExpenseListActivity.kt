@@ -26,13 +26,13 @@ class ExpenseListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_expense_list)
 
-        // Setup RecyclerView
+        // Setup RecyclerView and adapter for displaying expenses (Android, 2025)
         val recyclerView = findViewById<RecyclerView>(R.id.expenseRecyclerView)
         expenseAdapter = ExpenseAdapter(this)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = expenseAdapter
 
-        // Setup Date pickers and buttons
+        // Setup Date pickers and buttons to select start and end dates (Android, 2025).
         findViewById<Button>(R.id.selectStartDateBtn).setOnClickListener {
             showDatePickerDialog { year, month, day ->
                 val calendar = Calendar.getInstance().apply {
@@ -73,6 +73,7 @@ class ExpenseListActivity : AppCompatActivity() {
      * It takes three parameters: year, month, and day.
      * This function will be called when the user selects a date.
      * @param onDateSet Callback function to handle the selected date.
+     * @reference (AndroidDevelopers, 2021).
      */
     private fun showDatePickerDialog(onDateSet: (Int, Int, Int) -> Unit) {
         val calendar = Calendar.getInstance()
@@ -89,6 +90,7 @@ class ExpenseListActivity : AppCompatActivity() {
     /**
      * Apply the date filter to the list of expenses.
      * This function is called when the user clicks the "Apply Date Filter" button.
+     * @reference (AndroidDevelopers, 2021).
      */
     private fun applyDateFilter() {
         // Apply date filter using the selected start and end date
@@ -98,6 +100,9 @@ class ExpenseListActivity : AppCompatActivity() {
     /**
      * Observe changes in expenses and update the list accordingly.
      * This function is called in the onCreate method.
+     * @param startDate The start date for filtering expenses.
+     * @param endDate The end date for filtering expenses.
+     * @reference (AndroidDevelopers, 2021).
      */
     private fun observeExpenses(startDate: Date? = null, endDate: Date? = null) {
         lifecycleScope.launch {
@@ -112,6 +117,7 @@ class ExpenseListActivity : AppCompatActivity() {
      * Format a date to a readable string.
      * @param date The date to format.
      * @return A formatted string representation of the date.
+     * @reference (AndroidDevelopers, 2021).
      */
     private fun formatDate(date: Date?): String {
         return if (date != null) {
@@ -122,3 +128,32 @@ class ExpenseListActivity : AppCompatActivity() {
         }
     }
 }
+
+/*
+ * Reference List
+ *     AndroidDevelopers, 2021. Save data in a local database using Room. [Online]
+ *     Available at: https://developer.android.com/training/data-storage/room
+ *     [Accessed 22 April 2025].
+ *     AndroidDevelopers, 2021. Kotlin coroutines and lifecycle. [Online]
+ *     Available at: https://developer.android.com/topic/libraries/architecture/coroutines
+ *     [Accessed 22 April 2025].
+ *     AndroidDevelopers, 2021. CardView. [Online]
+ *     Available at: https://developer.android.com/reference/androidx/cardview/widget/CardView
+ *     [Accessed 25 April 2025].
+ *     AndroidDevelopers, 2021. View binding. [Online]
+ *     Available at: https://developer.android.com/topic/libraries/view-binding
+ *     [Accessed 23 April 2025].
+ *     AndroidDevelopers, 2021. AlertDialog. [Online]
+ *     Available at: https://developer.android.com/reference/androidx/appcompat/app/AlertDialog
+ *     [Accessed 24 April 2025].
+ *     AndroidDevelopers, 2021. SimpleDateFormat. [Online]
+ *     Available at: https://developer.android.com/reference/java/text/SimpleDateFormat
+ *     [Accessed 23 April 2025].
+ *     MikeT, 2022. stackOverflow. [Online]
+ *     Available at: https://stackoverflow.com/questions/74477964/android-studio-add-a-database
+ *     [Accessed 28 April 2025].
+ *     Android. 2025. Create dynamic lists with RecyclerView:   views:   Android developers,
+ *     Android Developers. [Online].
+ *     Available at: https://developer.android.com/develop/ui/views/layout/recyclerview
+ *     [Accessed: 15 April 2025].
+ */

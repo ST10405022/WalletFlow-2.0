@@ -3947,6 +3947,7 @@ string category
 string category_alpha
 string category_name
 string category_preview
+string category_preview_image
 string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
@@ -4017,6 +4018,10 @@ string material_timepicker_minute
 string material_timepicker_pm
 string material_timepicker_select_time
 string material_timepicker_text_input_mode_description
+string max
+string max_limit
+string min
+string min_limit
 string mtrl_badge_numberless_content_description
 string mtrl_checkbox_button_icon_path_checked
 string mtrl_checkbox_button_icon_path_group_name
@@ -4081,6 +4086,7 @@ string mtrl_timepicker_cancel
 string mtrl_timepicker_confirm
 string name_of_your_expense
 string name_of_your_expense_category
+string ok
 string password
 string password_toggle_content_description
 string path_password_eye

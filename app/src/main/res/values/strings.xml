@@ -52,5 +52,11 @@
     <string name="start">Start: </string>
     <string name="end">End: </string>
     <string name="categories">Categories</string>
+    <string name="min">min</string>
+    <string name="max">max</string>
+    <string name="category_preview_image">Category Preview Image</string>
+    <string name="min_limit">Min limit:</string>
+    <string name="max_limit">Max limit:</string>
+    <string name="ok">OK</string>
 
 </resources>

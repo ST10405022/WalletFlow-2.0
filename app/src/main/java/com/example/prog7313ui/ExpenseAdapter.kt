@@ -20,6 +20,7 @@ import java.text.NumberFormat
  * Adapter for displaying a list of expenses in a RecyclerView.
  * @param context The context of the activity.
  * @see Expense
+ * @reference (Android, 2025).
  */
 class ExpenseAdapter(
     private val context: ExpenseListActivity
@@ -41,6 +42,8 @@ class ExpenseAdapter(
      * Inflates the layout for each expense item and returns a ViewHolder.
      * @param parent The parent ViewGroup.
      * @param viewType The view type.
+     * @return A ViewHolder for the expense item.
+     * @reference (Android, 2025).
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpenseViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.expense_item, parent, false)
@@ -52,6 +55,8 @@ class ExpenseAdapter(
      * @param holder The ViewHolder to bind data to.
      * @param position The position of the item in the list.
      * @see ExpenseViewHolder
+     * @see Expense
+     * @reference (Android, 2025).
      */
     override fun onBindViewHolder(holder: ExpenseViewHolder, position: Int) {
         val expense = getItem(position)
@@ -65,6 +70,7 @@ class ExpenseAdapter(
      * @see Expense
      * @see BudgetCategory
      * @see ExpenseListActivity
+     * @reference (Android, 2025).
      */
     class ExpenseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val descriptionText: TextView = itemView.findViewById(R.id.expenseDescription)
@@ -83,6 +89,7 @@ class ExpenseAdapter(
          * @see Expense
          * @see BudgetCategory
          * @see ExpenseListActivity
+         * @reference (Android, 2025).
          */
         fun bind(expense: Expense, categories: List<BudgetCategory>) {
             descriptionText.text = expense.description // Set the expense description
@@ -179,3 +186,32 @@ class ExpenseAdapter(
         }
     }
 }
+
+/*
+ * Reference List
+ *     AndroidDevelopers, 2021. Save data in a local database using Room. [Online]
+ *     Available at: https://developer.android.com/training/data-storage/room
+ *     [Accessed 22 April 2025].
+ *     AndroidDevelopers, 2021. Kotlin coroutines and lifecycle. [Online]
+ *     Available at: https://developer.android.com/topic/libraries/architecture/coroutines
+ *     [Accessed 22 April 2025].
+ *     AndroidDevelopers, 2021. CardView. [Online]
+ *     Available at: https://developer.android.com/reference/androidx/cardview/widget/CardView
+ *     [Accessed 25 April 2025].
+ *     AndroidDevelopers, 2021. View binding. [Online]
+ *     Available at: https://developer.android.com/topic/libraries/view-binding
+ *     [Accessed 23 April 2025].
+ *     AndroidDevelopers, 2021. AlertDialog. [Online]
+ *     Available at: https://developer.android.com/reference/androidx/appcompat/app/AlertDialog
+ *     [Accessed 24 April 2025].
+ *     AndroidDevelopers, 2021. SimpleDateFormat. [Online]
+ *     Available at: https://developer.android.com/reference/java/text/SimpleDateFormat
+ *     [Accessed 23 April 2025].
+ *     MikeT, 2022. stackOverflow. [Online]
+ *     Available at: https://stackoverflow.com/questions/74477964/android-studio-add-a-database
+ *     [Accessed 28 April 2025].
+ *     Android. 2025. Create dynamic lists with RecyclerView:   views:   Android developers,
+ *     Android Developers. [Online].
+ *     Available at: https://developer.android.com/develop/ui/views/layout/recyclerview
+ *     [Accessed: 15 April 2025].
+ */

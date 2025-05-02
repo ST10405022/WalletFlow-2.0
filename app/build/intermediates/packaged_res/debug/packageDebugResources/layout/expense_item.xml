@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Card View for displaying expenses (AndroidDevelopers, 2021) -->
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -83,3 +84,12 @@
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
+
+    <!-- Reference List
+            AndroidDevelopers, 2021. Create dynamic lists with RecyclerView. [Online]
+            Available at: https://developer.android.com/develop/ui/views/layout/recyclerview
+            [Accessed 20 April 2025].
+            AndroidDevelopers, 2021. Card view. [Online]
+            Available at: https://developer.android.com/guide/topics/ui/layout/cards
+            [Accessed 22 April 2025].
+    -->

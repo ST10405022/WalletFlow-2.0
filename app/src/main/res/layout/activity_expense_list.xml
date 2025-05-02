@@ -18,7 +18,7 @@
         android:src="@android:drawable/ic_media_previous"
         tools:ignore="TouchTargetSizeCheck" />
 
-    <!-- Date Selection Buttons -->
+    <!-- Date Selection Buttons (AndroidDevelopers, 2021) -->
     <LinearLayout
         style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" >
 
-        <!-- Buttons for selecting start, end dates and applying the filter -->
+        <!-- Buttons for selecting start, end dates and applying the filter (AndroidDevelopers, 2021) -->
         <ImageButton
             android:id="@+id/buttonClearFilter"
             android:layout_width="wrap_content"
@@ -63,7 +63,7 @@
             android:layout_marginStart="8dp" />
     </LinearLayout>
 
-    <!-- RecyclerView for displaying expenses // (Android, 2025) -->
+    <!-- RecyclerView for displaying expenses (AndroidDevelopers, 2021) -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/expenseRecyclerView"
         android:layout_width="match_parent"
@@ -79,8 +79,7 @@
 </LinearLayout>
 
 <!-- Reference List
-        Android. 2025. Create dynamic lists with RecyclerView:   views:   Android developers,
-            Android Developers. [Online].
-            Available at: https://developer.android.com/develop/ui/views/layout/recyclerview
-            (Accessed: 01 May 2025).
+        AndroidDevelopers, 2021. Create dynamic lists with RecyclerView. [Online]
+        Available at: https://developer.android.com/develop/ui/views/layout/recyclerview
+        [Accessed 20 April 2025].
 -->

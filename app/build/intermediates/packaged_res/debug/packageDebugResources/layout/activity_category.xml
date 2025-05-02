@@ -25,7 +25,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@android:color/transparent"
-                android:contentDescription="Back to Hub"
+                android:contentDescription="@string/back_to_hub"
                 android:src="@android:drawable/ic_media_previous" />
 
             <!-- Page Title -->
@@ -45,69 +45,58 @@
             android:id="@+id/categoryImage"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:contentDescription="@string/category_preview_image"
             android:src="@drawable/ic_launcher_background"
             android:scaleType="centerInside"
             android:background="#E0E0E0"
-            android:elevation="4dp"
             android:layout_marginBottom="24dp" />
 
-        <!-- Budget Goal Section (Non-editable values) -->
-        <LinearLayout
+        <!-- Budget Goal Section -->
+        <TextView
+            android:id="@+id/txtMinLimit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:text="@string/min_limit"
+            android:textSize="18sp"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/inputMinValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="18sp"
+            android:textStyle="bold"
             android:background="#F5F5F5"
-            android:padding="12dp"
-            android:elevation="2dp">
+            android:padding="8dp"
+            android:gravity="center"
+            android:layout_marginBottom="8dp" />
 
-            <TextView
-                android:id="@+id/txtMinLimit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Min limit:"
-                android:textSize="18sp"
-                android:layout_marginBottom="4dp" />
+        <TextView
+            android:id="@+id/txtMaxLimit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/max_limit"
+            android:textSize="18sp"
+            android:layout_marginBottom="16dp" />
 
-            <TextView
-                android:id="@+id/inputMinValue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:background="#F5F5F5"
-                android:padding="8dp"
-                android:gravity="center"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:id="@+id/txtMaxLimit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Max limit:"
-                android:textSize="18sp"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="4dp" />
-
-            <TextView
-                android:id="@+id/inputMaxValue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:background="#F5F5F5"
-                android:padding="8dp"
-                android:gravity="center"
-                android:layout_marginBottom="16dp" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/inputMaxValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:background="#F5F5F5"
+            android:padding="8dp"
+            android:gravity="center"
+            android:layout_marginBottom="16dp" />
 
         <!-- RecyclerView for Expense List // (Android, 2025) -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewExpenses"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:layout_marginBottom="16dp"
             android:nestedScrollingEnabled="false" />
 
@@ -116,17 +105,16 @@
             android:id="@+id/updateButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="OK"
+            android:text="@string/ok"
             android:backgroundTint="#7B5CC4"
             android:textColor="#FFFFFF"
-            android:elevation="4dp"
             android:layout_marginTop="24dp" />
     </LinearLayout>
 </ScrollView>
 
-    <!-- Reference List
-            Android. 2025. Create dynamic lists with RecyclerView:   views:   Android developers,
-                Android Developers. [Online].
-                Available at: https://developer.android.com/develop/ui/views/layout/recyclerview
-                (Accessed: 01 May 2025).
-    -->
+<!-- Reference List
+        Android. 2025. Create dynamic lists with RecyclerView:   views:   Android developers,
+            Android Developers. [Online].
+            Available at: https://developer.android.com/develop/ui/views/layout/recyclerview
+            (Accessed: 01 May 2025).
+-->
