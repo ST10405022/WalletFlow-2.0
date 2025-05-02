@@ -1,4 +1,7 @@
 # WalletFlow-2.0
+
+Youtube Video link: https://www.youtube.com/watch?v=7Jkymh8QZ_o
+
 These are the requiements for the log in screen, I have added a continue without login button since I didn't have the DB or authentication - I reckon we can keep this button since this part is described as a prototype:
 
 Required features: 
