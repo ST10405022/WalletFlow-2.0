@@ -12,8 +12,10 @@ import androidx.room.PrimaryKey
  * @param username The user's unique username for login.
  * @param password The user's password for login.
  * @param email The user's email address for contact.
+ * @param hashedPassword The password is hashed
  * @reference (AndroidDevelopers, 2021).
  */
+
 @Entity(tableName = "users")
 data class User(
     @PrimaryKey(autoGenerate = true)
@@ -22,7 +24,12 @@ data class User(
     val surname: String,   // User's last name
     val username: String,  // Unique username for login
     val password: String,  // Password for login
-    val email: String      // User's email address for contact
+    val email: String ,     // User's email address for contact
+    val hashedPassword: String // password is being hashed
+
+    //(Tuto, 2023)
+    //(Tutorialspoint, 2024)
+
 )
 
 /*

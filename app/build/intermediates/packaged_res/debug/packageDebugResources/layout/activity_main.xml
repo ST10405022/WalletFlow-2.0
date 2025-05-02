@@ -32,23 +32,25 @@
             android:scaleType="fitCenter"
             android:contentDescription="@string/wallet_logo" />
 
-        <!-- Email Input -->
+        <!-- Username Input -->
         <EditText
-            android:id="@+id/emailInput"
+            android:id="@+id/usernameInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            android:hint="Username"
+            android:inputType="text"
+            android:minHeight="48dp" />
 
         <!-- Password Input -->
         <EditText
             android:id="@+id/passwordInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
             android:hint="@string/password"
             android:inputType="textPassword"
-            android:layout_marginBottom="24dp" />
+            android:minHeight="48dp" />
 
         <!-- Sign In Button -->
         <Button
@@ -59,6 +61,17 @@
             android:backgroundTint="#222222"
             android:textColor="#FFFFFF"
             android:layout_marginBottom="16dp" />
+
+
+        <!-- Login button -->
+        <Button
+            android:id="@+id/logInButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#222222"
+            android:text="Log In"
+            android:textColor="#FFFFFF" />
 
         <!-- NEW: Continue without login button -->
         <Button
@@ -71,13 +84,14 @@
             android:layout_marginBottom="16dp" />
 
         <!-- Forgot Password -->
-        <TextView
+        <Button
             android:id="@+id/forgotPassword"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/forgot_password"
-            android:textColor="#000000"
-            android:textStyle="bold" />
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#222222"
+            android:text="Forgot Password ?"
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 </ScrollView>

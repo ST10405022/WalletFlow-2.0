@@ -28,6 +28,11 @@
     <string name="filter_by_date">Filter by Date</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="from_mm_dd_yyyy">From (mm/dd/yyyy)</string>
+    <string name="gcm_defaultSenderId" translatable="false">1053648392887</string>
+    <string name="google_api_key" translatable="false">AIzaSyDakUEZqRlhlyayqtQABqzGCDLeST_IAK8</string>
+    <string name="google_app_id" translatable="false">1:1053648392887:android:da77b34b6bb4b8303e3332</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDakUEZqRlhlyayqtQABqzGCDLeST_IAK8</string>
+    <string name="google_storage_bucket" translatable="false">wallet-flow-f76b4.firebasestorage.app</string>
     <string name="image_preview">Image Preview</string>
     <string name="insert_end_date">Insert End Date</string>
     <string name="insert_start_date">Insert Start Date</string>
@@ -45,6 +50,7 @@
     <string name="ok">OK</string>
     <string name="password">Password</string>
     <string name="placeholder_image">Placeholder Image</string>
+    <string name="project_id" translatable="false">wallet-flow-f76b4</string>
     <string name="recurring_no">Recurring: No</string>
     <string name="select_end_date">Select End Date</string>
     <string name="select_start_date">Select Start Date</string>

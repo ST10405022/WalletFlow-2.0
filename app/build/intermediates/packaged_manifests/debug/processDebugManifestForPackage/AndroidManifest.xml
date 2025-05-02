@@ -49,6 +49,9 @@
             </intent-filter>
         </activity>
 
+        <!-- Forgot Password screen after/ during login -->
+        <activity android:name="com.example.prog7313ui.ForgotPasswordActivity" />
+
         <!-- Hub screen after login -->
         <activity android:name="com.example.prog7313ui.HubActivity" />
 
@@ -76,6 +79,13 @@
                 android:name="androidx.profileinstaller.ProfileInstallerInitializer"
                 android:value="androidx.startup" />
         </provider>
+
+        <uses-library
+            android:name="androidx.window.extensions"
+            android:required="false" />
+        <uses-library
+            android:name="androidx.window.sidecar"
+            android:required="false" />
 
         <service
             android:name="androidx.room.MultiInstanceInvalidationService"

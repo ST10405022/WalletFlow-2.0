@@ -47,13 +47,13 @@ public class AppDatabase_Impl : AppDatabase() {
 
   protected override fun createOpenDelegate(): RoomOpenDelegate {
     val _openDelegate: RoomOpenDelegate = object : RoomOpenDelegate(2,
-        "57dfab573b48c92515c39bb5786d2271", "1453ffc00e6aea307354749cc0d383c2") {
+        "c876ee8ae38b3e9159d49aa228975faf", "a0288be75cbc9bb9a7857d3ed0eb6f3a") {
       public override fun createAllTables(connection: SQLiteConnection) {
-        connection.execSQL("CREATE TABLE IF NOT EXISTS `users` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `surname` TEXT NOT NULL, `username` TEXT NOT NULL, `password` TEXT NOT NULL, `email` TEXT NOT NULL)")
+        connection.execSQL("CREATE TABLE IF NOT EXISTS `users` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `surname` TEXT NOT NULL, `username` TEXT NOT NULL, `password` TEXT NOT NULL, `email` TEXT NOT NULL, `hashedPassword` TEXT NOT NULL)")
         connection.execSQL("CREATE TABLE IF NOT EXISTS `expenses` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `amount` REAL NOT NULL, `date` INTEGER NOT NULL, `startDate` INTEGER, `endDate` INTEGER, `description` TEXT NOT NULL, `categoryId` INTEGER NOT NULL, `photoPath` TEXT)")
         connection.execSQL("CREATE TABLE IF NOT EXISTS `budget_categories` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `minLimit` REAL NOT NULL, `maxLimit` REAL NOT NULL, `imageUri` TEXT)")
         connection.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)")
-        connection.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '57dfab573b48c92515c39bb5786d2271')")
+        connection.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c876ee8ae38b3e9159d49aa228975faf')")
       }
 
       public override fun dropAllTables(connection: SQLiteConnection) {
@@ -91,6 +91,8 @@ public class AppDatabase_Impl : AppDatabase() {
             TableInfo.CREATED_FROM_ENTITY))
         _columnsUsers.put("email", TableInfo.Column("email", "TEXT", true, 0, null,
             TableInfo.CREATED_FROM_ENTITY))
+        _columnsUsers.put("hashedPassword", TableInfo.Column("hashedPassword", "TEXT", true, 0,
+            null, TableInfo.CREATED_FROM_ENTITY))
         val _foreignKeysUsers: MutableSet<TableInfo.ForeignKey> = mutableSetOf()
         val _indicesUsers: MutableSet<TableInfo.Index> = mutableSetOf()
         val _infoUsers: TableInfo = TableInfo("users", _columnsUsers, _foreignKeysUsers,

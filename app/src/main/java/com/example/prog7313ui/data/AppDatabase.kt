@@ -40,7 +40,7 @@ val Migration012 = object : Migration(1, 2){
 
 // AppDatabase is an abstract class that extends RoomDatabase and must be annotated with @Database (MikeT, 2022).
 abstract class AppDatabase : RoomDatabase() {
-    // Each DAO must be exposed as an abstract method (MikeT, 2022).
+    // Each DAO must be exposed as an abstract method (MikeT, 2022) (Tuto).
     abstract fun userDao(): UserDao // DAO for User entity
     abstract fun expenseDao(): ExpenseDao // DAO for Expense entity
     abstract fun budgetCategoryDao(): BudgetCategoryDao // DAO for BudgetCategory entity
@@ -54,7 +54,7 @@ abstract class AppDatabase : RoomDatabase() {
          * Returns a singleton instance of AppDatabase to prevent multiple DB connections.
          * @param context The application context.
          * @return The singleton instance of AppDatabase.
-         * @reference (MikeT, 2022).
+         * @reference (MikeT, 2022) (Tuto, 2023).
          */
         fun getInstance(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {

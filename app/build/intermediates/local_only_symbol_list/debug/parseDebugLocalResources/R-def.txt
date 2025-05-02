@@ -27,7 +27,6 @@ id categoryTitle
 id continueBtn
 id createExpenseBtn
 id doneButton
-id emailInput
 id expenseAmount
 id expenseCategory
 id expenseDate
@@ -38,7 +37,9 @@ id expenseRecurring
 id expenseRecyclerView
 id expenseStartDate
 id forgotPassword
+id forgotUsernameInput
 id hubRoot
+id imageView
 id inputAmount
 id inputDate
 id inputDescription
@@ -47,6 +48,7 @@ id inputExpenseName
 id inputMaxValue
 id inputMinValue
 id inputStartDate
+id logInButton
 id logoImage
 id maxLimit
 id minLimit
@@ -54,10 +56,12 @@ id nav_achievements
 id nav_categories
 id nav_expenses
 id nav_flow
+id newPasswordInput
 id passwordInput
 id previewImage
 id recurringExpenseCheckBox
 id recyclerViewExpenses
+id resetPasswordButton
 id selectEndDateBtn
 id selectStartDateBtn
 id signInButton
@@ -69,12 +73,14 @@ id txtMinLimit
 id updateButton
 id uploadImageBtn
 id uploadReceiptBtn
+id usernameInput
 id viewPhotoBtn
 id welcomeText
 layout activity_add_expense
 layout activity_category
 layout activity_create_category
 layout activity_expense_list
+layout activity_forgot_password
 layout activity_hub
 layout activity_main
 layout expense_item
@@ -111,6 +117,11 @@ string end
 string filter_by_date
 string forgot_password
 string from_mm_dd_yyyy
+string gcm_defaultSenderId
+string google_api_key
+string google_app_id
+string google_crash_reporting_api_key
+string google_storage_bucket
 string image_preview
 string insert_end_date
 string insert_start_date
@@ -128,6 +139,7 @@ string name_of_your_expense_category
 string ok
 string password
 string placeholder_image
+string project_id
 string recurring_no
 string select_end_date
 string select_start_date

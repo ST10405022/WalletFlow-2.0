@@ -5,6 +5,7 @@ import androidx.room.EntityInsertAdapter
 import androidx.room.RoomDatabase
 import androidx.room.coroutines.createFlow
 import androidx.room.util.getColumnIndexOrThrow
+import androidx.room.util.getTotalChangedRows
 import androidx.room.util.performSuspending
 import androidx.sqlite.SQLiteStatement
 import com.example.prog7313ui.`data`.entity.User
@@ -35,7 +36,7 @@ public class UserDao_Impl(
     this.__db = __db
     this.__insertAdapterOfUser = object : EntityInsertAdapter<User>() {
       protected override fun createQuery(): String =
-          "INSERT OR REPLACE INTO `users` (`id`,`name`,`surname`,`username`,`password`,`email`) VALUES (nullif(?, 0),?,?,?,?,?)"
+          "INSERT OR REPLACE INTO `users` (`id`,`name`,`surname`,`username`,`password`,`email`,`hashedPassword`) VALUES (nullif(?, 0),?,?,?,?,?,?)"
 
       protected override fun bind(statement: SQLiteStatement, entity: User) {
         statement.bindLong(1, entity.id.toLong())
@@ -44,6 +45,7 @@ public class UserDao_Impl(
         statement.bindText(4, entity.username)
         statement.bindText(5, entity.password)
         statement.bindText(6, entity.email)
+        statement.bindText(7, entity.hashedPassword)
       }
     }
     this.__deleteAdapterOfUser = object : EntityDeleteOrUpdateAdapter<User>() {
@@ -55,7 +57,7 @@ public class UserDao_Impl(
     }
     this.__updateAdapterOfUser = object : EntityDeleteOrUpdateAdapter<User>() {
       protected override fun createQuery(): String =
-          "UPDATE OR ABORT `users` SET `id` = ?,`name` = ?,`surname` = ?,`username` = ?,`password` = ?,`email` = ? WHERE `id` = ?"
+          "UPDATE OR ABORT `users` SET `id` = ?,`name` = ?,`surname` = ?,`username` = ?,`password` = ?,`email` = ?,`hashedPassword` = ? WHERE `id` = ?"
 
       protected override fun bind(statement: SQLiteStatement, entity: User) {
         statement.bindLong(1, entity.id.toLong())
@@ -64,7 +66,8 @@ public class UserDao_Impl(
         statement.bindText(4, entity.username)
         statement.bindText(5, entity.password)
         statement.bindText(6, entity.email)
-        statement.bindLong(7, entity.id.toLong())
+        statement.bindText(7, entity.hashedPassword)
+        statement.bindLong(8, entity.id.toLong())
       }
     }
   }
@@ -84,19 +87,20 @@ public class UserDao_Impl(
     __updateAdapterOfUser.handle(_connection, user)
   }
 
-  public override suspend fun getUserByEmail(email: String): User? {
-    val _sql: String = "SELECT * FROM users WHERE email = ? LIMIT 1"
+  public override suspend fun getUserByUsername(username: String): User? {
+    val _sql: String = "SELECT * FROM users WHERE username = ? LIMIT 1"
     return performSuspending(__db, true, false) { _connection ->
       val _stmt: SQLiteStatement = _connection.prepare(_sql)
       try {
         var _argIndex: Int = 1
-        _stmt.bindText(_argIndex, email)
+        _stmt.bindText(_argIndex, username)
         val _columnIndexOfId: Int = getColumnIndexOrThrow(_stmt, "id")
         val _columnIndexOfName: Int = getColumnIndexOrThrow(_stmt, "name")
         val _columnIndexOfSurname: Int = getColumnIndexOrThrow(_stmt, "surname")
         val _columnIndexOfUsername: Int = getColumnIndexOrThrow(_stmt, "username")
         val _columnIndexOfPassword: Int = getColumnIndexOrThrow(_stmt, "password")
         val _columnIndexOfEmail: Int = getColumnIndexOrThrow(_stmt, "email")
+        val _columnIndexOfHashedPassword: Int = getColumnIndexOrThrow(_stmt, "hashedPassword")
         val _result: User?
         if (_stmt.step()) {
           val _tmpId: Int
@@ -111,7 +115,52 @@ public class UserDao_Impl(
           _tmpPassword = _stmt.getText(_columnIndexOfPassword)
           val _tmpEmail: String
           _tmpEmail = _stmt.getText(_columnIndexOfEmail)
-          _result = User(_tmpId,_tmpName,_tmpSurname,_tmpUsername,_tmpPassword,_tmpEmail)
+          val _tmpHashedPassword: String
+          _tmpHashedPassword = _stmt.getText(_columnIndexOfHashedPassword)
+          _result =
+              User(_tmpId,_tmpName,_tmpSurname,_tmpUsername,_tmpPassword,_tmpEmail,_tmpHashedPassword)
+        } else {
+          _result = null
+        }
+        _result
+      } finally {
+        _stmt.close()
+      }
+    }
+  }
+
+  public override suspend fun getUserByEmail(email: String): User? {
+    val _sql: String = "SELECT * FROM users WHERE email = ? LIMIT 1"
+    return performSuspending(__db, true, false) { _connection ->
+      val _stmt: SQLiteStatement = _connection.prepare(_sql)
+      try {
+        var _argIndex: Int = 1
+        _stmt.bindText(_argIndex, email)
+        val _columnIndexOfId: Int = getColumnIndexOrThrow(_stmt, "id")
+        val _columnIndexOfName: Int = getColumnIndexOrThrow(_stmt, "name")
+        val _columnIndexOfSurname: Int = getColumnIndexOrThrow(_stmt, "surname")
+        val _columnIndexOfUsername: Int = getColumnIndexOrThrow(_stmt, "username")
+        val _columnIndexOfPassword: Int = getColumnIndexOrThrow(_stmt, "password")
+        val _columnIndexOfEmail: Int = getColumnIndexOrThrow(_stmt, "email")
+        val _columnIndexOfHashedPassword: Int = getColumnIndexOrThrow(_stmt, "hashedPassword")
+        val _result: User?
+        if (_stmt.step()) {
+          val _tmpId: Int
+          _tmpId = _stmt.getLong(_columnIndexOfId).toInt()
+          val _tmpName: String
+          _tmpName = _stmt.getText(_columnIndexOfName)
+          val _tmpSurname: String
+          _tmpSurname = _stmt.getText(_columnIndexOfSurname)
+          val _tmpUsername: String
+          _tmpUsername = _stmt.getText(_columnIndexOfUsername)
+          val _tmpPassword: String
+          _tmpPassword = _stmt.getText(_columnIndexOfPassword)
+          val _tmpEmail: String
+          _tmpEmail = _stmt.getText(_columnIndexOfEmail)
+          val _tmpHashedPassword: String
+          _tmpHashedPassword = _stmt.getText(_columnIndexOfHashedPassword)
+          _result =
+              User(_tmpId,_tmpName,_tmpSurname,_tmpUsername,_tmpPassword,_tmpEmail,_tmpHashedPassword)
         } else {
           _result = null
         }
@@ -135,6 +184,7 @@ public class UserDao_Impl(
         val _columnIndexOfUsername: Int = getColumnIndexOrThrow(_stmt, "username")
         val _columnIndexOfPassword: Int = getColumnIndexOrThrow(_stmt, "password")
         val _columnIndexOfEmail: Int = getColumnIndexOrThrow(_stmt, "email")
+        val _columnIndexOfHashedPassword: Int = getColumnIndexOrThrow(_stmt, "hashedPassword")
         val _result: User?
         if (_stmt.step()) {
           val _tmpId: Int
@@ -149,7 +199,10 @@ public class UserDao_Impl(
           _tmpPassword = _stmt.getText(_columnIndexOfPassword)
           val _tmpEmail: String
           _tmpEmail = _stmt.getText(_columnIndexOfEmail)
-          _result = User(_tmpId,_tmpName,_tmpSurname,_tmpUsername,_tmpPassword,_tmpEmail)
+          val _tmpHashedPassword: String
+          _tmpHashedPassword = _stmt.getText(_columnIndexOfHashedPassword)
+          _result =
+              User(_tmpId,_tmpName,_tmpSurname,_tmpUsername,_tmpPassword,_tmpEmail,_tmpHashedPassword)
         } else {
           _result = null
         }
@@ -171,6 +224,7 @@ public class UserDao_Impl(
         val _columnIndexOfUsername: Int = getColumnIndexOrThrow(_stmt, "username")
         val _columnIndexOfPassword: Int = getColumnIndexOrThrow(_stmt, "password")
         val _columnIndexOfEmail: Int = getColumnIndexOrThrow(_stmt, "email")
+        val _columnIndexOfHashedPassword: Int = getColumnIndexOrThrow(_stmt, "hashedPassword")
         val _result: MutableList<User> = mutableListOf()
         while (_stmt.step()) {
           val _item: User
@@ -186,10 +240,36 @@ public class UserDao_Impl(
           _tmpPassword = _stmt.getText(_columnIndexOfPassword)
           val _tmpEmail: String
           _tmpEmail = _stmt.getText(_columnIndexOfEmail)
-          _item = User(_tmpId,_tmpName,_tmpSurname,_tmpUsername,_tmpPassword,_tmpEmail)
+          val _tmpHashedPassword: String
+          _tmpHashedPassword = _stmt.getText(_columnIndexOfHashedPassword)
+          _item =
+              User(_tmpId,_tmpName,_tmpSurname,_tmpUsername,_tmpPassword,_tmpEmail,_tmpHashedPassword)
           _result.add(_item)
         }
         _result
+      } finally {
+        _stmt.close()
+      }
+    }
+  }
+
+  public override suspend fun updatePassword(
+    username: String,
+    password: String,
+    hashedPassword: String,
+  ): Int {
+    val _sql: String = "UPDATE users SET password = ?, hashedPassword = ? WHERE username = ?"
+    return performSuspending(__db, false, true) { _connection ->
+      val _stmt: SQLiteStatement = _connection.prepare(_sql)
+      try {
+        var _argIndex: Int = 1
+        _stmt.bindText(_argIndex, password)
+        _argIndex = 2
+        _stmt.bindText(_argIndex, hashedPassword)
+        _argIndex = 3
+        _stmt.bindText(_argIndex, username)
+        _stmt.step()
+        getTotalChangedRows(_connection)
       } finally {
         _stmt.close()
       }

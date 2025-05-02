@@ -24,6 +24,16 @@ interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUser(user: User)
 
+    // Retrieves a user based on their username.
+    // Returns null if no user is found.
+    @Query("SELECT * FROM users WHERE username = :username LIMIT 1")
+    suspend fun getUserByUsername(username: String): User?
+    //(Tuto, 2023)
+
+    @Query("UPDATE users SET password = :password, hashedPassword = :hashedPassword WHERE username = :username")
+    suspend fun updatePassword(username: String, password: String, hashedPassword: String): Int
+    //(Tuto, 2023)
+
     /**
      * Retrieves a user by their email from the database.
      * @param email The email of the user to retrieve.
@@ -73,6 +83,8 @@ interface UserDao {
      */
     @Delete
     suspend fun deleteUser(user: User)
+
+    //(Tuto, 2023)
 }
 
 /*

@@ -31,6 +31,9 @@
             </intent-filter>
         </activity>
 
+        <!-- Forgot Password screen after/ during login -->
+        <activity android:name=".ForgotPasswordActivity" />
+
         <!-- Hub screen after login -->
         <activity android:name=".HubActivity" />
 
