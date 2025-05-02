@@ -30,6 +30,7 @@ import java.util.Locale
 
 /**
  * Activity for adding a new expense to the database.
+ * @reference (AndroidDevelopers, 2021).
 */
 class AddExpenseActivity : AppCompatActivity() {
     // UI elements
@@ -46,12 +47,12 @@ class AddExpenseActivity : AppCompatActivity() {
     private lateinit var recurringExpenseCheckBox: CheckBox // Checkbox for recurring expenses
     private lateinit var categorySpinner: Spinner // Spinner for selecting a category
 
-    // SimpleDateFormat for parsing the date input
+    // SimpleDateFormat for parsing the date input (AndroidDevelopers, 2021).
     private val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
 
     private var selectedImageUri: Uri? = null // URI for the selected image
 
-    // Explicit launcher for picking an image using the MediaStore (via SAF)
+    // Explicit launcher for picking an image using the MediaStore (via SAF) (AndroidDevelopers, 2021).
     private val pickImageLauncher = registerForActivityResult(
         ActivityResultContracts.OpenDocument()
     ) { uri: Uri? ->
@@ -84,7 +85,7 @@ class AddExpenseActivity : AppCompatActivity() {
 
         loadCategoriesIntoSpinner() // Load categories from the database and populate the spinner
 
-        // Bind views to variables
+        // Bind views to variables (AndroidDevelopers, 2021).
         nameInput = findViewById(R.id.inputExpenseName)
         amountInput = findViewById(R.id.inputAmount)
         dateInput = findViewById(R.id.inputDate)
@@ -98,7 +99,7 @@ class AddExpenseActivity : AppCompatActivity() {
         uploadPhotoBtn = findViewById(R.id.uploadReceiptBtn)
         previewImage = findViewById(R.id.previewImage)
 
-        // Set up date picker for Date input
+        // Set up date picker for Date input (AndroidDevelopers, 2021).
         dateInput.setOnClickListener {
             showDatePickerDialog { year, month, day ->
                 val formatted = "%02d/%02d/%04d".format(day, month + 1, year)
@@ -106,7 +107,7 @@ class AddExpenseActivity : AppCompatActivity() {
             }
         }
 
-        // Set up date picker for Start Date (only visible if recurring)
+        // Set up date picker for Start Date (only visible if recurring) (AndroidDevelopers, 2021).
         startDateInput.setOnClickListener {
             showDatePickerDialog { year, month, day ->
                 val formatted = "%02d/%02d/%04d".format(day, month + 1, year)
@@ -114,7 +115,7 @@ class AddExpenseActivity : AppCompatActivity() {
             }
         }
 
-        // Set up date picker for End Date (only visible if recurring)
+        // Set up date picker for End Date (only visible if recurring) (AndroidDevelopers, 2021).
         endDateInput.setOnClickListener {
             showDatePickerDialog { year, month, day ->
                 val formatted = "%02d/%02d/%04d".format(day, month + 1, year)
@@ -157,6 +158,7 @@ class AddExpenseActivity : AppCompatActivity() {
      * Load all categories from the database and populate the spinner.
      * This is done in a background thread using coroutines.
      * @return A list of BudgetCategory objects.
+     * @reference (AndroidDevelopers, 2021).
      */
     private fun loadCategoriesIntoSpinner() {
         lifecycleScope.launch {
@@ -185,17 +187,18 @@ class AddExpenseActivity : AppCompatActivity() {
     /**
      * Validate all required inputs and show inline errors if needed.
      * @return True if all fields are valid, false otherwise.
+     * @reference (AndroidDevelopers, 2021).
      */
     private fun validateInputs(): Boolean {
         var valid = true // Assume all fields are valid
 
-        // Validate name input
+        // Validate name input (AndroidDevelopers, 2021).
         if (nameInput.text.isNullOrBlank()) { // Check if name is empty
             nameInput.error = "Name is required" // Set error message if empty
             valid = false // Set to false if any field is invalid
         }
 
-        // Validate amount input
+        // Validate amount input (AndroidDevelopers, 2021).
         if (amountInput.text.isNullOrBlank()) { // Check if amount is empty
             amountInput.error = "Amount is required" // Set error message if empty
             valid = false // Set to false if any field is invalid
@@ -208,19 +211,19 @@ class AddExpenseActivity : AppCompatActivity() {
             }
         }
 
-        // Validate date input
+        // Validate date input (AndroidDevelopers, 2021).
         if (dateInput.text.isNullOrBlank()) { // Check if date is empty
             dateInput.error = "Date is required" // Set error message if empty
             valid = false // Set to false if any field is invalid
         }
 
-        // Validate description input
+        // Validate description input (AndroidDevelopers, 2021).
         if (descInput.text.isNullOrBlank()) { // Check if description is empty
             descInput.error = "Description is required" // Set error message if empty
             valid = false // Set to false if any field is invalid
         }
 
-        // Validate category selection
+        // Validate category selection (AndroidDevelopers, 2021).
         if (categorySpinner.selectedItem == null ||
             categorySpinner.selectedItem.toString().isEmpty()) { // Check if category is selected
             Toast.makeText(this,
@@ -228,7 +231,7 @@ class AddExpenseActivity : AppCompatActivity() {
             valid = false // Set to false if any field is invalid
         }
 
-        // Validate start and end dates if the expense is recurring
+        // Validate start and end dates if the expense is recurring (AndroidDevelopers, 2021).
         if (recurringExpenseCheckBox.isChecked) {
             if (startDateInput.text.isNullOrBlank()) {
                 startDateInput.error = "Start date is required for recurring expenses"
@@ -245,6 +248,7 @@ class AddExpenseActivity : AppCompatActivity() {
 
     /**
      * Insert validated expense into RoomDB.
+     * @reference (AndroidDevelopers, 2021).
      */
     private fun saveExpenseToDatabase() {
         // Parse date input
@@ -256,7 +260,7 @@ class AddExpenseActivity : AppCompatActivity() {
             return // Exit function if date is invalid
         }
 
-        // Parse start and end dates if recurring
+        // Parse start and end dates if recurring (AndroidDevelopers, 2021).
         val startDate: Date? = if (recurringExpenseCheckBox.isChecked && !startDateInput.text.isNullOrBlank()) {
             parseDate(startDateInput.text.toString())
         } else { null }
@@ -264,7 +268,7 @@ class AddExpenseActivity : AppCompatActivity() {
             parseDate(endDateInput.text.toString())
         } else { null }
 
-        // Convert category ID from spinner (assuming it's mapped to BudgetCategory objects)
+        // Convert category ID from spinner (assuming it's mapped to BudgetCategory objects) (AndroidDevelopers, 2021)
         val selectedCategory = categorySpinner.selectedItem as? BudgetCategory // Cast to BudgetCategory
         if (selectedCategory == null) { // Handle invalid category selection
             Toast.makeText(this, "Invalid category selected.",
@@ -272,7 +276,7 @@ class AddExpenseActivity : AppCompatActivity() {
             return // Exit function if category is invalid
         }
 
-        // Create Expense object with parsed date
+        // Create Expense object with parsed date and selected category (AndroidDevelopers, 2021)
         val expense = Expense(
             amount = amountInput.text.toString().toDouble(), // Convert to double
             date = parsedDate!!, // Non-null assertion as we checked for validity
@@ -306,6 +310,7 @@ class AddExpenseActivity : AppCompatActivity() {
      * Convert date string to Date object using SimpleDateFormat.
      * @param dateString The date string to parse.
      * @return The parsed Date object or null if parsing fails.
+     * @reference (AndroidDevelopers, 2021).
      */
     private fun parseDate(dateString: String): Date? {
         return try {
@@ -320,6 +325,7 @@ class AddExpenseActivity : AppCompatActivity() {
      * @param onDateSet A callback function to handle the selected date.
      * It takes three parameters: year, month, and day.
      * These parameters represent the selected date.
+     * @reference (AndroidDevelopers, 2021).
      */
     private fun showDatePickerDialog(onDateSet: (Int, Int, Int) -> Unit) {
         val calendar = Calendar.getInstance()
@@ -333,3 +339,32 @@ class AddExpenseActivity : AppCompatActivity() {
         datePickerDialog.show()
     }
 }
+
+/*
+ * Reference List
+ *     AndroidDevelopers, 2021. Save data in a local database using Room. [Online]
+ *     Available at: https://developer.android.com/training/data-storage/room
+ *     [Accessed 22 April 2025].
+ *     AndroidDevelopers, 2021. Kotlin coroutines and lifecycle. [Online]
+ *     Available at: https://developer.android.com/topic/libraries/architecture/coroutines
+ *     [Accessed 22 April 2025].
+ *     AndroidDevelopers, 2021. CardView. [Online]
+ *     Available at: https://developer.android.com/reference/androidx/cardview/widget/CardView
+ *     [Accessed 25 April 2025].
+ *     AndroidDevelopers, 2021. View binding. [Online]
+ *     Available at: https://developer.android.com/topic/libraries/view-binding
+ *     [Accessed 23 April 2025].
+ *     AndroidDevelopers, 2021. AlertDialog. [Online]
+ *     Available at: https://developer.android.com/reference/androidx/appcompat/app/AlertDialog
+ *     [Accessed 24 April 2025].
+ *     AndroidDevelopers, 2021. SimpleDateFormat. [Online]
+ *     Available at: https://developer.android.com/reference/java/text/SimpleDateFormat
+ *     [Accessed 23 April 2025].
+ *     MikeT, 2022. stackOverflow. [Online]
+ *     Available at: https://stackoverflow.com/questions/74477964/android-studio-add-a-database
+ *     [Accessed 28 April 2025].
+ *     Android. 2025. Create dynamic lists with RecyclerView:   views:   Android developers,
+ *     Android Developers. [Online].
+ *     Available at: https://developer.android.com/develop/ui/views/layout/recyclerview
+ *     [Accessed: 15 April 2025].
+ */

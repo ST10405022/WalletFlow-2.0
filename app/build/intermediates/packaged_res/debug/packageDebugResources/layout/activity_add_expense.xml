@@ -156,3 +156,9 @@
             android:layout_marginBottom="16dp" />
     </LinearLayout>
 </ScrollView>
+
+<!-- Reference List
+    AndroidDevelopers, 2021. Create dynamic lists with RecyclerView. [Online]
+    Available at: https://developer.android.com/develop/ui/views/layout/recyclerview
+    [Accessed 20 April 2025].
+-->
