@@ -30,10 +30,11 @@ class CategoryActivity : AppCompatActivity() {
         val txtMaxLimit = findViewById<TextView>(R.id.inputMaxValue)
 
         //Pass category name, id, and image
+        val budgetCategoryId = intent.getIntExtra("CATEGORY_ID" , -1)
         val budgetCategoryName = intent.getStringExtra("CATEGORY_NAME")
         val budgetCategoryImage = intent.getStringExtra("CATEGORY_IMAGE")
-        val budgetCategoryMinLimit = intent.getStringExtra("Category_MINLIMIT")
-        val budgetCategoryMaxLimit = intent.getStringExtra("Category_MAXLIMIT")
+        val budgetCategoryMinLimit = intent.getDoubleExtra("Category_MINLIMIT", 0.0)
+        val budgetCategoryMaxLimit = intent.getDoubleExtra("Category_MAXLIMIT", 0.0)
 
         titleTextView.text = budgetCategoryName     // Set category title
 
@@ -42,8 +43,8 @@ class CategoryActivity : AppCompatActivity() {
             imageCategory.setImageURI(imageUri)     // Set category image
         }
 
-        txtMinLimit.text = budgetCategoryMinLimit   // Set category min limit
-        txtMaxLimit.text = budgetCategoryMaxLimit   // Set category max limit
+        txtMinLimit.text = budgetCategoryMinLimit.toString()    // Set category min limit
+        txtMaxLimit.text = budgetCategoryMaxLimit.toString()    // Set category max limit
 
 
         // Back to Hub screen
@@ -70,7 +71,7 @@ class CategoryActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         //Load expenses
-        loadCategoryDetails(categoryTitle, txtMinLimit, txtMaxLimit)
+        loadCategoryDetails(budgetCategoryId, txtMinLimit, txtMaxLimit)
     }
 
     private fun loadCategoryDetails(

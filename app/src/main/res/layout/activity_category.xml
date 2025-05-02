@@ -48,54 +48,66 @@
             android:src="@drawable/ic_launcher_background"
             android:scaleType="centerInside"
             android:background="#E0E0E0"
+            android:elevation="4dp"
             android:layout_marginBottom="24dp" />
 
-        <!-- Budget Goal Section -->
-        <TextView
-            android:id="@+id/txtMinLimit"
+        <!-- Budget Goal Section (Non-editable values) -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Min limit:"
-            android:textSize="18sp"
-            android:layout_marginBottom="8dp" />
-
-        <TextView
-            android:id="@+id/inputMinValue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:orientation="vertical"
             android:background="#F5F5F5"
-            android:padding="8dp"
-            android:gravity="center"
-            android:layout_marginBottom="8dp" />
+            android:padding="12dp"
+            android:elevation="2dp">
 
-        <TextView
-            android:id="@+id/txtMaxLimit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Max limit:"
-            android:textSize="18sp"
-            android:layout_marginBottom="16dp" />
+            <TextView
+                android:id="@+id/txtMinLimit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Min limit:"
+                android:textSize="18sp"
+                android:layout_marginBottom="4dp" />
 
-        <TextView
-            android:id="@+id/inputMaxValue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:background="#F5F5F5"
-            android:padding="8dp"
-            android:gravity="center"
-            android:layout_marginBottom="16dp" />
+            <TextView
+                android:id="@+id/inputMinValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:background="#F5F5F5"
+                android:padding="8dp"
+                android:gravity="center"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/txtMaxLimit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Max limit:"
+                android:textSize="18sp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:id="@+id/inputMaxValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:background="#F5F5F5"
+                android:padding="8dp"
+                android:gravity="center"
+                android:layout_marginBottom="16dp" />
+        </LinearLayout>
 
         <!-- RecyclerView for Expense List // (Android, 2025) -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewExpenses"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="16dp"
             android:nestedScrollingEnabled="false" />
 
@@ -107,13 +119,14 @@
             android:text="OK"
             android:backgroundTint="#7B5CC4"
             android:textColor="#FFFFFF"
+            android:elevation="4dp"
             android:layout_marginTop="24dp" />
     </LinearLayout>
 </ScrollView>
 
-<!-- Reference List
-        Android. 2025. Create dynamic lists with RecyclerView:   views:   Android developers,
-            Android Developers. [Online].
-            Available at: https://developer.android.com/develop/ui/views/layout/recyclerview
-            (Accessed: 01 May 2025).
--->
+    <!-- Reference List
+            Android. 2025. Create dynamic lists with RecyclerView:   views:   Android developers,
+                Android Developers. [Online].
+                Available at: https://developer.android.com/develop/ui/views/layout/recyclerview
+                (Accessed: 01 May 2025).
+    -->

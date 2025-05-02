@@ -33,11 +33,9 @@ class HubActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.categoryRecyclerView)
         adapter = CategoryAdapter(emptyList()) { category ->
             val intent = Intent(this, CategoryActivity::class.java)
-            intent.putExtra("Category_ID", category.id)
-            intent.putExtra("Category_NAME", category.name)
-            intent.putExtra("Category_IMAGE", category.imageUri)
-            intent.putExtra("Category_MINLIMIT", category.minLimit)
-            intent.putExtra("Category_MAXLIMIT", category.maxLimit)
+            intent.putExtra("CATEGORY_ID", category.id)
+            intent.putExtra("CATEGORY_NAME", category.name)
+            intent.putExtra("CATEGORY_IMAGE", category.imageUri)
             startActivity(intent)
         }
 
