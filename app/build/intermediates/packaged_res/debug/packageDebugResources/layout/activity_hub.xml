@@ -43,7 +43,7 @@
         android:layout_margin="16dp"
         android:spinnerMode="dropdown"/>
 
-    <!-- Scrollable content (Categories) -->
+    <!-- Scrollable content (Categories) // (Android, 2025) -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryRecyclerView"
         android:layout_width="match_parent"
@@ -91,3 +91,10 @@
         app:menu="@menu/bottom_nav_menu"
         app:labelVisibilityMode="labeled" />
 </RelativeLayout>
+
+<!-- Reference List
+        Android. 2025. Create dynamic lists with RecyclerView:   views:   Android developers,
+            Android Developers. [Online].
+            Available at: https://developer.android.com/develop/ui/views/layout/recyclerview
+            (Accessed: 01 May 2025).
+-->

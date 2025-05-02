@@ -19,6 +19,7 @@ id buttonClearFilter
 id categoryButton
 id categoryImage
 id categoryNameInput
+id categoryPreviewImage
 id categoryPreviewLabel
 id categoryRecyclerView
 id categorySpinner
@@ -81,6 +82,8 @@ layout item_category
 layout item_expense
 menu bottom_nav_menu
 mipmap ic_launcher
+mipmap ic_launcher_background
+mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 string add_a_category
 string add_an_expense
